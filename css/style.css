@@ -1247,4 +1247,7 @@ p {
   .compare-grid {
     grid-template-columns: 1fr;
   }
+  [hidden] {
+  display: none !important;
+}
 }
