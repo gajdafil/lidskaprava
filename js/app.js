@@ -29,12 +29,18 @@ export class AppController {
    * @param {GameEngine} engine
    */
   constructor(engine) {
-    this.engine = engine;
-    this.audio = new AudioManager();
-    this.documentViewer = new DocumentViewer(engine);
-    this.archivePanel = new ArchivePanel(engine, this.documentViewer);
-    this.defenseEditor = new DefenseEditor(engine);
-    this.reporter = new AssessmentReporter(engine);
+this.engine = engine;
+this.audio = new AudioManager();
+this.documentViewer = new DocumentViewer(engine);
+
+this.archivePanel = new ArchivePanel({
+  engine: engine,
+  data: engine.data,
+  onStateChange: () => this.render()
+});
+
+this.defenseEditor = new DefenseEditor(engine);
+this.reporter = new AssessmentReporter(engine);
 
     this.fontSizePx = this._loadFontSize();
     this.playerName = this._loadPlayerName();
