@@ -1,9 +1,11 @@
 /**
  * reports.js
- * Závěrečný individualizovaný akademický posudek a export výsledků simulace.
+ * Závěrečný individualizovaný akademický posudek a historie dokončených mandátů.
  */
 
 import { escapeHtml } from './documents.js';
+
+const HISTORY_STORAGE_KEY = 'letat_cest_moi_history_v1';
 
 export class AssessmentReporter {
   /**
@@ -13,42 +15,75 @@ export class AssessmentReporter {
     this.engine = engine;
   }
 
+  loadHistory() {
+    try {
+      const raw = window.localStorage.getItem(HISTORY_STORAGE_KEY);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  recordCompletedCampaign(playerName) {
+    const state = this.engine.state;
+    if (state.screen !== 'assessment' || !state.completedAt) return;
+
+    const history = this.loadHistory();
+    if (history.some((item) => item.completedAt === state.completedAt)) {
+      return;
+    }
+
+    const results = this.engine.getResults();
+    history.unshift({
+      completedAt: state.completedAt,
+      playerName: playerName || 'Předseda vlády Marenie',
+      totalEarned: results.totalEarned,
+      totalMaxPoints: results.totalMaxPoints,
+      totalPercentage: results.totalPercentage,
+      gradeLabel: results.gradeLabel
+    });
+
+    try {
+      window.localStorage.setItem(
+        HISTORY_STORAGE_KEY,
+        JSON.stringify(history.slice(0, 15))
+      );
+    } catch {
+      // Ignorovat při omezení úložiště
+    }
+  }
+
   /**
-   * Vykreslí kompletní obrazovku závěrečného akademického posudku.
-   * @returns {string} HTML řetězec
+   * Vykreslí kompletní akademický posudek do #main.
+   * @param {string} playerName
+   * @returns {string}
    */
-  render() {
+  render(playerName) {
     const report = this.engine.getAssessmentReport();
     const res = report.results;
+    const displayPlayer = playerName || 'Předseda vlády Marenské republiky';
+    const dateFormatted = new Date(report.meta.generatedAt).toLocaleDateString('cs-CZ');
 
     const competenciesHtml = report.competencyNarratives
       .map(
         (c) => `
-        <article class="competency-card">
-          <div class="competency-top">
-            <div>
-              <strong>${escapeHtml(c.id)} – ${escapeHtml(c.name)}</strong>
-              <span style="font-size: 0.82rem; color: var(--text-muted); margin-left: 0.5rem;">
-                (${c.earnedPoints} / ${c.maxPoints} surových b.)
-              </span>
-            </div>
-            <div>
-              <strong>${c.score} / 100 b.</strong> • Pásmo: <em>${escapeHtml(c.bandLabel)}</em>
-              ${
-                c.penalty > 0
-                  ? `<span class="tag-pill" style="margin-left: 0.4rem;">Srážka za opakované chyby: -${c.penalty} b.</span>`
-                  : ''
-              }
-            </div>
+        <article class="comp-card">
+          <div class="comp-card-head">
+            <strong>${escapeHtml(c.id)} – ${escapeHtml(c.name)}</strong>
+            <span class="comp-band">${escapeHtml(c.bandLabel)} (${c.score} b.)</span>
           </div>
-          <div class="progress-track">
-            <div class="progress-fill is-${escapeHtml(c.bandId)}" style="width: ${Math.min(
-          100,
-          c.score
-        )}%"></div>
+          <div class="bar" aria-hidden="true">
+            <i style="width: ${Math.min(100, c.score)}%"></i>
           </div>
-          <p style="margin: 0.45rem 0; font-size: 0.93rem;">${escapeHtml(c.narrative)}</p>
-          <p style="margin: 0; font-size: 0.88rem; color: var(--royal-700);">
+          <div class="small" style="margin-bottom: 0.4rem;">
+            Surový zisk: ${c.earnedPoints} / ${c.maxPoints} b.${
+          c.penalty > 0 ? ` • Srážka za opakované chyby: −${c.penalty} b.` : ''
+        }
+          </div>
+          <p style="font-size: 0.9rem; margin-bottom: 0.4rem;">${escapeHtml(c.narrative)}</p>
+          <p class="small" style="margin-bottom: 0; color: var(--eu-blue);">
             ${escapeHtml(c.recommendation)}
           </p>
         </article>
@@ -59,29 +94,31 @@ export class AssessmentReporter {
     const repeatedTagsHtml =
       res.repeatedTags.length > 0
         ? `
-        <h3>Opakované metodické chyby (srážky z kompetencí)</h3>
-        <ul>
-          ${res.repeatedTags
-            .map(
-              (rt) => `
-              <li>
-                <strong>${escapeHtml(rt.tag)}</strong> (${escapeHtml(
-                rt.description
-              )}) – výskyt ${rt.count}×, srážka -${rt.penaltyApplied} b. v kompetenci ${escapeHtml(
-                rt.targetCompetency
-              )}.
-              </li>
-            `
-            )
-            .join('')}
-        </ul>
+        <section class="report-block">
+          <h3 style="margin-top: 0;">Opakované metodické chyby (srážky z kompetencí)</h3>
+          <ul style="margin: 0; padding-left: 1.25rem;">
+            ${res.repeatedTags
+              .map(
+                (rt) => `
+                <li style="margin-bottom: 0.35rem;">
+                  <strong>${escapeHtml(rt.tag)}</strong> (${escapeHtml(
+                  rt.description
+                )}) – výskyt ${rt.count}×, srážka −${rt.penaltyApplied} b. v kompetenci ${escapeHtml(
+                  rt.targetCompetency
+                )}.
+                </li>
+              `
+              )
+              .join('')}
+          </ul>
+        </section>
       `
         : '';
 
     const strategicHtml = report.strategicNarratives
       .map(
         (s) => `
-        <div style="margin-bottom: 0.85rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-color);">
+        <div style="margin-bottom: 0.85rem; padding-bottom: 0.7rem; border-bottom: 1px solid var(--border);">
           <strong>${escapeHtml(s.title)}</strong> – zvolena varianta <strong>${escapeHtml(
           s.selectedOptionId
         )}</strong> (${s.pointsEarned} b.)
@@ -94,99 +131,117 @@ export class AssessmentReporter {
     const remedialHtml =
       report.remedialNarratives.length > 0
         ? `
-        <h3>Vyhodnocení nápravných kroků</h3>
-        ${report.remedialNarratives
-          .map((r) => `<p style="font-size: 0.92rem;">${escapeHtml(r.evaluation)}</p>`)
-          .join('')}
+        <section class="report-block">
+          <h3 style="margin-top: 0;">Vyhodnocení nápravných kroků</h3>
+          ${report.remedialNarratives
+            .map((r) => `<p style="font-size: 0.92rem; margin-bottom: 0.5rem;">${escapeHtml(r.evaluation)}</p>`)
+            .join('')}
+        </section>
       `
         : '';
 
     return `
-      <main class="assessment-container">
-        <article class="assessment-sheet">
-          <div class="editorial-kicker">Závěrečné akademické vyhodnocení simulace</div>
-          <h1>${escapeHtml(report.meta.title)}</h1>
-          <p style="color: var(--text-secondary);">
+      <section>
+        <div class="report-header-box">
+          <div class="eyebrow">Závěrečné akademické vyhodnocení simulace</div>
+          <h2 style="margin-bottom: 0.35rem;">${escapeHtml(report.meta.title)}</h2>
+          <p class="small" style="margin-bottom: 0;">
             Hodnocení čtyřletého mandátu předsedy vlády (${escapeHtml(report.meta.country)})
           </p>
 
-          <div class="grade-banner">
+          <div class="report-meta-grid">
             <div>
-              <div style="font-size: 0.85rem; text-transform: uppercase; font-weight: 700; color: var(--text-secondary);">
-                Celkový bodový zisk právní úspěšnosti
-              </div>
-              <div style="font-size: 1.55rem; font-weight: 800; color: var(--navy-900);">
-                ${res.totalEarned} / ${res.totalMaxPoints} bodů (${res.totalPercentage} %)
-              </div>
+              <div class="small">Hodnocený představitel</div>
+              <strong>${escapeHtml(displayPlayer)}</strong>
             </div>
             <div>
-              <div style="font-size: 0.8rem; text-transform: uppercase; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.25rem;">
-                Výsledná klasifikace
-              </div>
-              <div class="grade-badge">${escapeHtml(res.gradeLabel)}</div>
+              <div class="small">Celkový bodový zisk</div>
+              <strong>${res.totalEarned} / ${res.totalMaxPoints} b. (${res.totalPercentage} %)</strong>
+            </div>
+            <div>
+              <div class="small">Výsledná klasifikace</div>
+              <strong style="color: var(--eu-blue);">${escapeHtml(res.gradeLabel)}</strong>
+            </div>
+            <div>
+              <div class="small">Datum vyhotovení</div>
+              <strong>${escapeHtml(dateFormatted)}</strong>
             </div>
           </div>
+        </div>
 
-          ${
-            report.downgradeNote
-              ? `<div class="readonly-banner">${escapeHtml(report.downgradeNote)}</div>`
-              : ''
-          }
+        ${
+          report.downgradeNote
+            ? `<div class="note" style="margin-bottom: 1rem;">${escapeHtml(
+                report.downgradeNote
+              )}</div>`
+            : ''
+        }
 
-          <p style="font-size: 1.02rem; line-height: 1.65;">${escapeHtml(report.introParagraph)}</p>
+        <div class="report-block">
+          <h3 style="margin-top: 0;">Souhrnné zhodnocení mandátu</h3>
+          <p style="margin-bottom: 0;">${escapeHtml(report.introParagraph)}</p>
+        </div>
 
-          <hr style="border: none; border-top: 1px solid var(--border-color); margin: 1.5rem 0;" />
-
-          <h2>Profil osmi právních kompetencí</h2>
+        <h3>Profil osmi právních kompetencí (0–100 b.)</h3>
+        <div class="competency-grid">
           ${competenciesHtml}
+        </div>
 
-          ${repeatedTagsHtml}
+        ${repeatedTagsHtml}
 
-          <h2>Přehled klíčových vládních rozhodnutí (S1–S6)</h2>
+        <section class="report-block">
+          <h3 style="margin-top: 0;">Přehled klíčových vládních rozhodnutí (S1–S6)</h3>
           ${strategicHtml}
+        </section>
 
-          ${remedialHtml}
+        ${remedialHtml}
 
-          <h2>Poznámka k metodě práce s prameny a nápovědami</h2>
-          <p style="font-size: 0.92rem;">${escapeHtml(report.studyMethodNote)}</p>
+        <section class="report-block">
+          <h3 style="margin-top: 0;">Poznámka k metodě práce s prameny a nápovědami</h3>
+          <p style="margin-bottom: 0; font-size: 0.92rem;">${escapeHtml(
+            report.studyMethodNote
+          )}</p>
+        </section>
 
-          <div class="action-bar no-print">
-            <button type="button" class="btn btn-gold" data-action="print-assessment">
-              Vytisknout / Uložit posudek jako PDF
-            </button>
-            <button type="button" class="btn btn-secondary" data-action="export-assessment-md">
-              Stáhnout posudek (.md)
-            </button>
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-action="select-chapter"
-              data-chapter-id="K1"
-            >
-              Prohlédnout odehrané kapitoly
-            </button>
-            <button type="button" class="btn btn-primary" data-action="new-game">
-              Spustit novou kampaň
-            </button>
-          </div>
-        </article>
-      </main>
+        <div class="action-bar noprint">
+          <button type="button" class="btn btn-gold" data-action="print-assessment">
+            Vytisknout / Uložit posudek jako PDF
+          </button>
+          <button type="button" class="btn btn-alt" data-action="export-assessment-md">
+            Stáhnout posudek (.md)
+          </button>
+          <button
+            type="button"
+            class="btn btn-alt"
+            data-action="select-chapter"
+            data-chapter-id="K1"
+          >
+            Prohlédnout odehrané kapitoly
+          </button>
+          <button type="button" class="btn" data-action="new-game">
+            Spustit novou kampaň
+          </button>
+        </div>
+      </section>
     `;
   }
 
   /**
-   * Vygeneruje čistý textový protokol posudku ve formátu Markdown a spustí jeho stažení.
+   * Stáhne protokol akademického posudku ve formátu Markdown (.md).
+   * @param {string} playerName
    */
-  downloadMarkdownReport() {
+  downloadMarkdownReport(playerName) {
     const report = this.engine.getAssessmentReport();
     const res = report.results;
+    const displayPlayer = playerName || 'Předseda vlády Marenské republiky';
 
     const lines = [
       `# Akademický posudek: ${report.meta.title}`,
       ``,
+      `- **Hodnocený představitel:** ${displayPlayer}`,
       `- **Stát:** ${report.meta.country}`,
       `- **Celkový bodový zisk:** ${res.totalEarned} / ${res.totalMaxPoints} bodů (${res.totalPercentage} %)`,
-      `- **Výsledná klasifikace:** ${report.results.gradeLabel}`,
+      `- **Výsledná klasifikace:** ${res.gradeLabel}`,
       `- **Datum vyhotovení:** ${new Date(report.meta.generatedAt).toLocaleString('cs-CZ')}`,
       ``,
       `## Celkové zhodnocení`,
@@ -201,7 +256,7 @@ export class AssessmentReporter {
       lines.push(
         `### ${c.id} – ${c.name}: ${c.score} / 100 b. (${c.bandLabel})`,
         `- Surový zisk: ${c.earnedPoints} / ${c.maxPoints} b.${
-          c.penalty > 0 ? ` | Srážka za opakované chyby: -${c.penalty} b.` : ''
+          c.penalty > 0 ? ` | Srážka za opakované chyby: −${c.penalty} b.` : ''
         }`,
         ``,
         c.narrative,
@@ -215,7 +270,7 @@ export class AssessmentReporter {
       lines.push(`## Opakované metodické chyby`, ``);
       for (const rt of res.repeatedTags) {
         lines.push(
-          `- **${rt.tag}** (${rt.description}): výskyt ${rt.count}×, srážka -${rt.penaltyApplied} b. (${rt.targetCompetency})`
+          `- **${rt.tag}** (${rt.description}): výskyt ${rt.count}×, srážka −${rt.penaltyApplied} b. (${rt.targetCompetency})`
         );
       }
       lines.push(``);
