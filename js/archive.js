@@ -52,10 +52,17 @@ export class ArchivePanel {
   bindInternalEvents() {
     this.modeButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        const nextMode = btn.getAttribute('data-archive-mode');
-        if (nextMode) {
-          this.setMode(nextMode);
-        }
+        const clickedMode = btn.getAttribute('data-archive-mode');
+        if (!clickedMode) return;
+
+        // Opětovné kliknutí na aktivní Katalog archivu nebo Instituce a mapy
+        // tyto panely skryje a vrátí zobrazení zpět na čtečku dokumentů.
+        const nextMode =
+          clickedMode !== 'reader' && this.mode === clickedMode
+            ? 'reader'
+            : clickedMode;
+
+        this.setMode(nextMode);
       });
     });
 
@@ -150,9 +157,20 @@ export class ArchivePanel {
     this.mode = newMode;
 
     this.modeButtons.forEach((btn) => {
-      const isMatch = btn.getAttribute('data-archive-mode') === newMode;
+      const btnMode = btn.getAttribute('data-archive-mode');
+      const isMatch = btnMode === newMode;
       btn.classList.toggle('active', isMatch);
       btn.setAttribute('aria-selected', String(isMatch));
+
+      if (btnMode === 'catalog') {
+        btn.title = isMatch
+          ? 'Skrýt katalog archivu a vrátit se k dokumentu'
+          : 'Zobrazit katalog archivu';
+      } else if (btnMode === 'institutions') {
+        btn.title = isMatch
+          ? 'Skrýt instituce a mapy a vrátit se k dokumentu'
+          : 'Zobrazit instituce a mapy';
+      }
     });
 
     const isReader = newMode === 'reader';
