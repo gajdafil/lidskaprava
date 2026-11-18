@@ -573,4 +573,829 @@
     "options": [
       {
         "id": "A",
-        "text": "Veřejně oznámit, že marenské úřady nebudou unijní zákaz uplatňovat na pozemcích uznaných podle vnitrostátního práva za vhodné pro
+        "text": "Veřejně oznámit, že marenské úřady nebudou unijní zákaz uplatňovat na pozemcích uznaných podle vnitrostátního práva za vhodné pro vinařství.",
+        "level": 0,
+        "politicalImpact": "Okamžitá popularita u vinařů a zklidnění regionálních protestů před volbami.",
+        "legalEvaluation": "Protiprávní postup (stupeň 0/3): přímý rozpor s přímo použitelným nařízením Rady i se zásadou jednoty a účinnosti práva Unie (Hauer, bod 14).",
+        "unlockDocs": ["dk"],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Pozastavili jste uplatňování nařízení na vhodných pozemcích. Evropská komise následně zašle formální upozornění."
+      },
+      {
+        "id": "B",
+        "text": "Důsledně uplatňovat nařízení, otevřeně vysvětlit pěstitelům jeho dočasnou povahu a důvody stabilizace trhu a v Radě EU prosazovat včasný přechod ke strukturálním opatřením.",
+        "level": 3,
+        "politicalImpact": "Krátkodobá nepopularita mezi pěstiteli, ale věcná komunikace postupně oslabí argumenty opozice.",
+        "legalEvaluation": "Plně obhajitelný postup (stupeň 3/3): vláda dodržuje platné právo Unie a své politické cíle prosazuje legitimní cestou v unijních institucích.",
+        "unlockDocs": ["lt"],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Nařízení jste důsledně uplatnili a vydali vysvětlující informační materiál pro pěstitele. Protest postupně utichl."
+      },
+      {
+        "id": "C",
+        "text": "Formálně deklarovat plnění nařízení, ale interním pokynem uložit úřadům, aby extenzivně vykládaly výjimky a povolovaly novou výsadbu všude, kde to jen trochu půjde.",
+        "level": 1,
+        "politicalImpact": "Snaha vyhovět vinařům bez otevřené konfrontace s Bruselem.",
+        "legalEvaluation": "Právně neudržitelné obcházení práva (stupeň 1/3): výjimky ze zákazu jsou taxativně vymezeny samotným nařízením (srov. Hauer, body 11–12) a vnitrostátní úřady je nemohou rozšiřovat.",
+        "unlockDocs": ["dk"],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Vydali jste pokyn k extenzivnímu povolování výjimek. Komise zjistila nesoulad v praxi úřadů a zaslala formální upozornění."
+      }
+    ],
+    "advisorNote": "Platný akt Unie nemůžeme posuzovat podle vlastní ústavy ani jej selektivně neuplatňovat. Dokud nařízení platí, mají správní orgány povinnost jej jednotně aplikovat.",
+    "relatedDocs": ["ha", "reg_vino"]
+  },
+  "N3": {
+    "id": "N3",
+    "chapterId": "K4",
+    "type": "N",
+    "if": {
+      "S3": ["A", "C"]
+    },
+    "title": "Nápravné opatření 3 – Reakce na formální upozornění Komise",
+    "competencies": [
+      ["C8", 2]
+    ],
+    "situation": "Na začátku třetího roku doručila Evropská komise Marenii formální upozornění kvůli nejednotnému uplatňování zákazu nové výsadby vinic v rozporu s nařízením Rady.",
+    "question": "Jak vláda zareaguje na formální upozornění Komise?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Setrvat na dosavadním pokynu pro úřady a na dopis Komise věcně nereagovat.",
+        "points": 0,
+        "feedback": "Porušení práva Unie nadále trvá a vláda prohlubuje konflikt s Komisí.",
+        "unlockDocs": []
+      },
+      {
+        "id": "B",
+        "text": "Neprodleně zrušit sporný pokyn, zajistit jednotné uplatňování zákazu na celém území Marenie a písemně informovat Komisi i podřízené úřady o přijaté nápravě.",
+        "points": 2,
+        "feedback": "Vláda uznala právní chybu a zjednala účinnou nápravu ještě v předsoudní fázi (získáváte 2 body ke kompetenci Návrh právního řešení, nejvýše do původního maxima strategické úlohy).",
+        "unlockDocs": ["lt"]
+      },
+      {
+        "id": "C",
+        "text": "Ponechat v platnosti dosavadní praxi úřadů a pouze požádat Komisi o dodatečnou individuální výjimku pro marenské vinice.",
+        "points": 0,
+        "feedback": "Politická žádost o změnu pravidel nenahrazuje povinnost dodržovat platné nařízení; protiprávní praxe správních úřadů mezitím pokračuje.",
+        "unlockDocs": []
+      }
+    ],
+    "lawRef": "Hauer, věc 44/79, bod 14; čl. 4 odst. 3 SEU (ověřeno).",
+    "relatedDocs": ["dk", "ha"]
+  },
+  "E4.1": {
+    "id": "E4.1",
+    "chapterId": "K4",
+    "type": "E",
+    "title": "Úloha 4.1 – Působnost práva Unie u poskytovatele přeshraničních služeb",
+    "competencies": [
+      ["C2", 4],
+      ["C3", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Pan Tomáš Elmer je občanem Marenie a nikdy nepřenesl své bydliště do jiného členského státu. Z Marenie však prodává inzertní plochy zákazníkům v Haldersku a Rennsku a za prací do těchto států cestuje. Ministr Sorel tvrdí, že vyhoštění jeho manželky (občanky třetí země) je čistě vnitrostátní otázkou Marenie.",
+    "question": "Spadá rozhodnutí o vyhoštění manželky pana Elmera do působnosti práva Evropské unie?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Ne, jde o čistě vnitrostátní situaci, protože pan Elmer je občanem Marenie a v Marenii má své trvalé bydliště.",
+        "correct": false,
+        "tag": "M8",
+        "feedback": "Nesprávně. Podle bodů 29–30 a 37 rozsudku Carpenter je poskytování přeshraničních služeb z místa usazení příjemcům v jiných členských státech výkonem svobody volného poskytování služeb a poskytovatel se jej může dovolávat i vůči státu, v němž je usazen."
+      },
+      {
+        "id": "B",
+        "text": "Ano. Poskytování přeshraničních služeb z místa usazení příjemcům v jiných členských státech je výkonem volného poskytování služeb (čl. 49 ES, dnes čl. 56 SFEU), kterého se poskytovatel může dovolávat i vůči vlastnímu státu.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. Situace není čistě vnitrostátní, neboť významná část podnikání pana Elmera spočívá v přeshraničním poskytování služeb do jiných členských států a vyhoštění manželky by ovlivnilo podmínky výkonu této základní svobody (Carpenter, body 29–30, 37–39)."
+      },
+      {
+        "id": "C",
+        "text": "Ano, protože směrnice 73/148/EHS výslovně přiznává manželce právo pobytu v domovském státě jejího manžela.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Soudní dvůr v bodě 36 rozsudku Carpenter konstatoval, že směrnice 73/148/EHS právo pobytu rodinných příslušníků poskytovatele služeb v jeho členském státě původu neupravuje; právo se dovozuje přímo z ustanovení Smlouvy o volném poskytování služeb."
+      },
+      {
+        "id": "D",
+        "text": "Ano, ale pouze za podmínky, že by manželka pana Elmera byla rovněž státní příslušnicí jiného členského státu EU.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Taková podmínka z rozsudku Carpenter nevyplývá; paní Carpenterová byla státní příslušnicí třetí země."
+      }
+    ],
+    "hints": [
+      "Položte si otázku, zda pan Elmer ve své podnikatelské činnosti využívá některou ze základních svobod vnitřního trhu.",
+      "Přečtěte si body 29–30 a 36–37 rozsudku Carpenter.",
+      "Čistě vnitrostátní situací by případ byl pouze tehdy, kdyby neměl žádnou vazbu na právo Unie; zde je tato vazba dána přeshraničním poskytováním služeb."
+    ],
+    "lawRef": "Rozsudek SDEU ze dne 11. 7. 2002, Carpenter, věc C-60/00, body 29–30, 36–37 (autentické české znění; čl. 49 ES, dnes čl. 56 SFEU [K OVĚŘENÍ]).",
+    "relatedDocs": ["ca", "zak_pobyt"],
+    "highlightDocId": "ca",
+    "highlightPhrases": ["toto právo se může dovolávat vůči státu, v němž je usazen", "neupravuje právo pobytu rodinných příslušníků"]
+  },
+  "E4.2": {
+    "id": "E4.2",
+    "chapterId": "K4",
+    "type": "E",
+    "title": "Úloha 4.2 – Propojení základní svobody a práva na rodinný život",
+    "competencies": [
+      ["C3", 4],
+      ["C4", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Jakmile je jasné, že vyhoštění manželky omezuje výkon volného poskytování služeb pana Elmera, vláda zkoumá, jak do posouzení vstupuje právo na respektování rodinného života.",
+    "question": "Jakým způsobem Soudní dvůr v rozsudku Carpenter využil právo na respektování rodinného života?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Rozhodl, že čl. 8 EÚLP zaručuje každému cizinci bezpodmínečné právo vstupu a pobytu v zemi jeho manžela.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Bod 42 rozsudku Carpenter výslovně uvádí, že Úmluva cizinci nezaručuje žádné právo vstupu nebo pobytu na území určité země jako takové."
+      },
+      {
+        "id": "B",
+        "text": "Použil čl. 8 EÚLP jako základní právo chráněné právním řádem Společenství; členský stát se může dovolat důvodů obecného zájmu k omezení svobody jen tehdy, je-li opatření v souladu se základními právy, a vyhoštění může zasahovat do práva na rodinný život.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. Soudní dvůr vyložil čl. 49 ES ve spojení se základním právem na respektování rodinného života (čl. 8 EÚLP; dnes odpovídá čl. 7 Listiny): vyhoštění může zasahovat do rodinného života a porušuje jej, pokud nesplňuje podmínky čl. 8 odst. 2 EÚLP (body 40–42 a výrok)."
+      },
+      {
+        "id": "C",
+        "text": "Rozhodl výlučně podle hospodářských ustanovení čl. 49 ES a základní právo na rodinný život v odůvodnění nepoužil.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Samotný výrok rozsudku vykládá čl. 49 ES „ve spojení se základním právem na respektování rodinného života“."
+      },
+      {
+        "id": "D",
+        "text": "Aplikoval přímo čl. 7 Listiny základních práv Evropské unie jako právně závazný pramen primárního práva.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Rozsudek Carpenter byl vydán v roce 2002 (před nabytím právní závaznosti Listiny v roce 2009) a opírá se o čl. 8 EÚLP jako součást obecných zásad práva Společenství."
+      }
+    ],
+    "hints": [
+      "Ověřte, zda Soudní dvůr posuzoval pouze volný pohyb služeb, nebo jej spojil se základním právem.",
+      "Přečtěte si body 40–42 a výrok rozsudku Carpenter.",
+      "Pozor na přesnou formulaci: Úmluva nezaručuje cizinci právo pobytu jako takové, ale vyhoštění ze země, kde žijí blízcí příbuzní, může představovat zásah do rodinného života."
+    ],
+    "lawRef": "Rozsudek SDEU, Carpenter, věc C-60/00, body 40–42 a výrok (ověřeno); dnes odpovídá čl. 7 Listiny podle čl. 52 odst. 3 Listiny [K OVĚŘENÍ].",
+    "relatedDocs": ["ca", "l7"],
+    "highlightDocId": "ca",
+    "highlightPhrases": ["ve spojení se základním právem na respektování rodinného života", "nezaručuje žádné právo vstupu nebo pobytu"]
+  },
+  "E4.3": {
+    "id": "E4.3",
+    "chapterId": "K4",
+    "type": "E",
+    "title": "Úloha 4.3 – Spravedlivá rovnováha při vyhoštění",
+    "competencies": [
+      ["C5", 4],
+      ["C4", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Manželka pana Elmera porušila marenské přistěhovalecké předpisy tím, že po skončení turistického víza včas nevycestovala. Ministr Sorel proto trvá na tom, že vyhoštění je automaticky odůvodněno ochranou veřejného pořádku.",
+    "question": "Proč Soudní dvůr v rozsudku Carpenter dospěl k závěru, že rozhodnutí o vyhoštění nerespektovalo spravedlivou rovnováhu?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Manželka sice porušila přistěhovalecké předpisy, ale nebylo jí vytýkáno nic, co by zakládalo obavu, že by v budoucnu představovala nebezpečí pro veřejný pořádek a bezpečnost; manželství je opravdové a vede skutečný rodinný život.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. V bodech 43–45 Soudní dvůr vyvážil právo na rodinný život a ochranu veřejného pořádku a konstatoval, že za těchto konkrétních okolností vyhoštění nerespektuje spravedlivou rovnováhu mezi dotčenými zájmy."
+      },
+      {
+        "id": "B",
+        "text": "Manželka se ve skutečnosti nedopustila žádného porušení vnitrostátních přistěhovaleckých předpisů.",
+        "correct": false,
+        "tag": "M9",
+        "feedback": "Nesprávně. Bod 44 rozsudku výslovně uvádí, že manželka porušila vnitrostátní přistěhovalecké předpisy tím, že neopustila území státu po skončení povoleného pobytu."
+      },
+      {
+        "id": "C",
+        "text": "Vyhoštění manžela občana členského státu je v právu Evropské unie zakázáno absolutně a bez výjimek.",
+        "correct": false,
+        "tag": "M5",
+        "feedback": "Nesprávně. Soudní dvůr nezavedl absolutní zákaz vyhoštění, nýbrž posuzoval přiměřenost a spravedlivou rovnováhu s ohledem na konkrétní okolnosti případu (body 43–45)."
+      },
+      {
+        "id": "D",
+        "text": "Evropský soud pro lidská práva v rozsudku Boultif obecně zakázal vyhoštění cizinců uzavřevších sňatek s občanem hostitelského státu.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Rozsudek ESLP ve věci Boultif v. Švýcarsko cituje Carpenter v bodě 42 pouze jako oporu pro test podle čl. 8 odst. 2 EÚLP („nezbytné v demokratické společnosti“); žádný obecný zákaz vyhoštění z něj nevyplývá."
+      }
+    ],
+    "hints": [
+      "Soudní dvůr váží proti sobě dva konkrétní zájmy: rodinný život a ochranu veřejného pořádku.",
+      "Přečtěte si body 43–45 rozsudku Carpenter.",
+      "Rozhodují konkrétní skutkové okolnosti: povaha porušení předpisů, chování od příjezdu do země, opravdovost manželství a skutečný rodinný život."
+    ],
+    "lawRef": "Rozsudek SDEU, Carpenter, věc C-60/00, body 42–45 (autentické české znění, ověřeno).",
+    "relatedDocs": ["ca", "l7"],
+    "highlightDocId": "ca",
+    "highlightPhrases": ["spravedlivou rovnováhu mezi dotčenými zájmy", "nebezpečí pro veřejný pořádek a veřejnou bezpečnost"]
+  },
+  "S4": {
+    "id": "S4",
+    "chapterId": "K4",
+    "type": "S",
+    "title": "Strategické rozhodnutí 4 – Rozhodnutí o vyhoštění manželky pana Elmera",
+    "competencies": [
+      ["C8", 3],
+      ["C5", 3]
+    ],
+    "situation": "Ministr vnitra Viktor Sorel žádá váš podpis pod bezodkladný výkon rozhodnutí o vyhoštění manželky pana Elmera, aby vláda prokázala důslednost v migrační politice.",
+    "question": "Jak vláda ve věci pobytu manželky pana Elmera rozhodne?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Vykonat vyhoštění okamžitě bez dalšího přezkumu v zájmu prosazení přísné migrační linie vlády.",
+        "level": 0,
+        "politicalImpact": "Silný politický signál voličům žádajícím tvrdý postup v migrační politice.",
+        "legalEvaluation": "Protiprávní zásah (stupeň 0/3): vyhoštění za těchto okolností nerespektuje spravedlivou rovnováhu podle čl. 49 ES (čl. 56 SFEU) ve spojení s právem na rodinný život (Carpenter, body 43–45) a způsobuje nevratné odloučení rodiny.",
+        "unlockDocs": [],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Vyhoštění bylo vykonáno. Rodinný život byl přerušen způsobem, který nelze zcela vrátit zpět."
+      },
+      {
+        "id": "B",
+        "text": "Pozastavit výkon vyhoštění a nařídit individuální posouzení případu (opravdovost manželství, bezúhonnost, péče o děti a vazba na přeshraniční služby manžela).",
+        "level": 3,
+        "politicalImpact": "Kritika ze strany zastánců nekompromisní migrační politiky, ale plná právní obhajitelnost postupu.",
+        "legalEvaluation": "Plně obhajitelný postup (stupeň 3/3): vláda respektuje požadavek individuálního poměření spravedlivé rovnováhy mezi rodinným životem a veřejným pořádkem (Carpenter, body 43–45).",
+        "unlockDocs": ["ind"],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Pozastavili jste vyhoštění a nařídili individuální přezkum. V archivu se odemklo Rozhodnutí o individuálním posouzení."
+      },
+      {
+        "id": "C",
+        "text": "Vykonat vyhoštění, ale současně manželce písemně zaručit, že si může ze země původu podat novou žádost o vstup.",
+        "level": 1,
+        "politicalImpact": "Kompromisní gesto navenek, které však fakticky rozděluje rodinu.",
+        "legalEvaluation": "Právně neudržitelné řešení (stupeň 1/3): možnost budoucí žádosti z ciziny neodstraňuje nepřiměřenost samotného nuceného opuštění země a přerušení rodinného života v okamžiku vyhoštění.",
+        "unlockDocs": [],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Vyhoštění bylo vykonáno s odkazem na možnost budoucí žádosti. Rodinný život byl i tak přerušen."
+      }
+    ],
+    "advisorNote": "Soudní dvůr vyvažuje právo na respektování rodinného života proti ochraně veřejného pořádku. Posuďte, co o této manželce a jejím rodinném životě skutečně víte.",
+    "relatedDocs": ["ca", "l7", "zak_pobyt"]
+  },
+  "N4": {
+    "id": "N4",
+    "chapterId": "K5",
+    "type": "N",
+    "if": {
+      "S4": ["A", "C"]
+    },
+    "title": "Nápravné opatření 4 – Následky vykonaného vyhoštění",
+    "competencies": [
+      ["C8", 2]
+    ],
+    "situation": "Rozhodnutí o vyhoštění manželky pana Elmera bylo vykonáno. Rodina je již několik měsíců odloučena a právní zástupce pana Elmera napadl postup státu pro rozpor s právem Unie.",
+    "question": "Jaké opatření nyní vláda přijme?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Setrvat na vykonaném rozhodnutí o vyhoštění a nepodnikat žádné další kroky.",
+        "points": 0,
+        "feedback": "Protiprávní zásah do rodinného života a volného poskytování služeb nadále trvá.",
+        "unlockDocs": []
+      },
+      {
+        "id": "B",
+        "text": "Zrušit rozhodnutí o vyhoštění, umožnit manželce neprodlený návrat do Marenie a povolit jí pobyt s rodinou (s vědomím, že uplynulou dobu odloučení již nelze zcela vrátit).",
+        "points": 2,
+        "feedback": "Vláda přijala dostupnou nápravu (získáváte 2 body ke kompetenci Návrh právního řešení, nejvýše do původního maxima S4). Zároveň je zřejmé, že doba faktického odloučení rodiny představuje nevratný následek.",
+        "unlockDocs": ["ind"]
+      },
+      {
+        "id": "C",
+        "text": "Nabídnout panu Elmerovi pouze jednorázové peněžní odškodnění bez možnosti návratu jeho manželky do Marenie.",
+        "points": 0,
+        "feedback": "Finanční kompenzace bez umožnění společného rodinného života neodstraňuje trvající zásah do práva na rodinný život a volného pohybu služeb.",
+        "unlockDocs": []
+      }
+    ],
+    "lawRef": "Carpenter, věc C-60/00, body 43–45 (ověřeno).",
+    "relatedDocs": ["ca", "l7"]
+  },
+  "E5.1": {
+    "id": "E5.1",
+    "chapterId": "K5",
+    "type": "E",
+    "title": "Úloha 5.1 – Odpovědnost státu za blokádu způsobenou soukromými osobami",
+    "competencies": [
+      ["C2", 4],
+      ["C3", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Shromáždění na dálnici D7 neorganizuje stát, ale soukromý spolek Alpská iniciativa. Někteří členové kabinetu se domnívají, že se na jednání soukromých osob pravidla o volném pohybu zboží vůbec nevztahují.",
+    "question": "Může nezakázání shromáždění soukromých osob, které zablokuje hlavní tranzitní dálnici, představovat překážku volného pohybu zboží, za kterou odpovídá členský stát?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Ne, ustanovení Smlouvy o volném pohybu zboží zakazují výlučně aktivní obchodní omezení přijatá státními orgány.",
+        "correct": false,
+        "tag": "M11",
+        "feedback": "Nesprávně. Podle bodů 57–59 rozsudku Schmidberger může nezasáhnutí členského státu narušovat obchod uvnitř Unie stejně jako aktivní jednání a stát má povinnost přijmout nezbytná a vhodná opatření."
+      },
+      {
+        "id": "B",
+        "text": "Ano. Nezakázání shromáždění, které způsobí blokádu důležité dopravní trasy, je s to omezit obchod mezi členskými státy a představuje opatření s účinkem rovnocenným množstevnímu omezení, pokud jej nelze objektivně odůvodnit.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. V bodech 57–64 Soudní dvůr potvrdil, že pasivita státu při blokádě důležité dopravní tepny spadá pod zákaz omezení volného pohybu zboží (čl. 34 a 35 SFEU ve spojení s čl. 4 odst. 3 SEU), ledaže je objektivně odůvodněná."
+      },
+      {
+        "id": "C",
+        "text": "Ano, ale pouze tehdy, pokud blokáda brání přímému dovozu nebo vývozu zboží z Marenie, nikoli u pouhého tranzitu mezi jinými členskými státy.",
+        "correct": false,
+        "tag": "M11",
+        "feedback": "Nesprávně. Body 60–62 rozsudku Schmidberger výslovně stanoví, že povinnost zajistit volný pohyb zboží platí stejně i pro jeho tranzit přes území členského státu."
+      },
+      {
+        "id": "D",
+        "text": "Ano, a takové nezakázání shromáždění je vždy bez dalšího protiprávní bez ohledu na jakékoli důvody odůvodnění.",
+        "correct": false,
+        "tag": "M5",
+        "feedback": "Nesprávně. Bod 64 rozsudku Schmidberger výslovně ukládá zkoumat, zda nezasáhnutí státu nelze objektivně odůvodnit (zejména ochranou základních práv)."
+      }
+    ],
+    "hints": [
+      "Položte si otázku, zda překážku volnému pohybu zboží musí vytvořit přímo státní orgán, nebo zda stát odpovídá i za nečinnost vůči soukromým akcím.",
+      "Přečtěte si body 57–64 rozsudku Schmidberger.",
+      "Bod 64 spojuje dvě části posouzení: jde o překážku obchodu uvnitř Unie, a pokud ano, lze ji objektivně odůvodnit?"
+    ],
+    "lawRef": "Rozsudek SDEU ze dne 12. 6. 2003, Schmidberger, věc C-112/00, body 57–64 (ověřeno); čl. 34 a 35 SFEU [K OVĚŘENÍ] ve spojení s čl. 4 odst. 3 SEU (ověřeno).",
+    "relatedDocs": ["sb", "sfeu_34_35", "ozn_d7_1"],
+    "highlightDocId": "sb",
+    "highlightPhrases": ["skutečnost, že členský stát nezasáhne", "platí rovněž pro tranzit", "objektivně odůvodněno"]
+  },
+  "E5.2": {
+    "id": "E5.2",
+    "chapterId": "K5",
+    "type": "E",
+    "title": "Úloha 5.2 – Poměřování základních práv a volného pohybu zboží",
+    "competencies": [
+      ["C5", 4],
+      ["C3", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Svaz dopravců tvrdí, že volný pohyb zboží je základním pilířem vnitřního trhu a musí mít přednost před shromážděním. Spolek Alpská iniciativa naopak tvrdí, že svoboda projevu a shromažďování nesmí být kvůli hospodářským zájmům vůbec omezena.",
+    "question": "Jaký je podle rozsudku Schmidberger právní vztah mezi základními právy (svobodou projevu a shromažďování) a volným pohybem zboží?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Volný pohyb zboží je základní zásadou Smlouvy, která má v případě kolize vždy automatickou přednost před základními právy.",
+        "correct": false,
+        "tag": "M5",
+        "feedback": "Nesprávně. Bod 78 rozsudku Schmidberger výslovně uvádí, že volný pohyb zboží není absolutní a může být za určitých podmínek omezen."
+      },
+      {
+        "id": "B",
+        "text": "Svoboda projevu a svoboda shromažďování jsou absolutními výsadami, které v každé situaci převáží nad hospodářskými svobodami.",
+        "correct": false,
+        "tag": "M5",
+        "feedback": "Nesprávně. V bodě 80 Soudní dvůr zdůrazňuje, že svoboda projevu a shromažďování nepatří mezi absolutní výsady, nýbrž podléhají omezením odůvodněným cíli obecného zájmu."
+      },
+      {
+        "id": "C",
+        "text": "Oba zájmy je třeba v každém jednotlivém případě poměřit; ochrana základních práv je oprávněným zájmem, který v zásadě odůvodňuje omezení volného pohybu, orgány mají širokou posuzovací pravomoc, ale přiměřenost omezení obchodu podléhá přezkumu.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. V bodech 74 a 78–82 Soudní dvůr stanovil, že ani volný pohyb zboží, ani svoboda shromažďování nejsou absolutní; je nutné zvážit proti sobě stojící zájmy a posoudit spravedlivou rovnováhu a přiměřenost."
+      },
+      {
+        "id": "D",
+        "text": "Volný pohyb zboží lze omezit výhradně z taxativních důvodů uvedených v čl. 36 SFEU, mezi něž ochrana základních práv nepatří.",
+        "correct": false,
+        "tag": "M9",
+        "feedback": "Nesprávně. Bod 78 zmiňuje vedle čl. 36 Smlouvy i kategorické požadavky obecného zájmu a body 74 a násl. výslovně uznávají ochranu základních práv jako oprávněný zájem."
+      }
+    ],
+    "hints": [
+      "Hledejte model vztahu, v němž ani jedna z kolidujících hodnot nemá automatickou přednost.",
+      "Přečtěte si body 74 a 78–82 rozsudku Schmidberger.",
+      "Zapamatujte si tři pilíře: ochrana základních práv je oprávněný zájem, práva nejsou absolutní a rozhoduje poměřování přiměřenosti za všech okolností případu."
+    ],
+    "lawRef": "Rozsudek SDEU, Schmidberger, věc C-112/00, body 74 a 78–82 (autentické české znění, ověřeno); Listina, čl. 11, 12 a 52 odst. 1.",
+    "relatedDocs": ["sb", "l11"],
+    "highlightDocId": "sb",
+    "highlightPhrases": ["ochrana základních práv je oprávněným zájmem", "je třeba zvážit proti sobě stojící zájmy", "širokou posuzovací pravomoc"]
+  },
+  "E5.3": {
+    "id": "E5.3",
+    "chapterId": "K5",
+    "type": "E",
+    "title": "Úloha 5.3 – Okolnosti rozhodné při posouzení přiměřenosti ve věci Schmidberger",
+    "competencies": [
+      ["C4", 4],
+      ["C5", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Soudní dvůr ve věci Schmidberger odlišil poklidné shromáždění na Brennerské dálnici od závažných blokád ve věci Komise v. Francie (C-265/95).",
+    "question": "Který soubor okolností Soudní dvůr ve věci Schmidberger zdůraznil při závěru, že nezakázání shromáždění bylo přiměřené?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Shromáždění se konalo po řádném oznámení a rozhodnutí nezakázat; týkalo se jediné trasy, jednorázově a po dobu necelých 30 hodin; cílem nebylo bránit obchodu s určitým zbožím; orgány přijaly organizační a doprovodná opatření a informovaly; šlo o izolovanou akci bez vyvolání obecného pocitu nebezpečí.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. Tyto čtyři okruhy skutkových okolností (body 84–88) vedly Soudní dvůr k závěru, že vnitrostátní orgány mohly důvodně dospět k názoru, že oprávněného cíle shromáždění nelze dosáhnout opatřeními méně omezujícími obchod."
+      },
+      {
+        "id": "B",
+        "text": "Rozhodující bylo, že věcný cíl shromáždění (ochrana životního prostředí a zdraví) má v právu Unie vyšší hodnotu než volný pohyb zboží.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Bod 66 rozsudku výslovně uvádí, že konkrétní cíle sledované shromážděním nejsou jako takové v řízení tohoto druhu rozhodující."
+      },
+      {
+        "id": "C",
+        "text": "Rozhodující bylo, že příslušné státní orgány předem vyplatily všem dopravcům paušální náhradu ušlého zisku.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Taková okolnost se v rozsudku Schmidberger vůbec nevyskytuje."
+      },
+      {
+        "id": "D",
+        "text": "Rozhodující bylo, že základní práva shromažďovací mají vždy absolutní přednost bez ohledu na délku a rozsah blokády.",
+        "correct": false,
+        "tag": "M5",
+        "feedback": "Nesprávně. V bodech 80–81 Soudní dvůr odmítl absolutní pojetí práv a založil rozhodnutí na konkrétním poměření všech okolností."
+      }
+    ],
+    "hints": [
+      "Soudní dvůr porovnává dva odlišné skutkové průběhy blokád.",
+      "Přečtěte si body 84–88 (a pro roli věcného cíle body 66–68) rozsudku Schmidberger.",
+      "Hledejte čtyři oblasti: zákonný postup po oznámení, omezený rozsah a trvání na jediné trase, neexistenci cíle blokovat konkrétní zboží a přijatá doprovodná a informační opatření."
+    ],
+    "lawRef": "Rozsudek SDEU, Schmidberger, věc C-112/00, body 66–68 a 84–88 (autentické české znění, ověřeno).",
+    "relatedDocs": ["sb", "cmp_sb_k5"],
+    "highlightDocId": "sb",
+    "highlightPhrases": ["konkrétní cíle sledované shromážděním nejsou jako takové", "jediné trasy, jednorázově a po dobu necelých 30 hodin", "různá organizační a doprovodná opatření"]
+  },
+  "S5": {
+    "id": "S5",
+    "chapterId": "K5",
+    "type": "S",
+    "title": "Strategické rozhodnutí 5 – Postup vlády při oznámeném shromáždění na D7",
+    "competencies": [
+      ["C8", 3],
+      ["C5", 3]
+    ],
+    "situation": "Alpská iniciativa oznámila shromáždění na dálnici D7 v průsmyku Vorholm až na 30 hodin. Vláda musí zaujmout postoj k postupu policejních a dopravních orgánů.",
+    "question": "Jaký postup při konání shromáždění na dálnici D7 vláda zvolí?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Shromáždění preventivně zakázat v celém rozsahu, aby nedošlo k žádnému zdržení kamionové dopravy.",
+        "level": 1,
+        "politicalImpact": "Spokojenost Svazu dopravců, ale okamžitá žaloba pořadatelů ke správnímu soudu.",
+        "legalEvaluation": "Právně riziková volba (stupeň 1/3): úplný zákaz řádně oznámeného shromáždění bez vyzkoušení mírnějších opatření by mohl představovat nepřiměřený zásah do svobody projevu a shromažďování (Schmidberger, bod 89).",
+        "unlockDocs": ["roz_zakaz_d7"],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Shromáždění bylo zakázáno; spolek se bránil u správního soudu a v archivu nebudou doložena organizační opatření koridoru."
+      },
+      {
+        "id": "B",
+        "text": "Shromáždění nezakázat, ale uložit komplexní organizační opatření: policejní dohled, včasnou informační kampaň v Marenii i sousedních státech, vyznačení objízdných tras a závazné omezení délky na nejvýše 30 hodin.",
+        "level": 3,
+        "politicalImpact": "Vyvážené řešení přijatelné pro veřejnost i přes dílčí zdržení dopravců.",
+        "legalEvaluation": "Optimální řešení (stupeň 3/3): odpovídá metodě spravedlivé rovnováhy v rozsudku Schmidberger (body 84–93), kdy stát chrání jádro práva shromažďovacího a současně minimalizuje dopad na tranzit.",
+        "unlockDocs": ["pk"],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Shromáždění proběhlo s doprovodnými opatřeními. V archivu se odemkl Protokol koridoru D7 dokládající organizační a informační kroky."
+      },
+      {
+        "id": "C",
+        "text": "Shromáždění nezakázat a nepodnikat žádná zvláštní dopravní ani informační opatření s tím, že jde o odpovědnost pořadatelů.",
+        "level": 1,
+        "politicalImpact": "Nulové nasazení státní správy, ale dopravní chaos a ostré protesty dopravců.",
+        "legalEvaluation": "Právně neudržitelná pasivita (stupeň 1/3): stát má podle čl. 4 odst. 3 SEU povinnost přijmout nezbytná a vhodná opatření k omezení rušivých dopadů na volný pohyb zboží (Schmidberger, body 59 a 87).",
+        "unlockDocs": ["stiznost_dopravci"],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Shromáždění proběhlo bez koordinace a informační kampaně. V archivu se odemkla Stížnost Svazu dopravců."
+      },
+      {
+        "id": "D",
+        "text": "Shromáždění povolit pouze na odstavném pruhu mimo vozovku a zkrátit jeho trvání na nejvýše tři hodiny.",
+        "level": 2,
+        "politicalImpact": "Minimální dopad na dopravu, ale silná nespokojenost demonstrantů.",
+        "legalEvaluation": "Právně obhajitelné v mezích široké posuzovací pravomoci (stupeň 2/3), avšak bod 90 rozsudku Schmidberger upozorňuje, že příliš přísná omezení místa a doby by mohla akci zbavit podstatné části jejího významu.",
+        "unlockDocs": ["pk"],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Shromáždění proběhlo ve výrazně omezeném režimu; v archivu se odemkl zkrácený Protokol koridoru D7."
+      }
+    ],
+    "advisorNote": "Nezakázat shromáždění neznamená zůstat nečinný a nepřijmout doprovodná opatření. Naopak plošný zákaz bez poměření neznamená právní bezpečí.",
+    "relatedDocs": ["sb", "cmp_sb_k5", "ozn_d7_1"]
+  },
+  "E6.1": {
+    "id": "E6.1",
+    "chapterId": "K6",
+    "type": "E",
+    "title": "Úloha 6.1 – Příslušný soud a druh řízení v závěrečném sporu",
+    "competencies": [
+      ["C6", 4],
+      ["C1", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Evropská komise dospěla k závěru, že Marenie při jarním 61hodinovém shromáždění na dálnici D7 nepřijala nezbytná a vhodná opatření, a porušila tak čl. 34 a 35 SFEU ve spojení s čl. 4 odst. 3 SEU.",
+    "question": "Před jakým soudem a v jakém typu řízení se bude tento spor mezi Komisí a Marenií projednávat?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Před Soudním dvorem Evropské unie v řízení o nesplnění povinnosti členského státu podle čl. 258 SFEU.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. Má-li Komise za to, že členský stát nesplnil povinnost, která pro něj vyplývá ze Smluv (zde čl. 34 a 35 SFEU a čl. 4 odst. 3 SEU), může věc předložit Soudnímu dvoru EU podle čl. 258 SFEU (obdobně jako ve věci C-265/95, Komise v. Francie)."
+      },
+      {
+        "id": "B",
+        "text": "Před Evropským soudem pro lidská práva ve Štrasburku, protože jádrem sporu je rozsah svobody shromažďování.",
+        "correct": false,
+        "tag": "M1",
+        "feedback": "Nesprávně. ESLP rozhoduje o stížnostech na porušení EÚLP podaných smluvními stranami nebo jednotlivci, nikoli o žalobě Evropské komise pro porušení Smluv EU."
+      },
+      {
+        "id": "C",
+        "text": "Před Výborem ministrů Rady Evropy, neboť Marenie je smluvní stranou Evropské úmluvy o lidských právech.",
+        "correct": false,
+        "tag": "M1",
+        "feedback": "Nesprávně. Rada Evropy není soudním orgánem Evropské unie a neprojednává žaloby Komise na porušení unijního práva."
+      },
+      {
+        "id": "D",
+        "text": "Před Ústavním soudem Marenie, protože jde o posouzení nečinnosti marenských správních a policejních orgánů.",
+        "correct": false,
+        "tag": "M3",
+        "feedback": "Nesprávně. O nesplnění povinností vyplývajících ze Smluv EU rozhoduje na základě žaloby Komise výlučně Soudní dvůr Evropské unie."
+      }
+    ],
+    "hints": [
+      "Určete, kdo je v tomto sporu žalobcem a porušení jakého právního řádu namítá.",
+      "Nahlédněte v archivu do textu čl. 258 SFEU a shrnutí žaloby Komise.",
+      "Spor mezi Evropskou komisí a členským státem o nesplnění povinností ze Smluv EU spadá do pravomoci SDEU."
+    ],
+    "lawRef": "Čl. 258 SFEU (ověřeno); srov. Schmidberger, body 57–62 (odkaz na věc C-265/95, Komise v. Francie).",
+    "relatedDocs": ["fz", "sfeu_258"],
+    "highlightDocId": "sfeu_258",
+    "highlightPhrases": ["nesplnil povinnost, která pro něj vyplývá ze Smluv", "předložit věc Soudnímu dvoru Evropské unie"]
+  },
+  "E6.2": {
+    "id": "E6.2",
+    "chapterId": "K6",
+    "type": "E",
+    "title": "Úloha 6.2 – Rozsah a meze přezkumu základních práv před SDEU",
+    "competencies": [
+      ["C1", 4],
+      ["C6", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "V řízení před SDEU se Marenie dovolává ochrany svobody projevu a shromažďování demonstrantů jako odůvodnění omezení volného pohybu zboží.",
+    "question": "Může Soudní dvůr EU v tomto řízení rozhodovat o tom, zda Marenie porušila čl. 11 Evropské úmluvy o lidských právech jako takový?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Ano, Soudní dvůr EU je obecným soudem příslušným k závaznému přezkumu souladu jednání členských států s EÚLP.",
+        "correct": false,
+        "tag": "M1",
+        "feedback": "Nesprávně. SDEU není obecným soudem pro přezkum dodržování EÚLP; tato pravomoc náleží v systému Rady Evropy Evropskému soudu pro lidská práva."
+      },
+      {
+        "id": "B",
+        "text": "SDEU posuzuje splnění povinností podle práva Unie; základní práva zkoumá proto, že jimi Marenie odůvodňuje odchylku od volného pohybu zboží (jako součást práva Unie, s EÚLP jako inspiračním zdrojem), nikoli jako obecný přezkum EÚLP.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. V řízení podle čl. 258 SFEU posuzuje SDEU porušení unijních povinností (čl. 34 a 35 SFEU). Základní práva vstupují do přezkumu jako oprávněný zájem v právu Unie, kterým stát odůvodňuje omezení základní svobody (Schmidberger, body 71–77, 79)."
+      },
+      {
+        "id": "C",
+        "text": "Ne, otázky ochrany základních práv nemohou být v řízení o nesplnění povinnosti před SDEU vůbec zohledněny.",
+        "correct": false,
+        "tag": "M1",
+        "feedback": "Nesprávně. Podle bodů 74–77 rozsudku Schmidberger je ochrana základních práv oprávněným zájmem, který může v zásadě odůvodnit omezení povinností uložených právem Unie."
+      },
+      {
+        "id": "D",
+        "text": "Ano, ale pouze v rámci přezkumu předchozího rozsudku Evropského soudu pro lidská práva ve stejné věci.",
+        "correct": false,
+        "tag": "M1",
+        "feedback": "Nesprávně. SDEU není opravnou ani přezkumnou instancí ve vztahu k rozhodnutím ESLP."
+      }
+    ],
+    "hints": [
+      "Odlište vlastní předmět řízení před SDEU od role, kterou v něm hrají základní práva.",
+      "Přečtěte si body 71–77 a 79 rozsudku Schmidberger.",
+      "Rozlišujte dvě otázky: kdo kontroluje dodržování EÚLP jako takové (ESLP) a jak se se základními právy pracuje při odůvodnění omezení základní svobody v právu Unie (SDEU)."
+    ],
+    "lawRef": "Rozsudek SDEU, Schmidberger, věc C-112/00, body 71–77 a 79 (autentické české znění, ověřeno).",
+    "relatedDocs": ["sb", "sch", "fz"],
+    "highlightDocId": "sb",
+    "highlightPhrases": ["ochrana základních práv je oprávněným zájmem", "ústavních tradic společných členským státům a mezinárodních smluv"]
+  },
+  "S6": {
+    "id": "S6",
+    "chapterId": "K6",
+    "type": "S",
+    "title": "Strategické rozhodnutí 6 – Procesní strategie vlády v žalobě Komise v. Marenie",
+    "competencies": [
+      ["C8", 3],
+      ["C6", 3]
+    ],
+    "situation": "Evropská komise podala žalobu k SDEU kvůli 61hodinové blokádě dálnice D7. Právní obhajitelnost vašeho procesního postoje závisí na tom, zda má vláda ze své dřívější praxe (kapitola 5) doložena organizační a doprovodná opatření pro koridor D7.",
+    "question": "Jakou procesní pozici zaujme vláda Marenie v řízení před SDEU?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Plně se bránit zamítnutí žaloby s tím, že nezakázání shromáždění bylo v celém průběhu odůvodněno ochranou základních práv a přiměřené.",
+        "level": 3,
+        "levelByCondition": {
+          "S5": {
+            "A": 1,
+            "B": 3,
+            "C": 1,
+            "D": 3
+          }
+        },
+        "politicalImpact": "Sebevědomá obhajoba suverénního rozhodování vlády před unijními institucemi.",
+        "legalEvaluation": "Pokud má vláda doložena organizační opatření koridoru (S5 = B nebo D), je plná obrana podložená důkazy (stupeň 3/3). Bez doložených opatření (S5 = A nebo C) však plné popření jakýchkoli nedostatků postrádá důkazní oporu v bodě 87 rozsudku Schmidberger (stupeň 1/3).",
+        "unlockDocs": [],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Zvolili jste plnou procesní obranu směřující k úplnému zamítnutí žaloby Komise."
+      },
+      {
+        "id": "B",
+        "text": "Bránit se v podstatné části (oprávněnost nezakázání shromáždění), avšak poctivě uznat dílčí nedostatek po překročení oznámené doby a předložit nápravný plán (zákonnou povinnost zvážit volný pohyb a protokol koridoru).",
+        "level": 2,
+        "levelByCondition": {
+          "S5": {
+            "A": 3,
+            "B": 2,
+            "C": 3,
+            "D": 2
+          }
+        },
+        "politicalImpact": "Věcný a konstruktivní postoj před soudem, doma však kritizovaný opozicí jako částečný ústupek.",
+        "legalEvaluation": "Pokud vládě chybějí dřívější organizační opatření (S5 = A nebo C), jde o nejrozumnější a poctivou obranu (stupeň 3/3). Při již doložených opatřeních (S5 = B nebo D) je obrana stále obhajitelná, avšak zbytečně ustupuje v části nároku (stupeň 2/3).",
+        "unlockDocs": [],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Zvolili jste obranu v podstatné části spojenou s uznáním dílčího nedostatku při prodloužení blokády a předložením nápravného plánu."
+      },
+      {
+        "id": "C",
+        "text": "Odmítnout pravomoc SDEU k přezkumu s odkazem na absolutní přednost marenské ústavy před právem Evropské unie.",
+        "level": 0,
+        "politicalImpact": "Ostrá konfrontace s Evropskou unií a hrozba dalších sankčních řízení.",
+        "legalEvaluation": "Právně nepřípustný postoj (stupeň 0/3): odporuje závaznosti Smluv, pravomoci SDEU podle čl. 258 SFEU i zásadě jednoty a účinnosti práva Unie (Hauer, bod 14).",
+        "unlockDocs": [],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Odmítli jste přezkum ze strany SDEU s odkazem na přednost vnitrostátní ústavy."
+      }
+    ],
+    "advisorNote": "Obhajoba státu před SDEU musí stát na tom, co dokážete doložit ze spisu. Rozsudek Schmidberger hodnotí nejen samotné nezakázání akce, ale i organizační a informační opatření orgánů.",
+    "relatedDocs": ["fz", "spis_k6", "sb"]
+  },
+  "R1": {
+    "id": "R1",
+    "chapterId": "K6",
+    "type": "R",
+    "title": "Námitka Komise 1 – Délka blokády (61 hodin oproti 30 hodinám)",
+    "competencies": [
+      ["C7", 3],
+      ["C5", 1]
+    ],
+    "maxAttempts": 2,
+    "situation": "Evropská komise v žalobě namítá: „Ve věci Schmidberger trvala blokáda necelých 30 hodin; v Marenii však dálnice D7 zůstala uzavřena přibližně 61 hodin, a proto je zásah automaticky nepřiměřený.“",
+    "question": "Jaká právní odpověď na tuto námitku Komise je v souladu s judikaturou SDEU?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Délka trvání je pouze jednou ze skutkových okolností, které se hodnotí v souhrnu s ostatními faktory (jediná trasa, přijatá opatření, včasná informovanost); rozsudek Schmidberger žádnou pevnou hodinovou hranici nestanovil.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. Soudní dvůr ve věci Schmidberger (body 81, 85–88) hodnotil spravedlivou rovnováhu podle souhrnu konkrétních okolností případu a nestanovil žádný pevný hodinový limit."
+      },
+      {
+        "id": "B",
+        "text": "Délka blokády nemá pro právní posouzení žádný význam, protože svoboda shromažďování je absolutní a chrání shromáždění po neomezenou dobu.",
+        "correct": false,
+        "tag": "M5",
+        "feedback": "Nesprávně. Svoboda shromažďování není absolutní (Schmidberger, bod 80) a délka trvání blokády je jedním z relevantních faktorů při posuzování přiměřenosti."
+      },
+      {
+        "id": "C",
+        "text": "Soudní dvůr v rozsudku Schmidberger výslovně stanovil pravidlo, že všechny poklidné blokády do 72 hodin jsou v právu Unie vždy přípustné.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Takové pravidlo v rozsudku Schmidberger neexistuje; nesmíme soudu připisovat závěry, které nevyslovil."
+      }
+    ],
+    "hints": [
+      "Ověřte, zda rozsudek Schmidberger obsahuje nějaký pevný časový limit pro délku shromáždění.",
+      "Přečtěte si body 81 a 85–88 rozsudku Schmidberger.",
+      "Zdůrazněte, že délka se posuzuje ve vzájemné souvislosti se všemi okolnostmi případu, nikoli izolovaně."
+    ],
+    "lawRef": "Rozsudek SDEU, Schmidberger, věc C-112/00, body 81 a 85–88 (autentické české znění, ověřeno).",
+    "relatedDocs": ["sb", "spis_k6"],
+    "highlightDocId": "sb",
+    "highlightPhrases": ["zvážit proti sobě stojící zájmy", "vzhledem ke všem okolnostem"]
+  },
+  "R2": {
+    "id": "R2",
+    "chapterId": "K6",
+    "type": "R",
+    "title": "Námitka Komise 2 – Povinnost shromáždění zakázat nebo přesunout",
+    "competencies": [
+      ["C7", 3],
+      ["C5", 1]
+    ],
+    "maxAttempts": 2,
+    "situation": "Evropská komise dále tvrdí: „Marenské orgány měly shromáždění předem zakázat nebo je vykázat mimo dálniční těleso D7.“",
+    "question": "Jak na tuto námitku Komise právně přiléhavě odpovíte?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Úplný zákaz shromáždění by mohl představovat nepřiměřený zásah do základních práv demonstrantů a přísná omezení místa či doby by mohla akci zbavit podstatné části jejího významu; vnitrostátní orgány mají v této oblasti širokou posuzovací pravomoc.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. Soudní dvůr v bodech 82, 89–90 a 93 rozsudku Schmidberger potvrdil širokou posuzovací pravomoc vnitrostátních orgánů a upozornil, že plošný zákaz nebo přesun mimo klíčovou trasu by mohly nepřiměřeně zasáhnout do podstaty svobody projevu a shromažďování."
+      },
+      {
+        "id": "B",
+        "text": "Předběžný zákaz je vždy namístě, jakmile jakékoli shromáždění ohrozí plynulost přeshraniční kamionové dopravy.",
+        "correct": false,
+        "tag": "M5",
+        "feedback": "Nesprávně. Takový přístup by znamenal nepřípustnou absolutizaci volného pohybu zboží na úkor základních práv."
+      },
+      {
+        "id": "C",
+        "text": "Státní orgány nemusely dopad na dopravu vůbec zvažovat, neboť o místě a délce shromáždění rozhodují výlučně jeho pořadatelé.",
+        "correct": false,
+        "tag": "M9",
+        "feedback": "Nesprávně. Stát má povinnost poměřovat kolidující zájmy a přijmout přiměřená doprovodná opatření (Schmidberger, body 59 a 81)."
+      }
+    ],
+    "hints": [
+      "Posuďte, jak by se zákaz nebo přesun mimo dálnici dotkl smyslu samotného shromáždění.",
+      "Přečtěte si body 82, 89–90 a 93 rozsudku Schmidberger.",
+      "Odkazujte na širokou posuzovací pravomoc orgánů a na riziko, že přísné podmínky by akci zbavily podstatné části jejího významu."
+    ],
+    "lawRef": "Rozsudek SDEU, Schmidberger, věc C-112/00, body 82, 89–90 a 93 (autentické české znění, ověřeno).",
+    "relatedDocs": ["sb"],
+    "highlightDocId": "sb",
+    "highlightPhrases": ["nepřijatelným zásahem do základních práv", "zbavit tuto akci podstatné části jejího významu"]
+  },
+  "R3": {
+    "id": "R3",
+    "chapterId": "K6",
+    "type": "R",
+    "title": "Námitka Komise 3 – Možnost odůvodnit překážku základními právy",
+    "competencies": [
+      ["C7", 3],
+      ["C5", 1]
+    ],
+    "maxAttempts": 2,
+    "situation": "Komise uzavírá: „Ochrana svobody shromažďování nemůže sama o sobě odůvodnit omezení základní svobody vnitřního trhu zaručené Smlouvou.“",
+    "question": "Jaká odpověď správně vymezuje doktrínu Soudního dvora k tomuto bodu?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Námitka je důvodná: základní hospodářské svobody Smlouvy mají v unijním právu vždy přednost před základními právy jednotlivců.",
+        "correct": false,
+        "tag": "M5",
+        "feedback": "Nesprávně. Rozsudek Schmidberger vychází z opačného principu: základní práva jsou integrální součástí obecných zásad práva Unie, jejichž dodržování je povinností Společenství i členských států (body 71–74)."
+      },
+      {
+        "id": "B",
+        "text": "Ochrana základních práv je oprávněným zájmem, který v zásadě může odůvodnit omezení povinností vyplývajících ze základní svobody vnitřního trhu; oba chráněné zájmy je však nutno poměřit z hlediska proporcionality.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. V bodech 74 a 77–82 Soudní dvůr potvrdil, že ochrana základních práv představuje oprávněný zájem způsobilý odůvodnit odchylku od volného pohybu zboží za podmínky zachování spravedlivé rovnováhy."
+      },
+      {
+        "id": "C",
+        "text": "Ochrana základních práv odůvodní jakékoli narušení obchodu automaticky bez nutnosti zkoumat přiměřenost zásahu.",
+        "correct": false,
+        "tag": "M5",
+        "feedback": "Nesprávně. Základní práva nejsou absolutní a každé omezení volného pohybu zboží musí projít testem přiměřenosti (body 80–82)."
+      }
+    ],
+    "hints": [
+      "Položte si otázku, zda je ochrana základních práv v právu Unie uznána jako oprávněný zájem.",
+      "Přečtěte si body 74 a 77–82 rozsudku Schmidberger.",
+      "Spojte dvě myšlenky: ochrana základních práv může omezení svobody odůvodnit, avšak pouze při splnění testu poměřování a proporcionality."
+    ],
+    "lawRef": "Rozsudek SDEU, Schmidberger, věc C-112/00, body 74 a 77–82 (autentické české znění, ověřeno).",
+    "relatedDocs": ["sb", "l11"],
+    "highlightDocId": "sb",
+    "highlightPhrases": ["ochrana základních práv je oprávněným zájmem", "odůvodnit omezení povinností uložených právem Společenství"]
+  }
+}
