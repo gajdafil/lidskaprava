@@ -70,7 +70,7 @@ export function buildAcademicAssessment(state, data) {
     const repaired = state.steps.N3.selectedOptionId === 'B';
     remedialNarratives.push({
       id: 'N3',
-      title: data.questions.N3.title,
+      title: data.questions.N3?.title || 'Nápravný krok N3',
       repaired,
       evaluation: repaired
         ? assessmentCfg.remedialEvaluations.N3_repaired
@@ -82,7 +82,7 @@ export function buildAcademicAssessment(state, data) {
     const repaired = state.steps.N4.selectedOptionId === 'B';
     remedialNarratives.push({
       id: 'N4',
-      title: data.questions.N4.title,
+      title: data.questions.N4?.title || 'Nápravný krok N4',
       repaired,
       evaluation: repaired
         ? assessmentCfg.remedialEvaluations.N4_repaired
@@ -91,12 +91,15 @@ export function buildAcademicAssessment(state, data) {
   }
 
   // 5. Analytická poznámka ke způsobu práce s prameny a nápovědami
+  const hintsUsed = results.totalHintsUsed ?? 0;
+  const highlightUsed = results.highlightUsageCount ?? state.highlightUsageCount ?? 0;
+
   let studyMethodNote = '';
-  if (results.totalHintsUsed === 0 && results.highlightUsageCount === 0) {
+  if (hintsUsed === 0 && highlightUsed === 0) {
     studyMethodNote =
       'Během celé kampaně jsi nevyužil žádnou nápovědu právního poradce ani funkci zvýraznění pasáží v právních pramenech; všechna rozhodnutí jsi činil samostatně.';
   } else {
-    studyMethodNote = `Během simulace jsi celkem ${results.totalHintsUsed}× využil nápovědu právního poradce dr. Kellera a ${results.highlightUsageCount}× funkci zvýraznění relevantních pasáží v archivu. Tyto podpůrné nástroje nijak nesnížily tvůj bodový zisk.`;
+    studyMethodNote = `Během simulace jsi celkem ${hintsUsed}× využil nápovědu právního poradce dr. Kellera a ${highlightUsed}× funkci zvýraznění relevantních pasáží v archivu. Tyto podpůrné nástroje nijak nesnížily tvůj bodový zisk.`;
   }
 
   return {
