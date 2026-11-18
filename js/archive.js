@@ -52,7 +52,6 @@ export class ArchivePanel {
         } else {
           // Zapnutí zvýraznění a otevření příslušného dokumentu
           this.activeHighlightForStepId = this.currentStepDef.id;
-          this.engine.recordHighlightUsage(targetDocId);
           this.engine.openDocument(targetDocId);
           this.setMode('reader');
         }
