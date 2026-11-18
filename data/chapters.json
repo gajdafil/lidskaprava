@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "L’état, c’est moi – anebo ne?",
+    "subtitle": "Interaktivní vzdělávací hra – Ochrana základních práv v Evropské unii",
+    "country": "Marenie",
+    "officialCountryName": "Marenská republika",
+    "capital": "Orvelin",
+    "version": "1.0.0"
+  },
+  "briefing": {
+    "title": "Úvodní briefing: Předseda vlády Marenie",
+    "subtitle": "Čtyřleté funkční období na pomezí politické reality a evropských právních limitů",
+    "paragraphs": [
+      "Pane premiére, Marenie je členským státem Evropské unie a zároveň smluvní stranou Evropské úmluvy o lidských právech. Vaše koalice vyhrála volby slibem rychlých řešení: levnějších potravin, ochrany domácích pěstitelů, tvrdší migrační politiky a klidu na silnicích.",
+      "Příštími čtyřmi roky vás budou provázet Evropská komise, soudy i vaši voliči. Základní pravidlo vašeho mandátu zní: ne všechno, co je politicky žádoucí, je právně přípustné.",
+      "Vaše vláda bude jednat pod politickým i společenským tlakem. Vaším úkolem je přesně rozeznat, kdy se uplatňuje právo Unie, kdy závazky z Evropské úmluvy o lidských právech a kdy pouze vnitrostátní právo, a rozhodovat tak, abyste na konci funkčního období dokázali kroky státu obhájit před soudem.",
+      "Ve vládě s vámi spolupracují ministryně spravedlnosti Ilona Brandt, ministr vnitra Viktor Sorel a ministryně sociálních věcí Dana Hollen. Právní poradce vlády dr. Adrian Keller vám poskytne odborné vodítko pouze tehdy, když o ně výslovně požádáte. Vládní archiv vám bude postupně zpřístupňovat právní prameny, rozsudky a úřední spisy."
+    ]
+  },
+  "tutorial": {
+    "title": "Technický tutoriál – ovládání a pravidla simulace",
+    "intro": "Než se ujmete úřadu, seznamte se se strukturou rozhraní a pravidly hodnocení. Tento přehled můžete kdykoli znovu otevřít tlačítkem Tutoriál v horní liště.",
+    "sections": [
+      {
+        "heading": "1. Navigace a chronologie kampaně",
+        "text": "Kampaň je rozdělena do šesti chronologicky navazujících kapitol (K1–K6) pokrývajících čtyřleté funkční období. V horní liště kapitol vidíte svůj postup. Již dokončené kapitoly si můžete kdykoli znovu otevřít kliknutím na jejich název v režimu pouze pro čtení (původní odpovědi ani body již nelze měnit)."
+      },
+      {
+        "heading": "2. Práce s vládním archivem a dokumenty",
+        "text": "Tlačítkem Archiv v pravém horním rohu otevřete boční pracovní panel. Pomocí svislého dělítka mezi levým a pravým panelem můžete plynule měnit jejich šířku. Dokumenty z katalogu se otevírají do samostatných záložek, mezi kterými lze přepínat se zachováním pozice čtení, i je jednotlivě zavírat. U právních pramenů si můžete tlačítkem na vyžádání zvýraznit pasáže relevantní pro právě řešenou situaci."
+      },
+      {
+        "heading": "3. Vzdělávací právní úlohy a strategická rozhodnutí",
+        "text": "Ve vzdělávacích úlohách identifikujete právní problém, použitelný pramen a závěry judikatury. U běžných úloh máte nejvýše 3 pokusy (zisk 100 %, 55 % nebo 25 % bodů; po 3. omylu se úloha uzavře s 0 body a zobrazí správné řešení). Ve strategických rozhodnutích volíte politický a právní postup vlády; před potvrzením můžete volbu měnit, po potvrzení se uzamkne a ovlivní dostupné dokumenty a možnosti nápravy v dalších kapitolách."
+      },
+      {
+        "heading": "4. Bodování a osm právních kompetencí",
+        "text": "Jediným ukazatelem vašeho výkonu je právní úspěšnost (celkem 205 bodů). Hra nesleduje popularitu ani státní rozpočet. Všechny vaše odpovědi a rozhodnutí se promítají do osmi právních kompetencí (0–100 bodů). Opakování téhož typu právní chyby (chybového štítku) v průběhu kampaně vede ke srážce 2 bodů z příslušné kompetence. Průběžný profil kompetencí se odhalí až v závěrečném posudku."
+      },
+      {
+        "heading": "5. Právní poradce a nápovědy",
+        "text": "Právní poradce dr. Adrian Keller nezasahuje automaticky. U každé vzdělávací úlohy si můžete vyžádat až tři stupně nápovědy a u strategických rozhodnutí jedno odborné vodítko. Použití nápovědy ani zvýraznění pasáží nijak nesnižuje vaše bodové skóre, je však zaznamenáno do závěrečného akademického posudku."
+      },
+      {
+        "heading": "6. Ukládání postupu a závěrečný posudek",
+        "text": "Stav rozehrané kampaně se automaticky ukládá po každém kroku výhradně do paměti vašeho prohlížeče (LocalStorage); žádná data se neodesílají na server. Po dokončení šesté kapitoly obdržíte podrobný individualizovaný akademický posudek, který si můžete vytisknout nebo uložit jako PDF. Posudek je dostupný pouze bezprostředně po dokončení kampaně."
+      }
+    ]
+  },
+  "chapters": [
+    {
+      "id": "K1",
+      "number": 1,
+      "shortTitle": "K1: Nástup vlády",
+      "title": "Kapitola 1 – Nástup vlády a dva systémy ochrany práv",
+      "period": "Rok 1, jaro",
+      "caseFocus": "Listina základních práv EU (čl. 51–53) a vztah k EÚLP",
+      "goal": "Rozlišit právní systém Evropské unie a systém Rady Evropy, určit působnost Listiny základních práv EU podle čl. 51 odst. 1 a vymezit její výkladový vztah k Evropské úmluvě o lidských právech podle čl. 52 odst. 3.",
+      "intro": [
+        "První týden ve funkci předsedy vlády Marenie. Vládní koalice připravuje první balík legislativních návrhů a opozice již avizuje, že každý sporný krok napadne u evropských institucí.",
+        "Právní poradce vlády dr. Adrian Keller vám předkládá základní přehled otázek, které je nutné vyjasnit dříve, než kabinet začne rozhodovat: který soud má jakou pravomoc a kdy je vláda členského státu vázána Listinou základních práv Evropské unie."
+      ],
+      "initialDocs": ["l51", "sch"],
+      "initialInstitutions": ["vlada", "sdeu", "re_eslp"],
+      "conditionalDocs": [],
+      "stepIds": ["E1.1", "E1.2", "E1.3", "S1"]
+    },
+    {
+      "id": "K2",
+      "number": 2,
+      "shortTitle": "K2: Sociální kupony",
+      "title": "Kapitola 2 – Sociální kupony na přebytečný sýr",
+      "period": "Rok 1, podzim",
+      "caseFocus": "Rozsudek SDEU ve věci 29/69, Stauder",
+      "goal": "Osvojit si metodu jednotného výkladu práva Unie při rozdílných jazykových verzích, přesně rozlišit, co Soudní dvůr ve věci Stauder skutečně rozhodl, a pochopit zařazení základních práv mezi obecné zásady práva.",
+      "intro": [
+        "Podzim prvního roku vašeho mandátu. Evropská komise přijala (fiktivní) prováděcí rozhodnutí, které členským státům dovoluje prodávat přebytečný sýr za sníženou cenu příjemcům vybraných sociálních dávek. Článek 4 ukládá státům zajistit, aby oprávněné osoby získaly zboží pouze proti předložení kuponu.",
+        "Zatímco marenské znění čl. 4 hovoří o „kuponu vystaveném na jméno příjemce“, ostatní jazykové verze používají výraz „individualizovaný kupon“. Ministryně sociálních věcí Dana Hollen prosazuje jmenné kupony jako nejlevnější způsob kontroly. Pan Emil Hartl, příjemce invalidního důchodu, však podal žalobu ke správnímu soudu s tím, že nutnost odhalovat své jméno a sociální status obchodníkům považuje za ponižující."
+      ],
+      "initialDocs": ["dec_syr", "st", "ga_roemer"],
+      "initialInstitutions": [],
+      "conditionalDocs": [],
+      "stepIds": ["E2.1", "E2.2", "E2.3", "S2"]
+    },
+    {
+      "id": "K3",
+      "number": 3,
+      "shortTitle": "K3: Zákaz výsadby vinic",
+      "title": "Kapitola 3 – Dočasný zákaz nové výsadby vinic",
+      "period": "Rok 2, jaro",
+      "caseFocus": "Rozsudek SDEU ve věci 44/79, Hauer",
+      "goal": "Pochopit standard přezkumu aktů Unie z hlediska základních práv, rozlišit zbavení majetku od regulace jeho užívání a aplikovat třístupňový test proporcionality.",
+      "intro": [
+        "Druhý rok funkčního období. Rada Evropské unie vydala (fiktivní) nařízení, kterým na tři roky zakazuje veškerou novou výsadbu vinic s cílem zastavit trvalou nadprodukci vína a připravit strukturální reformu trhu.",
+        "Paní Helena Marwitzová z vinařské oblasti Sarvské vinice požádala o povolení nové výsadby ještě před přijetím nařízení. Marenský správní úřad sice uznal, že její pozemek je podle vnitrostátních kritérií k pěstování vinné révy vhodný, ale žádost zamítl s odkazem na unijní zákaz. Správní soud vyslovil pochybnost, zda zákaz neporušuje vlastnické právo zaručené marenskou ústavou, a vinaři před blížícími se regionálními volbami žádají, aby vláda nařízení na území Marenie neuplatňovala."
+      ],
+      "initialDocs": ["reg_vino", "ha", "l17", "prot1_art1"],
+      "initialInstitutions": ["rada_eu"],
+      "conditionalDocs": [],
+      "stepIds": ["E3.1", "E3.2", "E3.3", "S3"]
+    },
+    {
+      "id": "K4",
+      "number": 4,
+      "shortTitle": "K4: Vyhoštění cizinky",
+      "title": "Kapitola 4 – Vyhoštění manželky poskytovatele přeshraničních služeb",
+      "period": "Rok 3, jaro",
+      "caseFocus": "Rozsudek SDEU ve věci C-60/00, Carpenter",
+      "goal": "Rozpoznat, kdy se rodinný život dostává do působnosti práva Unie prostřednictvím základních svobod, pochopit provázání základního práva a svobody vnitřního trhu a posoudit spravedlivou rovnováhu.",
+      "intro": [
+        "Třetí rok ve funkci. Marenský občan Tomáš Elmer podniká z Marenie v prodeji inzertních ploch v odborných časopisech zákazníkům usazeným v Haldersku a Rennsku a za tímto účelem pravidelně cestuje do jiných členských států.",
+        "Jeho manželka, státní příslušnice třetí země, po vypršení turistického víza překročila povolenou dobu pobytu a později uzavřela s panem Elmerem manželství. Sňatek je opravdový, manželka pečuje o děti pana Elmera z prvního manželství a nebyly zjištěny žádné jiné výtky vůči jejímu chování. Ministr vnitra Viktor Sorel předkládá rozhodnutí o jejím vyhoštění v souladu s předvolebním slibem přísné migrační politiky."
+      ],
+      "initialDocs": ["zak_pobyt", "ca", "l7"],
+      "initialInstitutions": ["mv_marenie"],
+      "conditionalDocs": [
+        {
+          "if": { "S3": ["A", "C"] },
+          "docId": "dk"
+        }
+      ],
+      "stepIds": ["N3", "E4.1", "E4.2", "E4.3", "S4"]
+    },
+    {
+      "id": "K5",
+      "number": 5,
+      "shortTitle": "K5: Blokáda koridoru D7",
+      "title": "Kapitola 5 – Blokáda tranzitního koridoru D7 shromážděním",
+      "period": "Rok 3, podzim",
+      "caseFocus": "Rozsudek SDEU ve věci C-112/00, Schmidberger",
+      "goal": "Posoudit odpovědnost členského státu za překážky volného pohybu zboží způsobené jednáním soukromých osob a provést poměřování mezi základními právy a základní svobodou vnitřního trhu.",
+      "intro": [
+        "Podzim třetího roku. Ekologický spolek Alpská iniciativa řádně oznámil shromáždění na dálnici D7 v horském průsmyku Vorholm, spojené s úplným uzavřením dálnice až na 30 hodin. Dálnice D7 představuje klíčový tranzitní nákladní koridor mezi Rennskem a Trevánií protínající území Marenie.",
+        "Svaz dopravců naléhá na vládu, aby shromáždění zakázala kvůli hrozícím hospodářským škodám. Spolek naopak zdůrazňuje, že chce upozornit veřejnost na neúnosný nárůst kamionové dopravy v alpském údolí. Ačkoli formální rozhodnutí přísluší policejnímu ředitelství, kabinet musí zaujmout zásadní politicko-právní postoj."
+      ],
+      "initialDocs": ["ozn_d7_1", "sb", "l11", "sfeu_34_35", "cmp_sb_k5"],
+      "initialInstitutions": ["komise"],
+      "conditionalDocs": [],
+      "stepIds": ["N4", "E5.1", "E5.2", "E5.3", "S5"]
+    },
+    {
+      "id": "K6",
+      "number": 6,
+      "shortTitle": "K6: Komise v. Marenie",
+      "title": "Kapitola 6 – Závěrečný případ: Evropská komise v. Marenie",
+      "period": "Rok 4, jaro",
+      "caseFocus": "Komplexní právní obhajoba státu před SDEU (čl. 258 SFEU)",
+      "goal": "Integrovat poznatky z celé kampaně: zvolit procesní strategii vlády, určit příslušný soud a rozsah jeho přezkumu, vyvrátit námitky Komise, vybrat právně relevantní argumenty a sestavit koherentní písemné podání.",
+      "intro": [
+        "Závěrečný rok vašeho mandátu. Na jaře čtvrtého roku uspořádala Alpská iniciativa druhé shromáždění na dálnici D7 v průsmyku Vorholm. Shromáždění bylo oznámeno 12 dní předem s plánovanou délkou 36 hodin; ve skutečnosti však blokáda trvala přibližně 61 hodin v důsledku potyček s protidemonstranty.",
+        "Marenské orgány shromáždění nezakázaly a informovaly veřejnost v Marenii i sousedních státech 10 dní předem. Objízdná horská silnice je však pro těžká nákladní vozidla nepřístupná a železniční kyvadlová přeprava pokrývá pouze odhadem 15 % tranzitu. Cílem shromáždění bylo upozornit na dopravní zátěž, nikoli bránit obchodu s určitým zbožím; majetková škoda při dvou menších incidentech byla nepatrná.",
+        "Evropská komise podala žalobu s tvrzením, že Marenie nepřijala nezbytná a vhodná opatření k zajištění volného pohybu zboží a porušila čl. 34 a 35 SFEU ve spojení s čl. 4 odst. 3 SEU. Vaším úkolem je uzavřít postup vlády a sestavit právní obhajobu státu."
+      ],
+      "initialDocs": ["fz", "spis_k6", "sfeu_258"],
+      "initialInstitutions": [],
+      "conditionalDocs": [
+        {
+          "if": { "S5": ["A"] },
+          "docId": "roz_zakaz_d7"
+        },
+        {
+          "if": { "S5": ["C"] },
+          "docId": "stiznost_dopravci"
+        },
+        {
+          "if": { "S2": ["A"] },
+          "docId": "us_hartl"
+        }
+      ],
+      "stepIds": ["E6.1", "E6.2", "S6", "R1", "R2", "R3", "ARG", "POD"]
+    }
+  ]
+}
