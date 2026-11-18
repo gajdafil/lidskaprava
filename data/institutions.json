@@ -1,1 +1,63 @@
-
+{
+  "institutions": [
+    {
+      "id": "vlada",
+      "name": "Vláda Marenské republiky",
+      "system": "Vnitrostátní ústavní systém Marenie",
+      "role": "Vrcholný orgán výkonné moci členského státu odpovědný za vnitrostátní politiku, předkládání zákonů a řádné provádění práva Evropské unie i závazků z EÚLP.",
+      "powers": "Řídí státní správu, vydává nařízení a pokyny úřadům, zastupuje stát v Radě EU a v řízeních před SDEU i ESLP.",
+      "legalBasis": "Ústava Marenie; čl. 4 odst. 3 SEU a čl. 51 odst. 1 Listiny základních práv EU (při uplatňování práva Unie).",
+      "relations": "Podléhá vnitrostátní soudní kontrole; v oblasti práva Unie spolupracuje s Evropskou komisí a podléhá pravomoci SDEU; v rozsahu EÚLP odpovídá před ESLP."
+    },
+    {
+      "id": "sdeu",
+      "name": "Soudní dvůr Evropské unie (SDEU, sídlo v Lucemburku)",
+      "system": "Evropská unie",
+      "role": "Soudní orgán Evropské unie zajišťující dodržování práva při výkladu a provádění Smluv.",
+      "powers": "Rozhoduje o žalobách pro nesplnění povinnosti členským státem (čl. 258 SFEU), o neplatnosti aktů Unie a o předběžných otázkách vnitrostátních soudů. Chrání základní práva podle Listiny a jako obecné zásady práva Unie.",
+      "legalBasis": "Čl. 19 SEU; čl. 6 odst. 1 a 3 SEU; čl. 251–281 SFEU.",
+      "relations": "Není orgánem Rady Evropy ani odvolací instancí vůči vnitrostátním soudům či ESLP; EÚLP využívá jako zdroj poznatků pro základní práva v právu EU."
+    },
+    {
+      "id": "re_eslp",
+      "name": "Rada Evropy a Evropský soud pro lidská práva (ESLP, sídlo ve Štrasburku)",
+      "system": "Rada Evropy (systém EÚLP)",
+      "role": "Mezivládní regionální organizace (Rada Evropy) a jí zřízený mezinárodní soud (ESLP) dohlížející na dodržování Evropské úmluvy o lidských právech.",
+      "powers": "ESLP rozhoduje o individuálních a mezistátních stížnostech na porušení práv zaručených EÚLP a jejími protokoly ze strany smluvních států.",
+      "legalBasis": "Statut Rady Evropy; čl. 19, 33 a 34 Evropské úmluvy o lidských právech (EÚLP).",
+      "relations": "Samostatný mezinárodněprávní systém odlišný od Evropské unie. ESLP není orgánem EU a nepřezkoumává přímo platnost právních aktů Unie."
+    },
+    {
+      "id": "rada_eu",
+      "name": "Rada Evropské unie",
+      "system": "Evropská unie",
+      "role": "Orgán Evropské unie složený ze zástupců vlád členských států na ministerské úrovni, vykonávající společně s Evropským parlamentem legislativní a rozpočtovou funkci.",
+      "powers": "Přijímá nařízení, směrnice a rozhodnutí Unie (např. opatření společné zemědělské politiky a organizace trhu s vínem).",
+      "legalBasis": "Čl. 16 SEU; čl. 237–243 SFEU; vázanost Listinou podle čl. 51 odst. 1 LZPEU.",
+      "relations": "Přijímá sekundární právo Unie závazné pro členské státy; jeho akty podléhají přezkumu platnosti před SDEU."
+    },
+    {
+      "id": "mv_marenie",
+      "name": "Ministerstvo vnitra Marenie",
+      "system": "Vnitrostátní ústavní systém Marenie",
+      "role": "Ústřední orgán státní správy pro vnitřní bezpečnost, veřejný pořádek, právo shromažďovací a pobyt cizinců.",
+      "powers": "Rozhoduje ve správním řízení o pobytu a vyhoštění cizinců a metodicky řídí bezpečnostní složky při ochraně veřejného pořádku.",
+      "legalBasis": "Vnitrostátní kompetenční zákon; zákon o pobytu cizinců; vázanost právem EU (čl. 51 odst. 1 Listiny) a EÚLP.",
+      "relations": "Je podřízeno vládě a vázáno právem Unie vždy, když jeho rozhodnutí zasahuje do výkonu základních svobod vnitřního trhu (věc Carpenter)."
+    },
+    {
+      "id": "komise",
+      "name": "Evropská komise",
+      "system": "Evropská unie",
+      "role": "Nadnárodní výkonný orgán Evropské unie a „strážkyně Smluv“, prosazující obecný zájem Unie.",
+      "powers": "Dohlíží na uplatňování práva Unie členskými státy pod kontrolou SDEU, vydává prováděcí akty, zasílá formální upozornění a odůvodněná stanoviska a podává žaloby podle čl. 258 SFEU.",
+      "legalBasis": "Čl. 17 SEU; čl. 258 SFEU.",
+      "relations": "Vystupuje jako žalobce proti členským státům v řízení o nesplnění povinnosti před SDEU."
+    }
+  ],
+  "diagrams": {
+    "euCoeSchema": "<svg viewBox=\"0 0 640 240\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Schéma vztahu Evropské unie a Rady Evropy\"><rect x=\"10\" y=\"12\" width=\"290\" height=\"216\" rx=\"6\" fill=\"#eef4fc\" stroke=\"#2457a6\" stroke-width=\"2\"/><text x=\"155\" y=\"36\" text-anchor=\"middle\" font-family=\"Georgia, serif\" font-weight=\"bold\" font-size=\"14\" fill=\"#0b1f3a\">EVROPSKÁ UNIE (EU)</text><rect x=\"28\" y=\"50\" width=\"254\" height=\"42\" rx=\"4\" fill=\"#ffffff\" stroke=\"#8ea4c4\"/><text x=\"155\" y=\"68\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#132036\">Prameny: SEU, SFEU, Listina (LZPEU)</text><text x=\"155\" y=\"83\" text-anchor=\"middle\" font-size=\"10\" fill=\"#2f405e\">Působnost pro státy: čl. 51 odst. 1 Listiny</text><rect x=\"28\" y=\"104\" width=\"254\" height=\"42\" rx=\"4\" fill=\"#ffffff\" stroke=\"#8ea4c4\"/><text x=\"155\" y=\"122\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#132036\">Orgány: Komise, Rada EU, Parlament</text><text x=\"155\" y=\"137\" text-anchor=\"middle\" font-size=\"10\" fill=\"#2f405e\">Dohled nad Smlouvami: čl. 258 SFEU</text><rect x=\"28\" y=\"158\" width=\"254\" height=\"54\" rx=\"4\" fill=\"#2457a6\"/><text x=\"155\" y=\"180\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#ffffff\">SDEU (Lucemburk)</text><text x=\"155\" y=\"196\" text-anchor=\"middle\" font-size=\"10\" fill=\"#e8effa\">Zajišťuje dodržování práva Unie (čl. 19 SEU)</text><rect x=\"340\" y=\"12\" width=\"290\" height=\"216\" rx=\"6\" fill=\"#fbf6ea\" stroke=\"#b8923a\" stroke-width=\"2\"/><text x=\"485\" y=\"36\" text-anchor=\"middle\" font-family=\"Georgia, serif\" font-weight=\"bold\" font-size=\"14\" fill=\"#0b1f3a\">RADA EVROPY (RE)</text><rect x=\"358\" y=\"50\" width=\"254\" height=\"42\" rx=\"4\" fill=\"#ffffff\" stroke=\"#cfa94e\"/><text x=\"485\" y=\"68\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#132036\">Pramen: Evropská úmluva (EÚLP)</text><text x=\"485\" y=\"83\" text-anchor=\"middle\" font-size=\"10\" fill=\"#2f405e\">Zavazuje smluvní strany v rozsahu Úmluvy</text><rect x=\"358\" y=\"104\" width=\"254\" height=\"42\" rx=\"4\" fill=\"#ffffff\" stroke=\"#cfa94e\"/><text x=\"485\" y=\"122\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#132036\">Orgány: Výbor ministrů, Parl. shromáždění</text><text x=\"485\" y=\"137\" text-anchor=\"middle\" font-size=\"10\" fill=\"#2f405e\">Oddělená mezinárodní organizace</text><rect x=\"358\" y=\"158\" width=\"254\" height=\"54\" rx=\"4\" fill=\"#0b1f3a\"/><text x=\"485\" y=\"180\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#ffffff\">ESLP (Štrasburk)</text><text x=\"485\" y=\"196\" text-anchor=\"middle\" font-size=\"10\" fill=\"#f7e4b2\">Rozhoduje o porušení EÚLP (čl. 19 EÚLP)</text><line x1=\"300\" y1=\"72\" x2=\"340\" y2=\"72\" stroke=\"#132036\" stroke-width=\"2\" stroke-dasharray=\"4,3\"/><rect x=\"266\" y=\"86\" width=\"108\" height=\"32\" rx=\"3\" fill=\"#ffffff\" stroke=\"#132036\"/><text x=\"320\" y=\"100\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"bold\" fill=\"#132036\">Čl. 6 odst. 3 SEU</text><text x=\"320\" y=\"112\" text-anchor=\"middle\" font-size=\"9\" fill=\"#132036\">Čl. 52 odst. 3 Listiny</text></svg>",
+    "marenieMap": "<svg viewBox=\"0 0 640 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Orientační mapa fiktivního státu Marenie a sousedních zemí\"><rect x=\"0\" y=\"0\" width=\"640\" height=\"300\" fill=\"#e8eff8\"/><polygon points=\"145,45 455,38 515,135 470,248 185,255 115,160\" fill=\"#fdfbf7\" stroke=\"#0b1f3a\" stroke-width=\"2.5\"/><text x=\"65\" y=\"52\" font-family=\"Georgia, serif\" font-size=\"12\" font-weight=\"bold\" fill=\"#46557a\">HALDERSKO</text><text x=\"535\" y=\"62\" font-family=\"Georgia, serif\" font-size=\"12\" font-weight=\"bold\" fill=\"#46557a\">RENNSKO</text><text x=\"530\" y=\"252\" font-family=\"Georgia, serif\" font-size=\"12\" font-weight=\"bold\" fill=\"#46557a\">TREVÁNIE</text><text x=\"285\" y=\"82\" text-anchor=\"middle\" font-family=\"Georgia, serif\" font-size=\"17\" font-weight=\"bold\" letter-spacing=\"2\" fill=\"#0b1f3a\">MARENIE</text><ellipse cx=\"215\" cy=\"192\" rx=\"54\" ry=\"26\" fill=\"#e6f4ec\" stroke=\"#1d6b40\" stroke-width=\"1.4\"/><text x=\"215\" y=\"190\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"bold\" fill=\"#1d6b40\">Sarvské vinice</text><text x=\"215\" y=\"202\" text-anchor=\"middle\" font-size=\"9\" fill=\"#1d6b40\">(vinařská oblast)</text><path d=\"M 520,88 Q 415,135 305,135 T 490,228\" fill=\"none\" stroke=\"#b8923a\" stroke-width=\"4\"/><text x=\"435\" y=\"114\" font-size=\"10\" font-weight=\"bold\" fill=\"#8a5808\">Tranzitní dálnice D7</text><polygon points=\"398,142 414,120 430,142\" fill=\"#8ea4c4\" stroke=\"#0b1f3a\" stroke-width=\"1.2\"/><polygon points=\"416,142 432,116 448,142\" fill=\"#8ea4c4\" stroke=\"#0b1f3a\" stroke-width=\"1.2\"/><text x=\"423\" y=\"156\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"bold\" fill=\"#0b1f3a\">Průsmyk Vorholm</text><circle cx=\"305\" cy=\"135\" r=\"6\" fill=\"#2457a6\" stroke=\"#ffffff\" stroke-width=\"1.5\"/><text x=\"293\" y=\"126\" text-anchor=\"end\" font-size=\"12\" font-weight=\"bold\" fill=\"#0b1f3a\">Orvelin</text><text x=\"293\" y=\"139\" text-anchor=\"end\" font-size=\"9\" fill=\"#2f405e\">(hlavní město)</text><rect x=\"14\" y=\"246\" width=\"155\" height=\"42\" rx=\"3\" fill=\"#ffffff\" stroke=\"#8ea4c4\"/><line x1=\"22\" y1=\"260\" x2=\"46\" y2=\"260\" stroke=\"#b8923a\" stroke-width=\"3.5\"/><text x=\"52\" y=\"263\" font-size=\"9\" fill=\"#132036\">Dálniční koridor D7</text><circle cx=\"34\" cy=\"276\" r=\"4\" fill=\"#2457a6\"/><text x=\"52\" y=\"279\" font-size=\"9\" fill=\"#132036\">Hlavní město vlády</text></svg>",
+    "infringementSchema": "<svg viewBox=\"0 0 620 110\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Schéma řízení o nesplnění povinnosti podle čl. 258 SFEU\"><rect x=\"8\" y=\"18\" width=\"180\" height=\"64\" rx=\"4\" fill=\"#eef4fc\" stroke=\"#2457a6\" stroke-width=\"1.8\"/><text x=\"98\" y=\"42\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#0b1f3a\">1. Formální upozornění</text><text x=\"98\" y=\"58\" text-anchor=\"middle\" font-size=\"9.5\" fill=\"#2f405e\">Komise vyzve stát</text><text x=\"98\" y=\"71\" text-anchor=\"middle\" font-size=\"9.5\" fill=\"#2f405e\">k předložení připomínek</text><line x1=\"188\" y1=\"50\" x2=\"218\" y2=\"50\" stroke=\"#b8923a\" stroke-width=\"2.5\"/><polygon points=\"218,45 228,50 218,55\" fill=\"#b8923a\"/><rect x=\"228\" y=\"18\" width=\"180\" height=\"64\" rx=\"4\" fill=\"#eef4fc\" stroke=\"#2457a6\" stroke-width=\"1.8\"/><text x=\"318\" y=\"42\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#0b1f3a\">2. Odůvodněné stanovisko</text><text x=\"318\" y=\"58\" text-anchor=\"middle\" font-size=\"9.5\" fill=\"#2f405e\">Komise stanoví lhůtu</text><text x=\"318\" y=\"71\" text-anchor=\"middle\" font-size=\"9.5\" fill=\"#2f405e\">ke zjednání nápravy</text><line x1=\"408\" y1=\"50\" x2=\"438\" y2=\"50\" stroke=\"#b8923a\" stroke-width=\"2.5\"/><polygon points=\"438,45 448,50 438,55\" fill=\"#b8923a\"/><rect x=\"448\" y=\"18\" width=\"164\" height=\"64\" rx=\"4\" fill=\"#2457a6\"/><text x=\"530\" y=\"42\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#ffffff\">3. Žaloba k SDEU</text><text x=\"530\" y=\"58\" text-anchor=\"middle\" font-size=\"9.5\" fill=\"#e8effa\">Určení porušení práva EU</text><text x=\"530\" y=\"71\" text-anchor=\"middle\" font-size=\"9.5\" fill=\"#e8effa\">(čl. 258 odst. 2 SFEU)</text></svg>"
+  }
+}
