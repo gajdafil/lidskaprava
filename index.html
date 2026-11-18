@@ -57,16 +57,19 @@
     <aside class="archive-pane noprint" id="archive-pane" aria-label="Vládní archiv a právní prameny" hidden>
       <div class="archive-header">
         <div class="archive-mode-tabs" role="tablist" aria-label="Režim archivu">
-          <button type="button" class="mode-tab active" role="tab" aria-selected="true" data-mode="workspace">
-            Otevřené dokumenty (<span id="open-tabs-count">0</span>)
-          </button>
-          <button type="button" class="mode-tab" role="tab" aria-selected="false" data-mode="catalog">
-            Katalog archivu
-          </button>
-          <button type="button" class="mode-tab" role="tab" aria-selected="false" data-mode="institutions">
-            Instituce a mapy
-          </button>
-        </div>
+  <button type="button" class="archive-mode-btn active"
+          role="tab" aria-selected="true" data-archive-mode="reader">
+    Otevřené dokumenty (<span id="open-tabs-count">0</span>)
+  </button>
+  <button type="button" class="archive-mode-btn"
+          role="tab" aria-selected="false" data-archive-mode="catalog">
+    Katalog archivu
+  </button>
+  <button type="button" class="archive-mode-btn"
+          role="tab" aria-selected="false" data-archive-mode="institutions">
+    Instituce a mapy
+  </button>
+</div>
         <button type="button" class="hdr-btn hdr-btn-close" id="btn-close-archive" aria-label="Skrýt archiv">Skrýt</button>
       </div>
 
