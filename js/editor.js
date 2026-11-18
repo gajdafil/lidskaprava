@@ -110,13 +110,13 @@ export class DefenseEditor {
     const listHtml = availableArgs
       .map((arg) => {
         const isChecked = activeSelection.includes(arg.id);
-        let evalBadge = '';
+        let evalNote = '';
         if (isConfirmed) {
           const sign = arg.weight > 0 ? `+${arg.weight}` : `${arg.weight}`;
-          const cls =
-            arg.weight > 0 ? 'is-correct' : arg.weight < 0 ? 'is-wrong' : '';
-          evalBadge = `
-            <div class="option-feedback ${cls}">
+          const noteClass =
+            arg.weight > 0 ? 'note note-good' : arg.weight < 0 ? 'note note-bad' : 'note';
+          evalNote = `
+            <div class="${noteClass}" style="margin-top: 0.45rem;">
               <strong>Váha: ${sign} b. (${escapeHtml(arg.category)})</strong> • ${escapeHtml(
             arg.legalBasis
           )}<br />
@@ -126,7 +126,7 @@ export class DefenseEditor {
         }
 
         return `
-          <label class="arg-checkbox-row ${isChecked ? 'is-checked' : ''}">
+          <label class="radio-opt">
             <input
               type="checkbox"
               data-action="toggle-arg-checkbox"
@@ -134,9 +134,9 @@ export class DefenseEditor {
               ${isChecked ? 'checked' : ''}
               ${isConfirmed || isReadOnly ? 'disabled' : ''}
             />
-            <div>
+            <div style="flex: 1;">
               <div><strong>[${escapeHtml(arg.id)}]</strong> ${escapeHtml(arg.text)}</div>
-              ${evalBadge}
+              ${evalNote}
             </div>
           </label>
         `;
@@ -144,19 +144,24 @@ export class DefenseEditor {
       .join('');
 
     return `
-      <section class="task-card">
-        <span class="task-type-badge">Příprava obhajoby před SDEU</span>
+      <section>
+        <div class="eyebrow">Příprava obhajoby před Soudním dvorem EU</div>
         <h3>${escapeHtml(stepDef.title)}</h3>
-        <div class="situation-box">${escapeHtml(stepDef.instructions)}</div>
+        <div class="situation-box">
+          <p style="margin-bottom: 0;">${escapeHtml(stepDef.instructions)}</p>
+        </div>
 
-        <div class="options-list">${listHtml}</div>
+        <div class="brief-section">
+          <h3>Výběr právních argumentů do písemného vyjádření</h3>
+          ${listHtml}
+        </div>
 
         ${
           !isConfirmed && !isReadOnly
             ? `<div class="action-bar">
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  class="btn"
                   data-action="confirm-arguments"
                   ${activeSelection.length > 0 ? '' : 'disabled'}
                 >
@@ -168,8 +173,10 @@ export class DefenseEditor {
 
         ${
           isConfirmed
-            ? `<div class="resolution-panel">
-                <strong>Výběr argumentů uzavřen (zisk: ${stepState.pointsEarned} / ${stepDef.maxPoints} b.).</strong>
+            ? `<div class="feedback-stack">
+                <div class="note note-good">
+                  <strong>Výběr argumentů uzavřen (zisk: ${stepState.pointsEarned} / ${stepDef.maxPoints} b.).</strong>
+                </div>
                 ${advanceButtonHtml}
               </div>`
             : ''
@@ -204,7 +211,7 @@ export class DefenseEditor {
               const argObj = argMap.get(argId);
               if (!argObj) return '';
               return `
-                <li class="sortable-arg-item">
+                <div class="order-item">
                   <div>
                     <strong>${idx + 1}. [${escapeHtml(argObj.id)}]</strong> ${escapeHtml(
                 argObj.text
@@ -212,51 +219,53 @@ export class DefenseEditor {
                   </div>
                   ${
                     !isConfirmed && !isReadOnly
-                      ? `<div class="sortable-controls">
+                      ? `<div class="order-controls">
                           <button
                             type="button"
-                            class="btn btn-sm btn-secondary"
+                            class="btn btn-alt btn-sm"
                             data-action="move-sec5-arg"
                             data-index="${idx}"
                             data-dir="-1"
                             ${idx === 0 ? 'disabled' : ''}
                             title="Posunout výše"
+                            aria-label="Posunout argument výše"
                           >▲</button>
                           <button
                             type="button"
-                            class="btn btn-sm btn-secondary"
+                            class="btn btn-alt btn-sm"
                             data-action="move-sec5-arg"
                             data-index="${idx}"
                             data-dir="1"
                             ${idx === orderedIds.length - 1 ? 'disabled' : ''}
                             title="Posunout níže"
+                            aria-label="Posunout argument níže"
                           >▼</button>
                         </div>`
                       : ''
                   }
-                </li>
+                </div>
               `;
             })
             .join('');
 
           const sec5Result = isConfirmed ? stepState.sectionResults.SEC5 : null;
           return `
-            <div class="pleading-section-box">
+            <div class="brief-section">
               <h3>${escapeHtml(sec.title)}</h3>
-              <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              <p class="small">
                 Seřaďte vybrané argumenty od obecné právní premisy přes metodiku poměřování až po konkrétní aplikaci na skutkový stav:
               </p>
-              <ol class="sortable-arg-list">${itemsHtml}</ol>
+              <div class="order-list">${itemsHtml}</div>
               ${
                 sec5Result
-                  ? `<div class="option-feedback ${
-                      sec5Result.points >= 7 ? 'is-correct' : 'is-wrong'
-                    }">
-                      <strong>Hodnocení logické návaznosti: ${sec5Result.points} / ${
-                      sec5Result.maxPoints
-                    } b.</strong> (splněno ${sec5Result.satisfiedRules} z ${
-                      sec5Result.applicableRules
-                    } návazností).
+                  ? `<div class="feedback-stack">
+                      <div class="note ${sec5Result.points >= 7 ? 'note-good' : 'note-bad'}">
+                        <strong>Hodnocení logické návaznosti: ${sec5Result.points} / ${
+                        sec5Result.maxPoints
+                      } b.</strong> (splněno ${sec5Result.satisfiedRules} z ${
+                        sec5Result.applicableRules
+                      } návazností).
+                      </div>
                     </div>`
                   : ''
               }
@@ -270,40 +279,35 @@ export class DefenseEditor {
         const optsHtml = sec.options
           .map((opt) => {
             const isSelected = chosenOptId === opt.id;
-            const classes = ['option-card'];
-            if (isSelected) classes.push('is-selected');
-            if (isConfirmed || isReadOnly) classes.push('is-locked');
-
             return `
-              <button
-                type="button"
-                class="${classes.join(' ')}"
-                data-action="select-pleading-option"
-                data-sec-id="${escapeHtml(sec.id)}"
-                data-option-id="${escapeHtml(opt.id)}"
-                ${isConfirmed || isReadOnly ? 'disabled' : ''}
-              >
-                <div class="option-header">
-                  <span class="option-letter">${escapeHtml(opt.id)}</span>
-                  <span class="option-text">${escapeHtml(opt.text)}</span>
-                </div>
-              </button>
+              <label class="radio-opt">
+                <input
+                  type="radio"
+                  name="pleading_${escapeHtml(sec.id)}"
+                  data-action="select-pleading-option"
+                  data-sec-id="${escapeHtml(sec.id)}"
+                  data-option-id="${escapeHtml(opt.id)}"
+                  ${isSelected ? 'checked' : ''}
+                  ${isConfirmed || isReadOnly ? 'disabled' : ''}
+                />
+                <span><strong>${escapeHtml(opt.id)})</strong> ${escapeHtml(opt.text)}</span>
+              </label>
             `;
           })
           .join('');
 
         return `
-          <div class="pleading-section-box">
+          <div class="brief-section">
             <h3>${escapeHtml(sec.title)}</h3>
-            <div class="options-list">${optsHtml}</div>
+            ${optsHtml}
             ${
               secResult
-                ? `<div class="option-feedback ${
-                    secResult.points >= 4 ? 'is-correct' : 'is-wrong'
-                  }">
-                    <strong>Hodnocení oddílu: ${secResult.points} / ${
-                    secResult.maxPoints
-                  } b.</strong> – ${escapeHtml(secResult.feedback)}
+                ? `<div class="feedback-stack">
+                    <div class="note ${secResult.points >= 4 ? 'note-good' : 'note-bad'}">
+                      <strong>Hodnocení oddílu: ${secResult.points} / ${
+                      secResult.maxPoints
+                    } b.</strong> – ${escapeHtml(secResult.feedback)}
+                    </div>
                   </div>`
                 : ''
             }
@@ -320,10 +324,12 @@ export class DefenseEditor {
       Boolean(currentData.SEC6);
 
     return `
-      <section class="task-card">
-        <span class="task-type-badge is-strategic">Závěrečné procesní podání k SDEU</span>
+      <section>
+        <div class="eyebrow">Závěrečné procesní podání k SDEU</div>
         <h3>${escapeHtml(stepDef.title)}</h3>
-        <div class="situation-box">${escapeHtml(stepDef.instructions)}</div>
+        <div class="situation-box">
+          <p style="margin-bottom: 0;">${escapeHtml(stepDef.instructions)}</p>
+        </div>
 
         ${sectionsHtml}
 
@@ -344,8 +350,10 @@ export class DefenseEditor {
 
         ${
           isConfirmed
-            ? `<div class="resolution-panel">
-                <strong>Písemné podání bylo odesláno (zisk: ${stepState.pointsEarned} / ${stepDef.maxPoints} b.).</strong>
+            ? `<div class="feedback-stack">
+                <div class="note note-good">
+                  <strong>Písemné podání bylo odesláno (zisk: ${stepState.pointsEarned} / ${stepDef.maxPoints} b.).</strong>
+                </div>
                 ${this.renderPleadingPreview(stepDef, currentData, argMap)}
                 ${advanceButtonHtml}
               </div>`
@@ -367,11 +375,10 @@ export class DefenseEditor {
       .filter(Boolean);
 
     return `
-      <div class="pleading-preview">
-        <div style="text-align: center; font-weight: bold; margin-bottom: 1rem;">
-          VYJÁDŘENÍ VLÁDY MARENSKÉ REPUBLIKY PŘED SOUDNÍM DVOREM EVROPSKÉ UNIE<br />
-          <span style="font-size: 0.88rem; font-weight: normal;">Věc C-418/R4, Evropská komise v. Marenská republika</span>
-        </div>
+      <div class="report-header-box" style="margin-top: 0.75rem;">
+        <div class="eyebrow">Čistopis procesního podání</div>
+        <h3 style="margin-top: 0;">VYJÁDŘENÍ VLÁDY MARENSKÉ REPUBLIKY PŘED SOUDNÍM DVOREM EU</h3>
+        <p class="small">Věc C-418/R4, Evropská komise v. Marenská republika</p>
         <h4>1. Skutkový stav</h4>
         <p>${escapeHtml(getOptText('SEC1'))}</p>
         <h4>2. Právní otázka</h4>
@@ -385,7 +392,7 @@ export class DefenseEditor {
           ${argTexts.map((t) => `<li>${escapeHtml(t)}</li>`).join('')}
         </ol>
         <h4>6. Závěrečný návrh (petit)</h4>
-        <p>${escapeHtml(getOptText('SEC6'))}</p>
+        <p style="margin-bottom: 0;">${escapeHtml(getOptText('SEC6'))}</p>
       </div>
     `;
   }
