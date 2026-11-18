@@ -1,1 +1,123 @@
-
+{
+  "totalMaxPoints": 205,
+  "attemptMultipliers": [1, 0.55, 0.25],
+  "strategicLevelDivisor": 3,
+  "repeatedTagPenalty": 2,
+  "maxTagPenaltyPerCompetency": 4,
+  "competencies": {
+    "C1": {
+      "id": "C1",
+      "name": "Rozlišování evropských právních systémů",
+      "description": "Schopnost přesně odlišit právní systém Evropské unie od systému Rady Evropy, včetně pravomocí SDEU a ESLP.",
+      "maxPoints": 20
+    },
+    "C2": {
+      "id": "C2",
+      "name": "Identifikace právního problému",
+      "description": "Schopnost správně určit předběžnou i věcnou právní otázku a posoudit působnost práva Unie.",
+      "maxPoints": 21
+    },
+    "C3": {
+      "id": "C3",
+      "name": "Výběr právního základu",
+      "description": "Schopnost určit použitelný právní pramen a konkrétní ustanovení Smluv, Listiny či EÚLP.",
+      "maxPoints": 31
+    },
+    "C4": {
+      "id": "C4",
+      "name": "Práce s judikaturou",
+      "description": "Schopnost přesně interpretovat rozsudky SDEU a nepřipisovat soudu závěry, které nevyslovil.",
+      "maxPoints": 34
+    },
+    "C5": {
+      "id": "C5",
+      "name": "Proporcionalita a konflikt práv",
+      "description": "Schopnost vyvažovat kolidující základní práva, základní svobody a cíle obecného zájmu.",
+      "maxPoints": 25
+    },
+    "C6": {
+      "id": "C6",
+      "name": "Procesní orientace",
+      "description": "Schopnost zvolit odpovídající institucionální a procesní postup včetně příslušného soudního fóra.",
+      "maxPoints": 15
+    },
+    "C7": {
+      "id": "C7",
+      "name": "Právní argumentace",
+      "description": "Schopnost vyvrátit námitky protistrany, vybrat relevantní argumenty a uspořádat je do koherentního podání.",
+      "maxPoints": 39
+    },
+    "C8": {
+      "id": "C8",
+      "name": "Návrh právního řešení",
+      "description": "Schopnost přijmout právně obhajitelné vládní rozhodnutí a zvolit účinnou nápravu při pochybení.",
+      "maxPoints": 20
+    }
+  },
+  "competencyBands": [
+    {
+      "id": "nevyhovela",
+      "min": 0,
+      "max": 39.99,
+      "label": "nevyhověla"
+    },
+    {
+      "id": "zakladni",
+      "min": 40,
+      "max": 59.99,
+      "label": "základní"
+    },
+    {
+      "id": "dobra",
+      "min": 60,
+      "max": 79.99,
+      "label": "dobrá"
+    },
+    {
+      "id": "velmi_dobra",
+      "min": 80,
+      "max": 100,
+      "label": "velmi dobrá"
+    }
+  ],
+  "grades": [
+    {
+      "id": "vyborne",
+      "minPct": 90,
+      "label": "výborně",
+      "specialRule": {
+        "minCompetenciesAbove75": 6,
+        "minAnyCompetency": 50,
+        "fallbackGradeId": "velmi_dobre"
+      }
+    },
+    {
+      "id": "velmi_dobre",
+      "minPct": 75,
+      "label": "velmi dobře"
+    },
+    {
+      "id": "dobre",
+      "minPct": 60,
+      "label": "dobře"
+    },
+    {
+      "id": "nevyhovel",
+      "minPct": 0,
+      "label": "nevyhověl"
+    }
+  ],
+  "errorTags": {
+    "M1": "Záměna SDEU a ESLP, Evropské unie a Rady Evropy nebo jejich pravomocí",
+    "M2": "Rozšíření nebo zúžení oblasti použití Listiny mimo meze čl. 51 odst. 1 LZPEU",
+    "M3": "Nepřípustné nadřazení vnitrostátního ústavního standardu nad právo Unie",
+    "M4": "Připsání soudu nevysloveného právního závěru nebo záměna obsahu rozsudku",
+    "M5": "Absolutizace základního práva nebo základní svobody bez možnosti omezení",
+    "M6": "Izolované čtení jediné jazykové verze bez zohlednění jednotného výkladu",
+    "M7": "Záměna zbavení majetku (vyvlastnění) a regulace užívání majetku",
+    "M8": "Chybné posouzení situace s přeshraničním prvkem jako čistě vnitrostátní věci",
+    "M9": "Vynechání testu proporcionality a konkrétního poměřování kolidujících zájmů",
+    "M10": "Přeskočení výkladu sporné normy a předčasný přezkum její platnosti",
+    "M11": "Omezení odpovědnosti státu za volný pohyb zboží jen na aktivní opatření nebo na dovoz/vývoz"
+  }
+}
