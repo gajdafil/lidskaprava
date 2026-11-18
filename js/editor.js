@@ -5,19 +5,50 @@
 
 import { escapeHtml } from './documents.js';
 
+const EDITOR_DRAFTS_KEY = 'letat_cest_moi_editor_drafts_v1';
+
 export class DefenseEditor {
   /**
    * @param {import('./game-engine.js').GameEngine} engine
    */
   constructor(engine) {
     this.engine = engine;
-    this.selectedArgIds = null;
-    this.pleadingDraft = null;
+    const saved = this._loadDrafts();
+    this.selectedArgIds = Array.isArray(saved?.selectedArgIds) ? saved.selectedArgIds : null;
+    this.pleadingDraft = saved?.pleadingDraft || null;
+  }
+
+  _loadDrafts() {
+    try {
+      const raw = window.sessionStorage.getItem(EDITOR_DRAFTS_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  _saveDrafts() {
+    try {
+      window.sessionStorage.setItem(
+        EDITOR_DRAFTS_KEY,
+        JSON.stringify({
+          selectedArgIds: this.selectedArgIds,
+          pleadingDraft: this.pleadingDraft
+        })
+      );
+    } catch {
+      // Ignorovat
+    }
   }
 
   resetDrafts() {
     this.selectedArgIds = null;
     this.pleadingDraft = null;
+    try {
+      window.sessionStorage.removeItem(EDITOR_DRAFTS_KEY);
+    } catch {
+      // Ignorovat
+    }
   }
 
   toggleArgument(argId, checked) {
@@ -31,11 +62,13 @@ export class DefenseEditor {
       set.delete(argId);
     }
     this.selectedArgIds = [...set];
+    this._saveDrafts();
   }
 
   selectPleadingOption(secId, optionId) {
     this._ensurePleadingDraft();
     this.pleadingDraft[secId] = optionId;
+    this._saveDrafts();
   }
 
   moveSection5Argument(index, direction) {
@@ -49,6 +82,7 @@ export class DefenseEditor {
     const swap = list[index];
     list[index] = list[targetIdx];
     list[targetIdx] = swap;
+    this._saveDrafts();
   }
 
   getSelectedArgumentIds() {
@@ -85,6 +119,8 @@ export class DefenseEditor {
       };
     } else if (!Array.isArray(this.pleadingDraft.SEC5) || this.pleadingDraft.SEC5.length === 0) {
       this.pleadingDraft.SEC5 = defaultOrder;
+    } else {
+      this.pleadingDraft.SEC5 = this.pleadingDraft.SEC5.filter((id) => argMap.has(id));
     }
   }
 
