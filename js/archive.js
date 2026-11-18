@@ -53,7 +53,7 @@ export class ArchivePanel {
           // Zapnutí zvýraznění a otevření příslušného dokumentu
           this.activeHighlightForStepId = this.currentStepDef.id;
           this.engine.recordHighlightUsage(targetDocId);
-          this.engine.openDocumentTab(targetDocId);
+          this.engine.openDocument(targetDocId);
           this.setMode('reader');
         }
         this.sync(this.currentStepDef);
@@ -92,7 +92,7 @@ export class ArchivePanel {
             this.btnToggleCompare.setAttribute('aria-pressed', 'false');
             this.btnToggleCompare.classList.remove('is-active');
           }
-          this.engine.openDocumentTab(docId);
+          this.engine.openDocument(docId);
           this.setMode('reader');
           if (this.onStateChange) this.onStateChange();
           return;
