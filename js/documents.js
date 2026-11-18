@@ -17,6 +17,120 @@ function escapeRegExp(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+
+/**
+ * Vykreslí dokument pro ArchivePanel.
+ * @param {Object|null} doc
+ * @param {string|string[]|null} highlightTarget
+ * @returns {string}
+ */
+export function renderDocumentView(doc, highlightTarget = null) {
+  if (!doc) {
+    return '<p style="color: var(--text-muted);">Vyberte dokument ze seznamu výše.</p>';
+  }
+
+  const highlights = (Array.isArray(highlightTarget)
+    ? highlightTarget
+    : [highlightTarget]
+  ).filter((phrase) => typeof phrase === 'string' && phrase.trim());
+
+  const paragraphsHtml = (doc.paragraphs || [])
+    .map((paragraph) => {
+      let safeHtml = escapeHtml(paragraph);
+      for (const phrase of highlights) {
+        const safePhrase = escapeHtml(phrase.trim());
+        const rx = new RegExp(`(${escapeRegExp(safePhrase)})`, 'gi');
+        safeHtml = safeHtml.replace(rx, '<mark class="doc-highlight">$1</mark>');
+      }
+      return `<p>${safeHtml}</p>`;
+    })
+    .join('');
+
+  const verificationStatus = doc.verificationStatus
+    ? `<span class="verify-badge is-${escapeHtml(doc.verificationStatus)}">${escapeHtml(
+        VERIFICATION_LABELS[doc.verificationStatus] || doc.verificationStatus
+      )}</span>`
+    : '';
+
+  return `
+    ${verificationStatus}
+    <h3>${escapeHtml(doc.title || 'Právní dokument')}</h3>
+    <div class="doc-meta-box">
+      ${doc.provisionOrCase ? `<div><strong>Citace / označení:</strong> ${escapeHtml(doc.provisionOrCase)}</div>` : ''}
+      ${doc.citation ? `<div><strong>Citace:</strong> ${escapeHtml(doc.citation)}</div>` : ''}
+      ${doc.sourceId ? `<div><strong>Zdroj:</strong> ${escapeHtml(doc.sourceId)}${doc.date ? ` (${escapeHtml(doc.date)})` : ''}</div>` : ''}
+      ${doc.verificationNote ? `<div><strong>Poznámka k ověření:</strong> ${escapeHtml(doc.verificationNote)}</div>` : ''}
+    </div>
+    ${doc.summary ? `<p style="font-style: italic; color: var(--text-secondary);">${escapeHtml(doc.summary)}</p>` : ''}
+    <div class="doc-paragraphs">${paragraphsHtml}</div>
+    ${
+      doc.detailedCommentary
+        ? `<details class="doc-commentary">
+            <summary>Podrobnější právní výklad k tomuto dokumentu</summary>
+            <p style="margin: 0.65rem 0 0;">${escapeHtml(doc.detailedCommentary)}</p>
+          </details>`
+        : ''
+    }
+  `;
+}
+
+/**
+ * Vykreslí srovnávací tabulky náležející k odemčeným dokumentům.
+ * Očekávaná struktura: { documents: { [id]: { comparisonId } },
+ *                        comparisons: { [id]: { leftHeading, rightHeading, rows } } }.
+ * @param {Object} documentsData
+ * @param {string[]} unlockedDocIds
+ * @returns {string}
+ */
+export function renderComparisonTable(documentsData, unlockedDocIds = []) {
+  const docs = documentsData?.documents || {};
+  const comparisons = documentsData?.comparisons || {};
+  const unlocked = new Set(unlockedDocIds);
+  const seen = new Set();
+
+  const tables = Object.values(docs)
+    .filter((doc) => doc && unlocked.has(doc.id) && doc.comparisonId)
+    .filter((doc) => {
+      if (seen.has(doc.comparisonId)) return false;
+      seen.add(doc.comparisonId);
+      return true;
+    })
+    .map((doc) => {
+      const comparison = comparisons[doc.comparisonId];
+      if (!comparison || !Array.isArray(comparison.rows)) return '';
+
+      const rowsHtml = comparison.rows.map((row) => `
+        <tr>
+          <td><strong>${escapeHtml(row.aspect)}</strong></td>
+          <td>${escapeHtml(row.left)}</td>
+          <td>${escapeHtml(row.right)}</td>
+        </tr>
+      `).join('');
+
+      return `
+        <section class="comparison-section">
+          <h3>${escapeHtml(doc.title || 'Srovnání právních pramenů')}</h3>
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Hledisko</th>
+                <th>${escapeHtml(comparison.leftHeading)}</th>
+                <th>${escapeHtml(comparison.rightHeading)}</th>
+              </tr>
+            </thead>
+            <tbody>${rowsHtml}</tbody>
+          </table>
+        </section>
+      `;
+    })
+    .filter(Boolean);
+
+  return tables.length
+    ? tables.join('')
+    : '<p class="catalog-empty">Pro odemčené dokumenty není k dispozici žádná srovnávací tabulka.</p>';
+}
+
+
 const VERIFICATION_LABELS = {
   verified: 'Ověřený pramen',
   translation: 'Vlastní překlad z originálu',
