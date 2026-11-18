@@ -1,0 +1,576 @@
+{
+  "E1.1": {
+    "id": "E1.1",
+    "chapterId": "K1",
+    "type": "E",
+    "title": "Úloha 1.1 – Dva soudy, dva právní systémy",
+    "competencies": [
+      ["C1", 4],
+      ["C6", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Na prvním zasedání kabinetu prohlásí ministr vnitra Viktor Sorel: „Opozice hrozí žalobou k evropskému soudu. Ať už jde o Lucemburk, nebo Štrasburk, v konečném důsledku je to týž evropský soud.“ Právní poradce dr. Keller vás žádá o vyjasnění tohoto východiska.",
+    "question": "Které tvrzení o postavení a vztahu Soudního dvora Evropské unie (SDEU) a Evropského soudu pro lidská práva (ESLP) je právně správné?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ESLP je specializovaný soudní orgán Evropské unie zřízený pro přezkum dodržování Listiny základních práv EU.",
+        "correct": false,
+        "tag": "M1",
+        "feedback": "Nesprávně. ESLP není orgánem Evropské unie; je mezinárodním soudem zřízeným Evropskou úmluvou o lidských právech v rámci Rady Evropy."
+      },
+      {
+        "id": "B",
+        "text": "SDEU je obecný evropský soud, který přezkoumává soulad veškerého jednání členských států s Evropskou úmluvou o lidských právech.",
+        "correct": false,
+        "tag": "M1",
+        "feedback": "Nesprávně. SDEU zajišťuje dodržování práva Evropské unie (čl. 19 SEU). EÚLP je pro něj jedním ze zdrojů inspirace pro základní práva jako obecné zásady práva Unie, nikoli přímým obecným měřítkem veškerého jednání států."
+      },
+      {
+        "id": "C",
+        "text": "SDEU je soudním orgánem Evropské unie a ESLP je soudem zřízeným EÚLP v rámci Rady Evropy; představují dva odlišné, byť vzájemně propojené právní systémy s odlišnou působností.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. Právo EU a systém EÚLP v rámci Rady Evropy jsou dva samostatné právní systémy se vlastními soudními orgány (SDEU v Lucemburku a ESLP ve Štrasburku) a odlišnými procesními pravidly."
+      },
+      {
+        "id": "D",
+        "text": "Oba soudy jsou orgány Rady Evropy a liší se pouze místem svého sídla a vnitřním rozdělením senátů.",
+        "correct": false,
+        "tag": "M1",
+        "feedback": "Nesprávně. Soudní dvůr Evropské unie je orgánem Evropské unie, nikoli Rady Evropy."
+      }
+    ],
+    "hints": [
+      "Zaměřte se na to, jaká mezinárodní organizace a jaká smlouva každý z obou soudů založila.",
+      "Rozlište zakládací Smlouvy Evropské unie (SEU, SFEU) od Evropské úmluvy o lidských právech uzavřené v rámci Rady Evropy.",
+      "Jeden soud zajišťuje výklad a dodržování práva EU, zatímco druhý rozhoduje o stížnostech na porušení EÚLP; žádný z nich není instancí nadřízenou druhému."
+    ],
+    "lawRef": "Čl. 19 SEU (ověřeno) a čl. 19 EÚLP [K OVĚŘENÍ – mimo podklady]; srov. též Hauer, bod 15, a Schmidberger, body 71 a 75.",
+    "relatedDocs": ["sch", "l51"],
+    "highlightDocId": "sch",
+    "highlightPhrases": ["orgán EU", "Rady Evropy", "Dva odlišné systémy"]
+  },
+  "E1.2": {
+    "id": "E1.2",
+    "chapterId": "K1",
+    "type": "E",
+    "title": "Úloha 1.2 – Oblast použití Listiny základních práv EU",
+    "competencies": [
+      ["C3", 4],
+      ["C1", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Vláda projednává dva návrhy zákonů. Návrh 1 upravuje provozní dobu obecních tržišť v Marenii; žádný předpis Evropské unie tuto oblast nereguluje. Návrh 2 provádí do marenského právního řádu (fiktivní) směrnici EU o označování původu potravin. Opozice tvrdí, že oba návrhy musí být posuzovány podle Listiny základních práv EU.",
+    "question": "Který právní závěr o použitelnosti Listiny základních práv EU podle jejího čl. 51 odst. 1 je správný?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Listina se vztahuje na oba návrhy zákonů, protože Marenie je členským státem Evropské unie a je vázána jejími hodnotami ve veškeré své činnosti.",
+        "correct": false,
+        "tag": "M2",
+        "feedback": "Nesprávně. Čl. 51 odst. 1 Listiny výslovně omezuje její závaznost pro členské státy pouze na situace, kdy uplatňují právo Unie."
+      },
+      {
+        "id": "B",
+        "text": "Listina se vztahuje pouze na Návrh 2, neboť jeho přijetím Marenie uplatňuje právo Unie; Návrh 1 se řídí vnitrostátním ústavním pořádkem a závazky z EÚLP, nikoli Listinou.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. Podle čl. 51 odst. 1 Listiny jsou ustanovení Listiny určena členským státům „výhradně pokud uplatňují právo Unie“. Čistě vnitrostátní úprava mimo působnost práva EU Listině nepodléhá."
+      },
+      {
+        "id": "C",
+        "text": "Listina se nevztahuje ani na jeden z návrhů, protože zavazuje výlučně orgány, instituce a jiné subjekty Evropské unie.",
+        "correct": false,
+        "tag": "M2",
+        "feedback": "Nesprávně. Čl. 51 odst. 1 Listiny výslovně uvádí i členské státy, „pokud uplatňují právo Unie“."
+      },
+      {
+        "id": "D",
+        "text": "Listina se uplatní na každý vnitrostátní návrh tehdy, pokud se některý občan dovolá porušení práva v ní zakotveného.",
+        "correct": false,
+        "tag": "M2",
+        "feedback": "Nesprávně. Subjektivní tvrzení jednotlivce nemůže založit použitelnost Listiny; podle čl. 51 odst. 2 Listina nerozšiřuje oblast působnosti práva Unie nad rámec pravomocí Unie."
+      }
+    ],
+    "hints": [
+      "Položte si otázku, komu a za jaké podmínky jsou ustanovení Listiny určena.",
+      "Otevřete v archivu čl. 51 odst. 1 Listiny a zaměřte se na význam slova „výhradně“.",
+      "U každého z obou návrhů posuďte, zda jeho přijetím marenský zákonodárce provádí nebo aplikuje normu práva Evropské unie."
+    ],
+    "lawRef": "Listina základních práv EU, čl. 51 odst. 1 a 2 (autentické české znění, ověřeno).",
+    "relatedDocs": ["l51", "sch"],
+    "highlightDocId": "l51",
+    "highlightPhrases": ["výhradně pokud uplatňují právo Unie", "nerozšiřuje oblast působnosti práva Unie"]
+  },
+  "E1.3": {
+    "id": "E1.3",
+    "chapterId": "K1",
+    "type": "E",
+    "title": "Úloha 1.3 – Výkladový vztah Listiny a EÚLP",
+    "competencies": [
+      ["C1", 4],
+      ["C3", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Dr. Keller upozorňuje, že čl. 7 Listiny (respektování soukromého a rodinného života) odpovídá právu zaručenému čl. 8 EÚLP. Ministryně spravedlnosti Ilona Brandt namítne: „Znamená to tedy, že ochrana základních práv v právu EU nemůže být nikdy širší než standard stanovený ve Štrasburku?“",
+    "question": "Jaký právní důsledek vyplývá z čl. 52 odst. 3 Listiny pro práva, která odpovídají právům zaručeným EÚLP?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Smysl a rozsah těchto práv jsou stejné jako ty, které jim přikládá EÚLP; toto ustanovení však nebrání tomu, aby právo Unie poskytovalo širší ochranu.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. Čl. 52 odst. 3 Listiny zajišťuje soulad mezi Listinou a EÚLP tím, že z EÚLP činí minimální standard ochrany, přičemž druhá věta výslovně umožňuje právu Unie poskytnout ochranu širší."
+      },
+      {
+        "id": "B",
+        "text": "Listina nesmí v žádném případě poskytovat širší ochranu než EÚLP, aby nedošlo k narušení jednoty evropského práva.",
+        "correct": false,
+        "tag": "M1",
+        "feedback": "Nesprávně. Druhá věta čl. 52 odst. 3 Listiny výslovně uvádí, že toto ustanovení nebrání tomu, aby právo Unie poskytovalo širší ochranu."
+      },
+      {
+        "id": "C",
+        "text": "Listina se vykládá zcela autonomně bez ohledu na EÚLP a judikatura k EÚLP nemá pro výklad Listiny žádný význam.",
+        "correct": false,
+        "tag": "M1",
+        "feedback": "Nesprávně. První věta čl. 52 odst. 3 výslovně stanoví, že u odpovídajících práv jsou jejich smysl a rozsah stejné jako podle EÚLP."
+      },
+      {
+        "id": "D",
+        "text": "Čl. 52 odst. 3 zakládá pravomoc ESLP přímo rušit právní akty Evropské unie, pokud neodpovídají EÚLP.",
+        "correct": false,
+        "tag": "M1",
+        "feedback": "Nesprávně. Jde o výkladové pravidlo adresované orgánům aplikujícím Listinu; nezakládá přezkumnou pravomoc ESLP nad akty Unie."
+      }
+    ],
+    "hints": [
+      "Zaměřte se na to, jaký pramen určuje smysl a rozsah odpovídajících práv v Listině.",
+      "Přečtěte si pozorně obě věty čl. 52 odst. 3 Listiny.",
+      "První věta stanoví minimální úroveň ochrany převzatou z EÚLP, druhá věta otevírá prostor pro vyšší standard v právu Unie."
+    ],
+    "lawRef": "Listina základních práv EU, čl. 52 odst. 3 a čl. 53 (ověřeno); korespondence čl. 7 Listiny a čl. 8 EÚLP dle Vysvětlení k Listině [K OVĚŘENÍ].",
+    "relatedDocs": ["l51", "sch"],
+    "highlightDocId": "l51",
+    "highlightPhrases": ["smysl a rozsah těchto práv jsou stejné", "poskytovalo širší ochranu"]
+  },
+  "S1": {
+    "id": "S1",
+    "chapterId": "K1",
+    "type": "S",
+    "title": "Strategické rozhodnutí 1 – Mechanismus kontroly souladu vládních návrhů",
+    "competencies": [
+      ["C6", 4],
+      ["C8", 2]
+    ],
+    "situation": "Dr. Keller předkládá kabinetu tři procesní modely, jakým způsobem bude vláda ověřovat, zda její legislativní a správní návrhy provádějící právo Unie respektují základní práva podle čl. 51 odst. 1 Listiny.",
+    "question": "Jaký model vnitřní právní kontroly vládních návrhů zvolíte?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Povinná preventivní kontrola: Ministerstvo spravedlnosti posoudí každý návrh provádějící právo Unie ještě před jeho schválením vládou (zdržení legislativního procesu přibližně o tři týdny).",
+        "level": 3,
+        "politicalImpact": "Pomalejší prosazování koaličního programu a kritika netrpělivých koaličních partnerů.",
+        "legalEvaluation": "Nejvyšší procesní obezřetnost (stupeň 3/3): stát předchází porušení čl. 51 odst. 1 Listiny ještě před přijetím aktu nejméně invazivním vnitřním mechanismem.",
+        "unlockDocs": ["mp"],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Zavedli jste preventivní přezkum na Ministerstvu spravedlnosti. V archivu se odemklo Interní právní posouzení ministerstva spravedlnosti."
+      },
+      {
+        "id": "B",
+        "text": "Ex post dialog s Komisí: Legislativa postupuje bez zdržení a vláda se spolehne na to, že případné nesrovnalosti zachytí Evropská komise v rámci notifikačního a kontrolního procesu.",
+        "level": 2,
+        "politicalImpact": "Rychlejší schvalování návrhů, ale nižší vlastní kontrola nad výslednou podobou úpravy.",
+        "legalEvaluation": "Právně obhajitelné řešení (stupeň 2/3), které však přenáší včasnou detekci zásahů do základních práv až do fáze vnější kontroly.",
+        "unlockDocs": ["kom_prip"],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Zvolili jste model spoléhající na zpětnou vazbu Komise. V archivu se odemkl dokument Připomínky Komise k legislativním návrhům."
+      },
+      {
+        "id": "C",
+        "text": "Reaktivní přístup: Vláda nebude provádět předběžný test základních práv a bude reagovat až v případě, že konkrétní opatření napadnou občané u vnitrostátních soudů.",
+        "level": 1,
+        "politicalImpact": "Minimální administrativní zátěž a okamžité plnění politických slibů.",
+        "legalEvaluation": "Právně rizikový postup (stupeň 1/3): stát vědomě rezignuje na včasné ověření svých povinností podle čl. 51 odst. 1 Listiny až do vzniku sporu.",
+        "unlockDocs": ["stiz_obc"],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Zvolili jste reaktivní přístup bez preventivní kontroly. V archivu se odemkl Soubor stížností občanů a podnětů veřejnosti."
+      }
+    ],
+    "advisorNote": "Členský stát odpovídá za dodržování základních práv při provádění práva Unie přímo ze Smluv a Listiny, bez ohledu na to, zda a kdy jeho postup zkontroluje Komise nebo soud.",
+    "relatedDocs": ["l51", "sch"]
+  },
+  "E2.1": {
+    "id": "E2.1",
+    "chapterId": "K2",
+    "type": "E",
+    "title": "Úloha 2.1 – První právní otázka při rozdílných jazykových verzích",
+    "competencies": [
+      ["C2", 4],
+      ["C4", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Marenské znění čl. 4 (fiktivního) rozhodnutí Komise hovoří o „kuponu vystaveném na jméno příjemce“, zatímco ostatní jazykové verze hovoří o „individualizovaném kuponu“. Pan Emil Hartl napadl povinnost uvádět jméno na kuponu jako zásah do svých základních práv.",
+    "question": "Jakou právní otázku musí vláda a soud vyřešit jako první, než přistoupí k posuzování základních práv?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Zda jmenné kupony odporují ústavě Marenie, neboť rozhodující je vnitrostátní ústavní standard ochrany soukromí.",
+        "correct": false,
+        "tag": "M3",
+        "feedback": "Nesprávně. Nejprve je třeba určit, co jednotný akt Unie skutečně ukládá; navíc jednotný výklad práva Unie vylučuje, aby obsah aktu určovala izolovaně jedna jazyková verze nebo vnitrostátní ústava (Stauder, bod 3)."
+      },
+      {
+        "id": "B",
+        "text": "Co ustanovení rozhodnutí Komise skutečně ukládá při rozdílných jazykových verzích; výklad sporného ustanovení předchází otázce základních práv.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. Ustanovení určené všem členským státům je třeba vykládat jednotně podle skutečné vůle autora a sledovaného cíle s přihlédnutím ke všem jazykovým verzím (Stauder, body 2–3). Teprve poté lze posoudit slučitelnost se základními právy."
+      },
+      {
+        "id": "C",
+        "text": "Zda je rozhodnutí Komise neplatné pro přímý rozpor se základními právy Společenství.",
+        "correct": false,
+        "tag": "M10",
+        "feedback": "Nesprávně. Otázka platnosti aktu nastává až tehdy, pokud ustanovení skutečně vyžaduje napadený postup; Soudní dvůr ve věci Stauder nejprve vyložil obsah ustanovení (body 2–6) a teprve poté posoudil jeho slučitelnost se základními právy (bod 7)."
+      },
+      {
+        "id": "D",
+        "text": "Zda se Marenie může od rozhodnutí odchýlit proto, že pan Hartl je jejím vlastním státním příslušníkem.",
+        "correct": false,
+        "tag": "M8",
+        "feedback": "Nesprávně. Rozhodnutí je určeno všem členským státům a vyžaduje jednotný výklad; státní příslušnost příjemce dávky na závaznosti aktu nic nemění."
+      }
+    ],
+    "hints": [
+      "Položte si otázku, zda vůbec víme, co přesně čl. 4 rozhodnutí po členských státech požaduje.",
+      "Všimněte si, že marenská jazyková verze se rozchází s ostatními jazykovými verzemi téhož rozhodnutí.",
+      "Než posoudíte, zda norma zasahuje do základního práva, musíte nejprve výkladem určit skutečný obsah právní povinnosti."
+    ],
+    "lawRef": "Rozsudek SDEU ze dne 12. 11. 1969, Stauder, věc 29/69, body 2–3 (vlastní překlad z anglického originálu).",
+    "relatedDocs": ["dec_syr", "st"],
+    "highlightDocId": "st",
+    "highlightPhrases": ["skutečné vůle jeho autora", "všech jazykových verzí"]
+  },
+  "E2.2": {
+    "id": "E2.2",
+    "chapterId": "K2",
+    "type": "E",
+    "title": "Úloha 2.2 – Přesný obsah rozsudku Stauder",
+    "competencies": [
+      ["C4", 4],
+      ["C7", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Dr. Keller připravil přehled závěrů rozsudku Stauder. Vláda nesmí ve své argumentaci připsat Soudnímu dvoru závěr, který v rozsudku nevyslovil.",
+    "question": "Které tvrzení přesně vystihuje to, co Soudní dvůr ve věci Stauder skutečně rozhodl?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Soudní dvůr rozhodl, že kupony vystavené na jméno příjemce porušují základní lidská práva.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Soudní dvůr takový závěr nevyslovil; otázku, zda jmenná identifikace sama o sobě porušuje základní práva, vůbec neposuzoval."
+      },
+      {
+        "id": "B",
+        "text": "Soudní dvůr členským státům zakázal používat jakoukoli jmennou identifikaci příjemců sociálních dávek.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Podle bodu 6 rozsudku ustanovení jmennou identifikaci nevyžaduje, avšak ji ani nezakazuje."
+      },
+      {
+        "id": "C",
+        "text": "Soudní dvůr vyložil ustanovení tak, že vyžaduje pouze identifikaci příjemců, přičemž jmennou identifikaci ani nevyžaduje, ani nezakazuje, a takto vykládané ustanovení neobsahuje nic, co by mohlo ohrozit základní práva.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. V bodě 6 Soudní dvůr zvolil nejméně omezující výklad (nevyžaduje, i když nezakazuje identifikaci jménem) a v bodě 7 konstatoval, že takto vykládané ustanovení neobsahuje nic, co by mohlo ohrozit základní práva."
+      },
+      {
+        "id": "D",
+        "text": "Soudní dvůr se základními právy v rozsudku vůbec nezabýval, protože celý spor vyřešil výlučně jazykovým výkladem.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Bod 7 rozsudku i druhý bod výroku výslovně zmiňují základní práva jako součást obecných zásad práva Společenství."
+      }
+    ],
+    "hints": [
+      "Pečlivě rozlište, co Soudní dvůr v rozsudku skutečně řekl a co ponechal bez posouzení.",
+      "Nahlédněte v archivu do bodů 4, 6 a 7 rozsudku Stauder.",
+      "Hledejte přesnou kombinaci slov „nevyžaduje“ a „nezakazuje“ a hlídejte, aby shrnutí nepřidávalo závěr, který v textu není."
+    ],
+    "lawRef": "Rozsudek SDEU ze dne 12. 11. 1969, Stauder, věc 29/69, body 4, 6, 7 a výrok (vlastní překlad z EN).",
+    "relatedDocs": ["st", "ga_roemer"],
+    "highlightDocId": "st",
+    "highlightPhrases": ["nevyžaduje – ačkoli nezakazuje – identifikaci příjemců jménem", "neobsahuje nic, co by mohlo ohrozit základní lidská práva"]
+  },
+  "E2.3": {
+    "id": "E2.3",
+    "chapterId": "K2",
+    "type": "E",
+    "title": "Úloha 2.3 – Systémový význam rozsudku Stauder",
+    "competencies": [
+      ["C4", 4],
+      ["C3", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Ministryně Hollen se ptá, proč má rozsudek z roku 1969 vůbec význam pro současnou vládu, když tehdy ještě neexistovala Listina základních práv EU.",
+    "question": "V čem spočívá zásadní význam rozsudku Stauder pro vývoj ochrany základních práv v Evropské unii?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Soudní dvůr v něm poprvé přímo aplikoval Listinu základních práv Evropské unie na vnitrostátní správní praxi.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Rozsudek pochází z roku 1969, tedy desítky let před přijetím Listiny základních práv EU."
+      },
+      {
+        "id": "B",
+        "text": "Soudní dvůr v něm výslovně uznal, že základní lidská práva jsou součástí obecných zásad práva Společenství a že jejich dodržování zajišťuje Soudní dvůr.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. V době, kdy zakládací smlouvy neobsahovaly katalog základních práv, Soudní dvůr v bodě 7 zakotvil základní práva jako součást obecných zásad práva Společenství pod svou ochranou (dnes potvrzeno v čl. 6 odst. 3 SEU)."
+      },
+      {
+        "id": "C",
+        "text": "Soudní dvůr v něm definoval přesný rozsah práva na ochranu osobních údajů při poskytování sociálních dávek.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Soudní dvůr v rozsudku Stauder žádné konkrétní základní právo nepojmenoval ani nekonstatoval jeho porušení."
+      },
+      {
+        "id": "D",
+        "text": "Soudní dvůr v něm připustil, že o souladu aktů Společenství se základními právy rozhodují vnitrostátní ústavní soudy.",
+        "correct": false,
+        "tag": "M3",
+        "feedback": "Nesprávně. Soudní dvůr naopak prohlásil, že ochranu základních práv v právu Společenství zajišťuje on sám."
+      }
+    ],
+    "hints": [
+      "Zaměřte se na to, do jaké kategorie pramenů práva Společenství Soudní dvůr základní práva zařadil.",
+      "Přečtěte si bod 7 rozsudku Stauder.",
+      "Rozhodující je formulace o obecných zásadách práva a o tom, kdo zajišťuje jejich ochranu."
+    ],
+    "lawRef": "Rozsudek SDEU ze dne 12. 11. 1969, Stauder, věc 29/69, bod 7 (vlastní překlad z EN).",
+    "relatedDocs": ["st"],
+    "highlightDocId": "st",
+    "highlightPhrases": ["součástí obecných zásad práva Společenství", "jejichž dodržování zajišťuje Soudní dvůr"]
+  },
+  "S2": {
+    "id": "S2",
+    "chapterId": "K2",
+    "type": "S",
+    "title": "Strategické rozhodnutí 2 – Provedení kuponového programu v Marenii",
+    "competencies": [
+      ["C8", 4],
+      ["C5", 2]
+    ],
+    "situation": "Rozhodnutí Komise členské státy k prodeji zlevněného sýra pouze zmocňuje, nikoli zavazuje, a při správném výkladu nevyžaduje jmennou identifikaci příjemců. Kabinet musí rozhodnout o konkrétní podobě opatření v Marenii.",
+    "question": "Jakým způsobem vláda provede program sociálních kuponů?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Zavést kupony vystavené na jméno a příjmení příjemce, protože jde o administrativně nejlevnější a nejrychlejší způsob kontroly.",
+        "level": 1,
+        "politicalImpact": "Okamžité spuštění programu s minimálními náklady, avšak silný odpor příjemců dávek i veřejného ochránce práv.",
+        "legalEvaluation": "Právně nejistá volba (stupeň 1/3): Soudní dvůr ve věci Stauder pouze konstatoval, že akt Unie jmennou identifikaci nevyžaduje, avšak přípustnost takové vnitrostátní volby z hlediska základních práv neposuzoval.",
+        "unlockDocs": ["us_hartl"],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Zavedli jste jmenné kupony. Pan Hartl podal ústavní stížnost; v archivu se odemkla Ústavní stížnost E. Hartla a stanovisko veřejného ochránce práv."
+      },
+      {
+        "id": "B",
+        "text": "Zavést individualizované číslované kupony bez uvedení jména, přičemž ověření nároku provede sociální úřad při jejich výdeji (nárůst nákladů o 8 %).",
+        "level": 3,
+        "politicalImpact": "Program splní sociální cíl bez ponižování příjemců za cenu mírně vyšších administrativních výdajů.",
+        "legalEvaluation": "Optimální řešení (stupeň 3/3): dosahuje legitimního cíle kontroly oprávněnosti nejméně zásahovým prostředkem (obdobně metodě nejliberálnějšího výkladu v bodě 4 rozsudku Stauder).",
+        "unlockDocs": ["hz"],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Zavedli jste anonymizované číslované kupony. V archivu se odemkla Hodnotící zpráva o kuponovém systému."
+      },
+      {
+        "id": "C",
+        "text": "Program prodeje zlevněného sýra v Marenii vůbec neprovést, protože rozhodnutí Komise stát k jeho zavedení nenutí.",
+        "level": 2,
+        "politicalImpact": "Zamezení právním sporům, ale ztráta levnějších potravin pro nízkopříjmové skupiny a nesplnění vládního slibu.",
+        "legalEvaluation": "Právně bezvadné (stupeň 2/3), neboť zmocňující rozhodnutí nezakládá povinnost program zavést, avšak rezignuje na sledovaný sociální cíl.",
+        "unlockDocs": [],
+        "unlockInstitutions": [],
+        "consequenceSummary": "Program nebyl spuštěn. Právní spor nevznikl, politický cíl levnějších potravin se však nenaplnil."
+      }
+    ],
+    "advisorNote": "Soudní dvůr ve věci Stauder řekl, že rozhodnutí jmennou identifikaci nevyžaduje. O tom, zda by dobrovolná volba jmenných kuponů ze strany státu obstála před základními právy, však nerozhodl.",
+    "relatedDocs": ["st", "ga_roemer", "dec_syr"]
+  },
+  "E3.1": {
+    "id": "E3.1",
+    "chapterId": "K3",
+    "type": "E",
+    "title": "Úloha 3.1 – Měřítko přezkumu aktů Unie z hlediska základních práv",
+    "competencies": [
+      ["C1", 4],
+      ["C3", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Marenský správní soud vyslovil pochybnost, zda nařízení Rady zakazující novou výsadbu vinic není v rozporu se zárukou vlastnického práva zakotvenou v marenské ústavě. Vláda musí určit, podle jakého právního standardu se takový zásah v Evropské unii posuzuje.",
+    "question": "Podle jakého standardu se v právu Evropské unie posuzuje, zda akt unijního orgánu neporušuje základní práva?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Podle ústavy toho členského státu, na jehož území vznikl konkrétní správní nebo soudní spor.",
+        "correct": false,
+        "tag": "M3",
+        "feedback": "Nesprávně. Podle bodu 14 rozsudku Hauer může být otázka zásahu do základních práv aktem Společenství posouzena pouze v rámci samotného práva Společenství; použití zvláštních vnitrostátních kritérií by narušilo jednotu a účinnost práva Unie."
+      },
+      {
+        "id": "B",
+        "text": "Pouze v rámci samotného práva Unie: základní práva jsou součástí obecných zásad práva, přičemž Soudní dvůr vychází z ústavních tradic společných členským státům a z mezinárodních nástrojů, jako je EÚLP.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. Hauer (body 14–15) potvrzuje autonomní unijní přezkum: vnitrostátní ústavy nejsou přímým měřítkem platnosti aktu Unie, nýbrž zdrojem společných ústavních tradic vedle mezinárodních smluv o lidských právech."
+      },
+      {
+        "id": "C",
+        "text": "Přímo Evropským soudem pro lidská práva, který může nařízení Rady zrušit pro rozpor s EÚLP.",
+        "correct": false,
+        "tag": "M1",
+        "feedback": "Nesprávně. ESLP je soudním orgánem Rady Evropy, nikoli Unie, a nemá pravomoc rušit ani prohlásit za neplatné akty orgánů Evropské unie."
+      },
+      {
+        "id": "D",
+        "text": "Podle nejpřísnějšího vnitrostátního ústavního standardu, jaký zná kterýkoli jednotlivý členský stát Unie.",
+        "correct": false,
+        "tag": "M3",
+        "feedback": "Nesprávně. Soudní dvůr nehledá nejpřísnější úpravu jednoho státu, nýbrž zkoumá ústavní pravidla a praxi členských států za účelem zjištění společného přístupu (Hauer, bod 20)."
+      }
+    ],
+    "hints": [
+      "Položte si otázku, který právní řád je povolán posuzovat platnost aktu přijatého orgánem Unie.",
+      "Přečtěte si body 14 a 15 rozsudku Hauer.",
+      "Vnitrostátní ústavy slouží jako inspirační zdroj společných tradic, nikoli jako přímé kritérium platnosti unijního nařízení."
+    ],
+    "lawRef": "Rozsudek SDEU ze dne 13. 12. 1979, Hauer, věc 44/79, body 14–15 a 20 (autentické české znění, ověřeno).",
+    "relatedDocs": ["ha", "reg_vino"],
+    "highlightDocId": "ha",
+    "highlightPhrases": ["pouze v rámci samotného práva Společenství", "ústavních tradic společných členským státům"]
+  },
+  "E3.2": {
+    "id": "E3.2",
+    "chapterId": "K3",
+    "type": "E",
+    "title": "Úloha 3.2 – Právní kvalifikace zásahu do vlastnického práva",
+    "competencies": [
+      ["C2", 4],
+      ["C3", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Paní Helena Marwitzová zůstává vlastnicí svého pozemku v Sarvských vinicích, nesmí však na něm po dobu tří let vysadit novou vinnou révu.",
+    "question": "Jak je třeba právně kvalifikovat dočasný zákaz nové výsadby vinic ve vztahu k vlastnickému právu paní Marwitzové?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Jako zbavení majetku (vyvlastnění), protože vlastník nemůže pozemek využít ke zamýšlenému zemědělskému účelu.",
+        "correct": false,
+        "tag": "M7",
+        "feedback": "Nesprávně. Podle bodu 19 rozsudku Hauer nelze zákaz nové výsadby považovat za zbavení majetku, neboť vlastník může se svým majetkem nadále nakládat a svobodně jej užívat k jakýmkoli jiným nezakázaným účelům."
+      },
+      {
+        "id": "B",
+        "text": "Jako omezení (úpravu) užívání majetku ve smyslu obecného zájmu.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. Zákaz nové výsadby ponechává vlastnické právo i možnost jiného využití pozemku nedotčené, a představuje proto regulaci užívání majetku (Hauer, bod 19; čl. 17 odst. 1 poslední věta Listiny)."
+      },
+      {
+        "id": "C",
+        "text": "Jako právně bezvýznamné opatření, které vůbec nezasahuje do vlastnického práva, neboť se týká jen budoucí výsadby.",
+        "correct": false,
+        "tag": "M7",
+        "feedback": "Nesprávně. V bodě 19 rozsudku Hauer Soudní dvůr výslovně uvádí, že není pochyb o tom, že zákaz nové výsadby omezuje užívání majetku."
+      },
+      {
+        "id": "D",
+        "text": "Jako nepřípustný zásah do samotné podstaty práva, neboť vlastnické právo je neomezitelné.",
+        "correct": false,
+        "tag": "M5",
+        "feedback": "Nesprávně. Vlastnické právo není absolutní; ústavní řády členských států, čl. 1 Dodatkového protokolu k EÚLP i čl. 17 odst. 1 Listiny výslovně připouštějí úpravu užívání majetku v obecném zájmu (Hauer, body 17–22)."
+      }
+    ],
+    "hints": [
+      "Rozlište, zda majitelka o vlastnictví pozemku přišla, nebo je pouze omezena ve způsobu jeho hospodářského využití.",
+      "Přečtěte si bod 19 rozsudku Hauer a poslední větu čl. 17 odst. 1 Listiny.",
+      "Právní úprava rozlišuje zbavení majetku a úpravu užívání majetku; rozhodující je, zda vlastník může pozemek nadále svobodně užívat k jiným účelům."
+    ],
+    "lawRef": "Rozsudek SDEU, Hauer, věc 44/79, body 18–19; Listina základních práv EU, čl. 17 odst. 1 poslední věta (ověřeno).",
+    "relatedDocs": ["ha", "l17", "prot1_art1"],
+    "highlightDocId": "ha",
+    "highlightPhrases": ["nelze považovat za akt zbavující majetku", "omezuje užívání majetku"]
+  },
+  "E3.3": {
+    "id": "E3.3",
+    "chapterId": "K3",
+    "type": "E",
+    "title": "Úloha 3.3 – Test proporcionality omezení vlastnického práva",
+    "competencies": [
+      ["C5", 4],
+      ["C4", 2]
+    ],
+    "maxAttempts": 3,
+    "situation": "Po kvalifikaci zásahu jako omezení užívání majetku je nutné ověřit, zda je takové omezení přiměřené sledovanému cíli.",
+    "question": "Které důvody podle rozsudku Hauer vedly Soudní dvůr k závěru, že dočasný zákaz nové výsadby nepředstavuje nepřiměřený zásah do vlastnického práva?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Zákaz je časově omezený, sleduje cíl obecného zájmu (zastavit nadprodukci vína a připravit strukturální reformu) a nezasahuje do podstaty práva; povolení nové výsadby by jen prohloubilo přebytky.",
+        "correct": true,
+        "tag": null,
+        "feedback": "Správně. Soudní dvůr v bodech 23 a 28–30 ověřil, že omezení skutečně odpovídá cílům obecného zájmu, je dočasné a nepředstavuje nepřiměřený a neúnosný zásah ohrožující samotnou podstatu práva vlastnit majetek."
+      },
+      {
+        "id": "B",
+        "text": "Zákaz je přiměřený výlučně proto, že nařízení přiznává všem dotčeným vlastníkům pozemků plnou finanční náhradu.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Soudní dvůr v rozsudku Hauer své posouzení proporcionality o poskytnutí finanční náhrady neopíral."
+      },
+      {
+        "id": "C",
+        "text": "Zákaz je přiměřený proto, že vlastnické právo musí automaticky ustoupit jakémukoli opatření hospodářské politiky Společenství.",
+        "correct": false,
+        "tag": "M9",
+        "feedback": "Nesprávně. Neplatí paušální nadřazenost hospodářské politiky; Soudní dvůr v bodě 23 zkoumá soulad s cíli obecného zájmu a test nepřiměřeného a neúnosného zásahu do podstaty práva."
+      },
+      {
+        "id": "D",
+        "text": "Zákaz je přiměřený proto, že pozemek žadatelky nebyl podle vnitrostátních pravidel vhodný k pěstování vinné révy.",
+        "correct": false,
+        "tag": "M4",
+        "feedback": "Nesprávně. Správní úřad pozemek za vhodný uznal (Hauer, bod 3) a unijní zákaz se uplatnil bez ohledu na kvalitu či vhodnost půdy (body 11–12)."
+      }
+    ],
+    "hints": [
+      "Hledejte tři klíčové prvky posouzení: cíl obecného zájmu, vhodnost opatření k dosažení cíle a zachování podstaty práva.",
+      "Přečtěte si bod 23 a body 28–30 rozsudku Hauer.",
+      "Všimněte si, že Soudní dvůr zdůrazňuje dočasnou povahu zákazu a skutečnost, že nová výsadba by jen zvýšila stávající přebytky (bod 29)."
+    ],
+    "lawRef": "Rozsudek SDEU, Hauer, věc 44/79, body 23 a 28–30 (autentické české znění, ověřeno).",
+    "relatedDocs": ["ha", "l17"],
+    "highlightDocId": "ha",
+    "highlightPhrases": ["nepřiměřený a neúnosný zásah", "samotná podstata práva vlastnit majetek", "dočasné povahy"]
+  },
+  "S3": {
+    "id": "S3",
+    "chapterId": "K3",
+    "type": "S",
+    "title": "Strategické rozhodnutí 3 – Postup vlády vůči protestujícím vinařům",
+    "competencies": [
+      ["C8", 3],
+      ["C4", 3]
+    ],
+    "situation": "Vinaři ze Sarvských vinic hrozí blokádou regionálních úřadů před volbami a opozice žádá, aby vláda unijní zákaz nové výsadby u kvalitních vinic neaplikovala.",
+    "question": "Jaké pokyny vydá vláda marenským správním úřadům?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Veřejně oznámit, že marenské úřady nebudou unijní zákaz uplatňovat na pozemcích uznaných podle vnitrostátního práva za vhodné pro
