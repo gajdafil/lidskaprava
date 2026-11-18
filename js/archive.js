@@ -156,7 +156,10 @@ export class ArchivePanel {
       this.renderInstitutionsView();
     }
   }
-
+setCategoryFilter(category) {
+  this.catalogFilter = category || 'all';
+  this.renderCatalogView();
+}
   /**
    * Resetuje lokální UI stav archivu při zahájení nové kampaně.
    */
