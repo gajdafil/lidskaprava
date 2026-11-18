@@ -3,6 +3,13 @@
  * Vykreslování právních dokumentů (čtečka pramenů) a modálního přehledu institucí a map.
  */
 
+const VERIFICATION_LABELS = {
+  verified: 'Ověřený pramen',
+  translation: 'Vlastní překlad z originálu',
+  needs_verification: 'Částečně k ověření',
+  fictional: 'Fiktivní spis / akt'
+};
+
 export function escapeHtml(str) {
   if (str === null || str === undefined) return '';
   return String(str)
@@ -16,7 +23,6 @@ export function escapeHtml(str) {
 function escapeRegExp(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
-
 
 /**
  * Vykreslí dokument pro ArchivePanel.
@@ -76,8 +82,6 @@ export function renderDocumentView(doc, highlightTarget = null) {
 
 /**
  * Vykreslí srovnávací tabulky náležející k odemčeným dokumentům.
- * Očekávaná struktura: { documents: { [id]: { comparisonId } },
- *                        comparisons: { [id]: { leftHeading, rightHeading, rows } } }.
  * @param {Object} documentsData
  * @param {string[]} unlockedDocIds
  * @returns {string}
@@ -99,17 +103,21 @@ export function renderComparisonTable(documentsData, unlockedDocIds = []) {
       const comparison = comparisons[doc.comparisonId];
       if (!comparison || !Array.isArray(comparison.rows)) return '';
 
-      const rowsHtml = comparison.rows.map((row) => `
-        <tr>
-          <td><strong>${escapeHtml(row.aspect)}</strong></td>
-          <td>${escapeHtml(row.left)}</td>
-          <td>${escapeHtml(row.right)}</td>
-        </tr>
-      `).join('');
+      const rowsHtml = comparison.rows
+        .map(
+          (row) => `
+          <tr>
+            <td><strong>${escapeHtml(row.aspect)}</strong></td>
+            <td>${escapeHtml(row.left)}</td>
+            <td>${escapeHtml(row.right)}</td>
+          </tr>
+        `
+        )
+        .join('');
 
       return `
         <section class="comparison-section">
-          <h3>${escapeHtml(doc.title || 'Srovnání právních pramenů')}</h3>
+          <h3>${escapeHtml(comparison.title || doc.title || 'Srovnání právních pramenů')}</h3>
           <table class="comparison-table">
             <thead>
               <tr>
@@ -127,16 +135,8 @@ export function renderComparisonTable(documentsData, unlockedDocIds = []) {
 
   return tables.length
     ? tables.join('')
-    : '<p class="catalog-empty">Pro odemčené dokumenty není k dispozici žádná srovnávací tabulka.</p>';
+    : '<p class="small">Pro odemčené dokumenty není k dispozici žádná srovnávací tabulka.</p>';
 }
-
-
-const VERIFICATION_LABELS = {
-  verified: 'Ověřený pramen',
-  translation: 'Vlastní překlad z originálu',
-  needs_verification: 'Částečně k ověření',
-  fictional: 'Fiktivní spis / akt'
-};
 
 export class DocumentViewer {
   /**
@@ -189,9 +189,9 @@ export class DocumentViewer {
 
   /**
    * Vykreslí detailní obsah jednoho otevřeného právního pramene.
-   * @param {Object} doc - Záznam z documents.json
-   * @param {Object|null} currentStepDef - Aktuálně zobrazený krok scénáře
-   * @returns {string} HTML řetězec
+   * @param {Object} doc
+   * @param {Object|null} currentStepDef
+   * @returns {string}
    */
   renderDocument(doc, currentStepDef) {
     if (!doc) {
@@ -297,77 +297,6 @@ export class DocumentViewer {
             </details>`
           : ''
       }
-    `;
-  }
-
-  /**
-   * Vykreslí modální okno Institucionální mapy, schémat a odemčených institucí.
-   * @returns {string} HTML řetězec
-   */
-  renderInstitutionsModal() {
-    const instData = this.engine.data.institutions;
-    const unlockedIds = this.engine.state.unlockedInstitutions || [];
-    const unlockedInstitutions = (instData.institutions || []).filter((i) =>
-      unlockedIds.includes(i.id)
-    );
-
-    const hasInfringement =
-      this.engine.state.unlockedDocs.includes('dk') ||
-      this.engine.state.unlockedDocs.includes('sfeu_258');
-
-    return `
-      <div class="modal-backdrop" data-action="close-institutions-backdrop">
-        <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="inst-modal-title">
-          <div class="modal-header">
-            <h2 id="inst-modal-title">Institucionální mapa, právní systémy a geografie Marenie</h2>
-            <button type="button" class="btn btn-topbar" data-action="close-institutions">
-              Zavřít ×
-            </button>
-          </div>
-          <div class="modal-body">
-            <h3>1. Dva oddělené evropské systémy ochrany práv</h3>
-            <div class="svg-diagram-box">${instData.diagrams.euCoeSchema}</div>
-
-            <h3>2. Orientační mapa Marenské republiky a tranzitního koridoru D7</h3>
-            <div class="svg-diagram-box">${instData.diagrams.marenieMap}</div>
-
-            ${
-              hasInfringement
-                ? `<h3>3. Průběh řízení o nesplnění povinnosti podle čl. 258 SFEU</h3>
-                   <div class="svg-diagram-box">${instData.diagrams.infringementSchema}</div>`
-                : ''
-            }
-
-            <h3>Odemčené instituce v průběhu mandátu (${unlockedInstitutions.length} / ${
-      instData.institutions.length
-    })</h3>
-            <div class="institutions-grid">
-              ${unlockedInstitutions
-                .map(
-                  (inst) => `
-                  <article class="institution-card">
-                    <div class="institution-system">${escapeHtml(inst.system)}</div>
-                    <h4>${escapeHtml(inst.name)}</h4>
-                    <p style="font-size: 0.88rem;"><strong>Role:</strong> ${escapeHtml(
-                      inst.role
-                    )}</p>
-                    <p style="font-size: 0.88rem;"><strong>Pravomoci:</strong> ${escapeHtml(
-                      inst.powers
-                    )}</p>
-                    <p style="font-size: 0.84rem; color: var(--text-secondary);"><strong>Právní základ:</strong> ${escapeHtml(
-                      inst.legalBasis
-                    )}</p>
-                    <p style="font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 0;"><strong>Vztahy:</strong> ${escapeHtml(
-                      inst.relations
-                    )}</p>
-                  </article>
-                `
-                )
-                .join('')}
-            </div>
-          </div>
-        </div>
-      </div>
     `;
   }
 }
