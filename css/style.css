@@ -1,19 +1,272 @@
-:root{--n:#0b1f3a;--b:#2457a6;--g:#b8923a;--p:#f3f6fb;--fs:17px}
-*{box-sizing:border-box}body{margin:0;font:var(--fs)/1.55 system-ui,sans-serif;background:var(--n);color:#14213a}
-header{display:flex;gap:10px;align-items:center;padding:10px 20px;background:var(--n);color:#fff;border-bottom:2px solid var(--g)}
-.logo{font:italic 700 1.25em Georgia,serif;flex:1}header button{background:none;color:#fff;border:1px solid #fff5;padding:4px 10px;border-radius:3px;cursor:pointer}
-main{max-width:860px;margin:20px auto;padding:26px 30px;background:var(--p);border-radius:4px;animation:in .25s}
-@keyframes in{from{opacity:0;transform:translateY(6px)}}
-h2{font-family:Georgia,serif;color:var(--n);margin-top:0}.opt{display:block;width:100%;text-align:left;margin:8px 0;padding:10px 14px;border:1px solid #9bb0d0;background:#fff;border-radius:3px;cursor:pointer;font:inherit}
-.opt:hover,.opt.sel{border-color:var(--b);background:#e6eefb}.opt.bad{background:#fbe6e6;border-color:#b33}.opt.good{background:#e3f3e3;border-color:#2a7a2a}
-.btn{background:var(--b);color:#fff;border:0;padding:9px 18px;border-radius:3px;cursor:pointer;font:inherit;margin:6px 6px 0 0}.btn.alt{background:#fff;color:var(--b);border:1px solid var(--b)}
-.note{border-left:4px solid var(--g);padding:6px 12px;background:#fff;margin:10px 0}.small{font-size:.85em;color:#46557a}
-#drawer{position:fixed;right:0;top:50px;bottom:0;z-index:5;width:min(440px,92vw);background:#fff;padding:20px;overflow:auto;box-shadow:-4px 0 18px #0006}
-.bar{height:10px;background:#d5deee}.bar i{display:block;height:100%;background:var(--b)}
-@media print{body{background:#fff}header,.noprint{display:none}main{margin:0;box-shadow:none}}
+:root {
+  --navy: #0b1f3a;
+  --navy-deep: #071427;
+  --eu-blue: #1d4e9e;
+  --eu-blue-hover: #163d7d;
+  --gold: #b8923a;
+  --gold-soft: #f5eedc;
+  --paper: #f6f8fc;
+  --surface: #ffffff;
+  --ink: #14213a;
+  --muted: #4b5b7c;
+  --border: #c5d1e5;
+  --good-bg: #e4f3e7;
+  --good-bd: #2a7a3b;
+  --bad-bg: #fbe8e8;
+  --bad-bd: #b33030;
+  --fs: 17px;
+  --split-ratio: 54%;
+}
 
-.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}.tb{border:1px solid var(--b);background:#fff;padding:3px 8px;border-radius:3px;cursor:pointer;font:inherit;font-size:.8em}.tb.on{background:var(--b);color:#fff}.dv{position:absolute;left:0;top:0;bottom:0;width:6px;cursor:col-resize;background:var(--g)}mark{background:#ffe08a}
-@media(max-width:900px){main{margin-right:auto!important}}
+* {
+  box-sizing: border-box;
+}
 
-main p{white-space:normal}
-@media(max-width:900px){#drawer{width:100vw}}
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: var(--navy-deep);
+  color: var(--ink);
+  font: var(--fs)/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Horní lišta */
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 20px;
+  background: var(--navy);
+  color: #fff;
+  border-bottom: 2px solid var(--gold);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.logo-btn {
+  background: none;
+  border: 0;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+}
+
+.logo-title {
+  display: block;
+  font: italic 700 1.22em Georgia, "Times New Roman", serif;
+  letter-spacing: 0.01em;
+  color: #fff;
+}
+
+.logo-sub {
+  display: block;
+  font-size: 0.72em;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #d6c08a;
+}
+
+.hud, .controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hud-pill {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 4px 11px;
+  border-radius: 4px;
+  font-size: 0.86em;
+}
+
+.hud-points {
+  border-color: var(--gold);
+  color: #f7e3b0;
+  font-weight: 600;
+}
+
+.hud-btn, .icon-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  padding: 5px 11px;
+  border-radius: 4px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85em;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.hud-btn:hover, .icon-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.hud-btn.accent {
+  background: var(--eu-blue);
+  border-color: var(--gold);
+  font-weight: 600;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy-deep);
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0 6px;
+  margin-left: 4px;
+  font-size: 0.85em;
+}
+
+/* Lišta kapitol */
+.chapter-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 20px;
+  background: #10294d;
+  border-bottom: 1px solid #234373;
+}
+
+.ch-chip {
+  background: rgba(255, 255, 255, 0.07);
+  color: #cfd9ec;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 0.82em;
+  cursor: pointer;
+}
+
+.ch-chip.done {
+  border-color: #69b578;
+  color: #dff5e3;
+}
+
+.ch-chip.active {
+  background: var(--gold);
+  color: var(--navy-deep);
+  border-color: var(--gold);
+  font-weight: 700;
+}
+
+.ch-chip:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Pracovní plocha – rozdělená obrazovka */
+.workspace {
+  display: flex;
+  align-items: stretch;
+  min-height: calc(100vh - 60px);
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 16px;
+  gap: 0;
+}
+
+.pane-main {
+  flex: 1 1 auto;
+  max-width: 920px;
+  margin: 0 auto;
+  background: var(--paper);
+  border-radius: 6px;
+  padding: 26px 32px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  animation: fadeSlide 0.22s ease-out;
+}
+
+.workspace.split-open .pane-main {
+  flex: 0 0 var(--split-ratio);
+  max-width: none;
+  margin: 0;
+}
+
+.splitter {
+  flex: 0 0 12px;
+  cursor: col-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  touch-action: none;
+}
+
+.splitter-grip {
+  width: 4px;
+  height: 56px;
+  border-radius: 3px;
+  background: var(--gold);
+  opacity: 0.75;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.splitter:hover .splitter-grip {
+  opacity: 1;
+  transform: scaleX(1.4);
+}
+
+.pane-archive {
+  flex: 1 1 auto;
+  min-width: 300px;
+  background: var(--surface);
+  border-radius: 6px;
+  padding: 20px 22px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  border-top: 4px solid var(--gold);
+  max-height: calc(100vh - 92px);
+  overflow-y: auto;
+  position: sticky;
+  top: 76px;
+  animation: fadeSlide 0.2s ease-out;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Typografie a prvky karet */
+h1, h2, h3, h4 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--navy);
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.42em;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+}
+
+h3 {
+  font-size: 1.15em;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.eyebrow {
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--eu-blue);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.small {
+  font-size: 0.86em;
+  color: var(--muted);
+}
+
+.readonly-banner {
+  background: var
