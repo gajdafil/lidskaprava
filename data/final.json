@@ -1,0 +1,363 @@
+{
+  "argumentsTask": {
+    "id": "ARG",
+    "chapterId": "K6",
+    "type": "A",
+    "title": "Krok 6.7 – Výběr právních argumentů pro obhajobu Marenie",
+    "competencies": [
+      ["C7", 9],
+      ["C4", 6],
+      ["C3", 5]
+    ],
+    "maxPoints": 20,
+    "instructions": "Ze seznamu třinácti připravených tvrzení vyberte ty argumenty, které jsou právně přesné a relevantní pro obranu Marenie proti námitkám Komise. Právně chybné nebo zavádějící argumenty snižují bodové hodnocení.",
+    "arguments": [
+      {
+        "id": "A1",
+        "text": "Marenie nepopírá, že nezakázání shromáždění může představovat překážku volného pohybu zboží; tvrdí však, že je objektivně odůvodněné (Schmidberger, body 57–64).",
+        "category": "jádro",
+        "weight": 2,
+        "legalBasis": "Schmidberger, věc C-112/00, body 57–64",
+        "explanation": "Přesné vymezení výchozí právní premisy v souladu s judikaturou SDEU."
+      },
+      {
+        "id": "A2",
+        "text": "Ochrana základních práv (svobody projevu a svobody shromažďování) představuje oprávněný zájem v právu Unie, z něhož marenské orgány při svém rozhodování vycházely (Schmidberger, body 69, 74, 76; Stauder, bod 7).",
+        "category": "jádro",
+        "weight": 2,
+        "legalBasis": "Schmidberger, body 69, 74, 76; Stauder, bod 7; Listina, čl. 11 a 12",
+        "explanation": "Správné zakotvení ochrany základních práv jako legitimního důvodu odchylky."
+      },
+      {
+        "id": "A3",
+        "text": "Ani volný pohyb zboží, ani svoboda shromažďování nejsou absolutní; je nutné je poměřovat a přezkoumat proporcionalitu zásahu při respektování široké posuzovací pravomoci vnitrostátních orgánů (Schmidberger, body 79–82; obdobně test v Hauer, bod 23).",
+        "category": "jádro",
+        "weight": 2,
+        "legalBasis": "Schmidberger, body 79–82; Hauer, bod 23",
+        "explanation": "Jádro metodologie poměřování kolidujících chráněných hodnot."
+      },
+      {
+        "id": "A4",
+        "text": "Rozsudek Schmidberger stanoví metodu poměřování, nikoli mechanický precedent: konkrétní skutkové okolnosti druhého shromáždění na D7 je třeba posoudit samostatně v jejich souhrnu (Schmidberger, body 81, 83–88).",
+        "category": "jádro",
+        "weight": 2,
+        "legalBasis": "Schmidberger, body 81, 83–88",
+        "explanation": "Správná práce s judikaturou bez vytváření vymyšlených mechanických pravidel."
+      },
+      {
+        "id": "A5",
+        "text": "Příslušné orgány přijaly organizační a doprovodná opatření pro koridor D7 a včas informovaly veřejnost v Marenii i v sousedních státech (Schmidberger, bod 87; Protokol koridoru D7).",
+        "category": "jádro_podmíněný",
+        "weight": 2,
+        "if": {
+          "S5": ["B", "D"]
+        },
+        "legalBasis": "Schmidberger, bod 87; Protokol koridoru D7",
+        "explanation": "Argument podložený doloženým Protokolem koridoru D7 z kapitoly 5."
+      },
+      {
+        "id": "A6",
+        "text": "Cílem shromáždění nebylo bránit obchodu s určitým zbožím nebo zbožím určitého původu; šlo o izolovanou občanskou akci, která nevyvolala obecný pocit nebezpečí odrazující od obchodních toků (Schmidberger, body 86, 88).",
+        "category": "jádro",
+        "weight": 2,
+        "legalBasis": "Schmidberger, body 86, 88",
+        "explanation": "Klíčové odlišení od závažných blokád ve věci Komise v. Francie."
+      },
+      {
+        "id": "A7",
+        "text": "Úplný zákaz řádně oznámeného shromáždění nebo jeho vykázání mimo klíčovou trasu by mohly představovat nepřiměřený zásah do základních práv a zbavit akci podstatné části jejího významu; určité dopravní nepohodlí je v zásadě třeba strpět (Schmidberger, body 89–93).",
+        "category": "jádro",
+        "weight": 2,
+        "legalBasis": "Schmidberger, body 89–93",
+        "explanation": "Přesné vyjádření posouzení méně omezujících opatření."
+      },
+      {
+        "id": "A8",
+        "text": "Odůvodnění zásahu musí odpovídat požadavkům zákonnosti, legitimního cíle, nezbytnosti v demokratické společnosti a přiměřenosti (Carpenter, body 40, 42; Schmidberger, bod 79).",
+        "category": "jádro",
+        "weight": 2,
+        "legalBasis": "Carpenter, body 40, 42; Schmidberger, bod 79; Listina, čl. 52 odst. 1",
+        "explanation": "Propojení obecné struktury omezení základních práv napříč judikaturou SDEU."
+      },
+      {
+        "id": "A9",
+        "text": "Otázka zásahu do základních práv v oblasti působnosti práva Unie se posuzuje v rámci práva Unie, nikoli izolovaně podle vnitrostátní ústavy (Hauer, bod 14).",
+        "category": "vedlejší",
+        "weight": 1,
+        "legalBasis": "Hauer, bod 14",
+        "explanation": "Právně správný doplňující argument vymezující autonomní standard práva Unie."
+      },
+      {
+        "id": "A10",
+        "text": "Dřívější šetrný postup Marenie při zavádění anonymizovaných sociálních kuponů potvrzuje obecnou dobrou víru vlády při ochraně práv (Hodnotící zpráva o kuponovém systému).",
+        "category": "neutrální",
+        "weight": 0,
+        "if": {
+          "S2": ["B"]
+        },
+        "legalBasis": "Hodnotící zpráva o kuponovém systému (K2)",
+        "explanation": "Fakticky podložené tvrzení, které je však pro předmět žaloby ohledně dálnice D7 právně okrajové (0 bodů)."
+      },
+      {
+        "id": "X1",
+        "text": "Rozhodující pro zamítnutí žaloby je, že věcný cíl shromáždění (ochrana životního prostředí v alpském údolí) převážil nad volným pohybem zboží (srov. analogicky Schmidberger, body 66–68).",
+        "category": "zavádějící",
+        "weight": -1,
+        "legalBasis": "Schmidberger, body 66–68",
+        "explanation": "Zavádějící argument: Soudní dvůr v bodě 66 výslovně uvedl, že konkrétní věcné cíle shromáždění nejsou jako takové rozhodující; rozhodující je ochrana samotného základního práva svobody projevu a shromažďování."
+      },
+      {
+        "id": "W1",
+        "text": "Rozsudek Schmidberger stanovil pevnou časovou hranici (72 hodin), do jejíhož uplynutí jsou blokády tranzitních dálnic v právu Unie vždy přípustné.",
+        "category": "chybný",
+        "weight": -2,
+        "legalBasis": "Schmidberger, body 81, 85",
+        "explanation": "Právně chybný argument (štítek M4): Soudní dvůr žádnou pevnou časovou hranici nestanovil."
+      },
+      {
+        "id": "W2",
+        "text": "Ústava Marenie má absolutní přednost před právem Evropské unie, protože zaručuje vyšší úroveň ochrany shromažďovacího práva než Smlouvy.",
+        "category": "chybný",
+        "weight": -2,
+        "legalBasis": "Hauer, bod 14",
+        "explanation": "Právně chybný argument (štítek M3): odporuje přednosti a jednotné aplikaci práva Unie."
+      }
+    ]
+  },
+  "pleadingTask": {
+    "id": "POD",
+    "chapterId": "K6",
+    "type": "P",
+    "title": "Krok 6.8 – Sestavení strukturovaného písemného podání před SDEU",
+    "competencies": [
+      ["C7", 18],
+      ["C2", 5],
+      ["C3", 5],
+      ["C4", 5],
+      ["C8", 2]
+    ],
+    "maxPoints": 35,
+    "instructions": "Sestavte vyjádření vlády Marenie k žalobě Evropské komise. V oddílech 1, 2, 3, 4 a 6 zvolte nejvhodnější textový blok a v oddílu 5 seřaďte vybrané argumenty do logické právní posloupnosti.",
+    "sections": [
+      {
+        "id": "SEC1",
+        "number": 1,
+        "title": "1. Skutkový stav",
+        "competency": "C7",
+        "maxPoints": 5,
+        "options": [
+          {
+            "id": "1a",
+            "text": "Shromáždění spolku Alpská iniciativa na dálnici D7 v průsmyku Vorholm bylo oznámeno 12 dní předem a veřejnost v Marenii i sousedních státech byla informována 10 dní předem. Ačkoli bylo oznámeno na 36 hodin, v důsledku potyček s protidemonstranty trvalo přibližně 61 hodin. Dálnice D7 je hlavní tranzitní trasou, objízdná horská silnice je pro těžká nákladní vozidla nepřístupná a železniční kyvadlo pokrývá odhadem 15 % tranzitu. Cílem shromáždění bylo upozornit na dopravní zátěž, nikoli bránit obchodu s určitým zbožím; majetková škoda byla nepatrná.",
+            "points": 5,
+            "feedback": "Úplný, přesný a věcný popis skutkového stavu opřený výlučně o ověřitelné údaje ze spisu."
+          },
+          {
+            "id": "1b",
+            "text": "Shromáždění spolku Alpská iniciativa bylo řádně oznámeno 12 dní předem, veřejnost byla včas informována a cílem akce bylo upozornit na dopravní zátěž v alpském údolí, nikoli bránit obchodu s určitým zbožím.",
+            "points": 2,
+            "feedback": "Částečně neúplný popis: zamlčuje klíčové zatěžující okolnosti (skutečné trvání 61 hodin, jedinou trasu a omezenou kapacitu objízdných cest), které musí soud hodnotit."
+          },
+          {
+            "id": "1c",
+            "text": "Šlo o krátkou a zcela zanedbatelnou občanskou akci, která nezpůsobila dopravcům ani mezinárodnímu obchodu žádné reálné potíže.",
+            "points": 0,
+            "feedback": "Zkreslení skutkového stavu v přímém rozporu se spisovou dokumentací (61hodinová blokáda hlavního tranzitního koridoru)."
+          },
+          {
+            "id": "1d",
+            "text": "Shromáždění trvalo méně než 24 hodin a po celou dobu jeho konání byl nákladní tranzit plynule odkloněn po plnohodnotné čtyřproudé objízdné dálnici.",
+            "points": 0,
+            "feedback": "Podání uvádí nepravdivá skutková tvrzení, která odporují podkladům ve spisu."
+          }
+        ]
+      },
+      {
+        "id": "SEC2",
+        "number": 2,
+        "title": "2. Právní otázka",
+        "competency": "C2",
+        "maxPoints": 5,
+        "options": [
+          {
+            "id": "2a",
+            "text": "Zda je nezakázání shromáždění na dálnici D7, jehož následkem byla blokáda tranzitního koridoru, opatřením s účinkem rovnocenným množstevnímu omezení neslučitelným s čl. 34 a 35 SFEU ve spojení s čl. 4 odst. 3 SEU, nebo zda je takový postup objektivně odůvodněný ochranou základních práv (svobody projevu a svobody shromažďování) a přiměřený.",
+            "points": 5,
+            "feedback": "Přesná formulace právní otázky vystihující jak rovinu překážky volného pohybu zboží, tak její objektivní odůvodnění a proporcionalitu."
+          },
+          {
+            "id": "2b",
+            "text": "Zda má v právním řádu Evropské unie obecně přednost volný pohyb zboží před svobodou shromažďování.",
+            "points": 2,
+            "feedback": "Příliš zjednodušující formulace: místo konkrétního poměřování a proporcionality předkládá abstraktní hierarchii chráněných hodnot."
+          },
+          {
+            "id": "2c",
+            "text": "Zda ústava Marenské republiky opravňuje občanské spolky ke konání shromáždění na veřejných komunikacích.",
+            "points": 0,
+            "feedback": "Nesprávná právní otázka: SDEU neposuzuje vnitrostátní ústavnost, nýbrž splnění povinností vyplývajících ze Smluv EU."
+          },
+          {
+            "id": "2d",
+            "text": "Zda Marenská republika svým postupem porušila článek 11 Evropské úmluvy o lidských právech jako takový.",
+            "points": 0,
+            "feedback": "Nesprávné vymezení pravomoci soudu: SDEU nerozhoduje o samostatném porušení EÚLP."
+          }
+        ]
+      },
+      {
+        "id": "SEC3",
+        "number": 3,
+        "title": "3. Relevantní právní úprava",
+        "competency": "C3",
+        "maxPoints": 5,
+        "options": [
+          {
+            "id": "3a",
+            "text": "Čl. 34 a 35 Smlouvy o fungování Evropské unie ve spojení s čl. 4 odst. 3 Smlouvy o Evropské unii; čl. 11 a 12 Listiny základních práv Evropské unie ve spojení s čl. 52 odst. 1 a 3 Listiny a čl. 6 odst. 3 SEU (s přihlédnutím k čl. 10 a 11 EÚLP jako zdrojům obecných zásad práva Unie).",
+            "points": 5,
+            "feedback": "Úplné a systematicky přesné vymezení unijního primárního práva včetně výkladové vazby na EÚLP."
+          },
+          {
+            "id": "3b",
+            "text": "Pouze čl. 34 Smlouvy o fungování Evropské unie zakazující množstevní omezení dovozu a opatření s rovnocenným účinkem.",
+            "points": 2,
+            "feedback": "Neúplný výčet: opomíjí čl. 35 SFEU (vývoz/tranzit), zásadu loajální spolupráce v čl. 4 odst. 3 SEU i ustanovení o základních právech."
+          },
+          {
+            "id": "3c",
+            "text": "Články 10 a 11 Evropské úmluvy o lidských právech jako přímo vymahatelné normy mezinárodního práva v řízení před SDEU.",
+            "points": 0,
+            "feedback": "Chybné určení právního základu: EÚLP není přímým procesním titulem v řízení podle čl. 258 SFEU."
+          },
+          {
+            "id": "3d",
+            "text": "Příslušná ustanovení Ústavy Marenské republiky a marenského zákona o právu shromažďovacím.",
+            "points": 0,
+            "feedback": "Vnitrostátní předpisy nemohou samy o sobě tvořit měřítko souladu s právem Evropské unie."
+          }
+        ]
+      },
+      {
+        "id": "SEC4",
+        "number": 4,
+        "title": "4. Judikatorní východiska",
+        "competency": "C4",
+        "maxPoints": 5,
+        "options": [
+          {
+            "id": "4a",
+            "text": "Rozsudek SDEU ve věci C-112/00, Schmidberger (body 57–64 k odpovědnosti státu za nečinnost a objektivnímu odůvodnění; body 71–82 k ochraně základních práv a poměřování zájmů; body 84–93 k posouzení přiměřenosti); podpůrně rozsudek ve věci C-60/00, Carpenter (body 40–42 k testu omezení základního práva) a rozsudek ve věci 44/79, Hauer (bod 14 k autonomnímu unijnímu přezkumu a bod 23 k zachování podstaty práva).",
+            "points": 5,
+            "feedback": "Přesné citace rozsudků i konkrétních bodů odůvodnění bez připisování nevyslovených závěrů."
+          },
+          {
+            "id": "4b",
+            "text": "Obecný odkaz na rozsudek SDEU ve věci C-112/00, Schmidberger, bez bližší specifikace relevantních bodů a navazující judikatury.",
+            "points": 2,
+            "feedback": "Formálně správný odkaz, avšak bez potřebné analytické přesnosti a propojení s dalšími stěžejními rozsudky."
+          },
+          {
+            "id": "4c",
+            "text": "Rozsudek SDEU ve věci 29/69, Stauder, jako přímý precedent stanovící podmínky pro povolování shromáždění na mezinárodních dálnicích.",
+            "points": 0,
+            "feedback": "Chybná práce s judikaturou (štítek M4): věc Stauder se týkala výkladu rozhodnutí o sociálních kuponech, nikoli shromáždění na dálnicích."
+          },
+          {
+            "id": "4d",
+            "text": "Rozsudek SDEU ve věci C-60/00, Carpenter, bod 43, jako důkaz, že členské státy mají povinnost zakázat každé shromáždění narušující přeshraniční obchod.",
+            "points": 0,
+            "feedback": "Chybná práce s judikaturou (štítek M4): věc Carpenter řešila vyhoštění manželky poskytovatele služeb a spravedlivou rovnováhu v rodinném životě."
+          }
+        ]
+      },
+      {
+        "id": "SEC5",
+        "number": 5,
+        "title": "5. Aplikace práva na skutkový stav (pořadí vybraných argumentů)",
+        "competency": "C7",
+        "maxPoints": 10,
+        "orderingRules": [
+          {
+            "before": "A1",
+            "after": "A2",
+            "reason": "Nejprve je třeba vymezit překážku volného pohybu zboží a možnost jejího objektivního odůvodnění (A1), teprve poté uvést konkrétní oprávněný zájem ochrany základních práv (A2)."
+          },
+          {
+            "before": "A2",
+            "after": "A3",
+            "reason": "Po identifikaci ochrany základních práv jako oprávněného zájmu (A2) následuje metodické pravidlo poměřování a proporcionality (A3)."
+          },
+          {
+            "before": "A8",
+            "after": "A3",
+            "reason": "Obecné podmínky přípustnosti omezení základních práv (A8) logicky předcházejí konkrétnímu poměřování kolidujících zájmů (A3)."
+          },
+          {
+            "before": "A3",
+            "after": "A4",
+            "reason": "Po vymezení testu proporcionality (A3) se uplatní zásada, že každý případ se hodnotí podle vlastních skutkových okolností (A4)."
+          },
+          {
+            "before": "A4",
+            "after": "A6",
+            "reason": "Po obecné zásadě individuálního hodnocení (A4) následuje rozbor konkrétních okolností akce, zejména absence cíle blokovat obchod s určitým zbožím (A6)."
+          },
+          {
+            "before": "A6",
+            "after": "A7",
+            "reason": "Na skutkové vymezení povahy akce (A6) navazuje závěr o nepřiměřenosti plošného zákazu či přísných omezení místa a doby (A7)."
+          }
+        ]
+      },
+      {
+        "id": "SEC6",
+        "number": 6,
+        "title": "6. Závěrečný návrh (petit)",
+        "competencies": [
+          ["C7", 3],
+          ["C8", 2]
+        ],
+        "maxPoints": 5,
+        "options": [
+          {
+            "id": "6a",
+            "text": "Marenská republika navrhuje, aby Soudní dvůr žalobu Evropské komise v plném rozsahu zamítl, neboť nezakázání shromáždění na dálnici D7 bylo objektivně odůvodněno ochranou základních práv a přiměřené okolnostem případu.",
+            "consistentWithS6": "A",
+            "pointsWhenConsistent": 5,
+            "pointsWhenInconsistent": 2,
+            "feedbackConsistent": "Závěrečný petit je právně přesný a plně odpovídá zvolené procesní strategii vlády (plná obrana).",
+            "feedbackInconsistent": "Závěrečný petit je sám o sobě právně formulován korektně, avšak neodpovídá procesní strategii, kterou vláda potvrdila v kroku S6."
+          },
+          {
+            "id": "6b",
+            "text": "Marenská republika navrhuje, aby Soudní dvůr žalobu zamítl v podstatné části týkající se samotného nezakázání shromáždění, přičemž vláda bere na vědomí dílčí nedostatek při překročení oznámené doby trvání a předkládá závazný nápravný plán.",
+            "consistentWithS6": "B",
+            "pointsWhenConsistent": 5,
+            "pointsWhenInconsistent": 2,
+            "feedbackConsistent": "Závěrečný petit je právně přesný a plně odpovídá zvolené procesní strategii vlády (uznání dílčího nedostatku a nápravný plán).",
+            "feedbackInconsistent": "Závěrečný petit je sám o sobě právně únosný, avšak neodpovídá procesní strategii, kterou vláda potvrdila v kroku S6."
+          },
+          {
+            "id": "6c",
+            "text": "Marenská republika žádá, aby Soudní dvůr přenesl rozhodnutí ve věci na Evropský soud pro lidská práva ve Štrasburku.",
+            "consistentWithS6": null,
+            "pointsWhenConsistent": 0,
+            "pointsWhenInconsistent": 0,
+            "feedbackConsistent": "Právně nesmyslný návrh: SDEU nemůže postoupit řízení o nesplnění povinnosti podle čl. 258 SFEU soudu Rady Evropy.",
+            "feedbackInconsistent": "Právně nesmyslný návrh: SDEU nemůže postoupit řízení o nesplnění povinnosti podle čl. 258 SFEU soudu Rady Evropy."
+          },
+          {
+            "id": "6d",
+            "text": "Marenská republika prohlašuje, že nebude případný odsuzující rozsudek Soudního dvora respektovat, neboť vnitrostátní ústava má přednost před právem Unie.",
+            "consistentWithS6": null,
+            "pointsWhenConsistent": 0,
+            "pointsWhenInconsistent": 0,
+            "feedbackConsistent": "Právně nepřípustný závěr popírající závaznost práva Unie a pravomoc SDEU.",
+            "feedbackInconsistent": "Právně nepřípustný závěr popírající závaznost práva Unie a pravomoc SDEU."
+          }
+        ]
+      }
+    ]
+  }
+}
