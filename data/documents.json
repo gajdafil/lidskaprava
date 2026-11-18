@@ -1,0 +1,565 @@
+{
+  "categories": [
+    "Všechny kategorie",
+    "Právní předpisy",
+    "Judikatura SDEU",
+    "Judikatura ESLP",
+    "Vládní a úřední dokumenty",
+    "Důkazy a podklady",
+    "Právní stanoviska a vysvětlení"
+  ],
+  "comparisons": {
+    "cmp_sb_k5": {
+      "id": "cmp_sb_k5",
+      "title": "Srovnání: Rozsudek Schmidberger (body 84–88) vs. skutkový stav na D7 (Kapitola 5)",
+      "leftHeading": "Schmidberger, věc C-112/00 (body 84–88)",
+      "rightHeading": "Shromáždění spolku Alpská iniciativa na D7 (K5)",
+      "rows": [
+        {
+          "aspect": "Oznámení a zákonný postup",
+          "left": "Shromáždění se konalo na základě včasného oznámení podaného příslušným orgánům podle vnitrostátního práva; orgány je nezakázaly.",
+          "right": "Spolek Alpská iniciativa oznámil shromáždění v zákonné lhůtě policejnímu ředitelství; rozhodnutí o nezakázání vydává příslušný správní orgán."
+        },
+        {
+          "aspect": "Územní a časový rozsah",
+          "left": "Blokáda se týkala jediné trasy (Brennerské dálnice), jednorázově a po omezenou dobu necelých 30 hodin.",
+          "right": "Uzavření se týká jediné dálnice D7 v průsmyku Vorholm, jednorázově a nejvýše na 30 hodin."
+        },
+        {
+          "aspect": "Cíl akce",
+          "left": "Cílem občanů bylo veřejně vyjádřit názor na ochranu životního prostředí a zdraví, nikoli bránit obchodu se zbožím určitého druhu nebo původu.",
+          "right": "Cílem spolku je upozornit na dopravní zátěž v alpském údolí, nikoli blokovat dovoz či tranzit zboží z konkrétního členského státu."
+        },
+        {
+          "aspect": "Doprovodná opatření a informování",
+          "left": "Orgány přijaly organizační a doprovodná opatření a včas informovaly účastníky provozu v dotčeném státě i v sousedních zemích; šlo o izolovanou akci bez obecného pocitu nebezpečí.",
+          "right": "Závisí na rozhodnutí vlády (S5): při volbě doprovodných opatření zajistí stát policejní koordinaci, vyznačení objízdné trasy a včasnou kampaň v Rennsku a Trevánii."
+        }
+      ]
+    }
+  },
+  "documents": {
+    "l51": {
+      "id": "l51",
+      "title": "Listina základních práv Evropské unie – čl. 51, 52 a 53",
+      "category": "Právní předpisy",
+      "sourceId": "Úř. věst. C 202, 7. 6. 2016, s. 389",
+      "date": "2000 / 2007 (právně závazná od 1. 12. 2009)",
+      "provisionOrCase": "Čl. 51 odst. 1 a 2, čl. 52 odst. 1 a 3, čl. 53 LZPEU",
+      "verificationStatus": "verified",
+      "verificationNote": "Autentické české znění ověřeno v podkladech.",
+      "summary": "Obecná ustanovení upravující oblast použití Listiny pro členské státy, podmínky omezení práv a výkladový vztah k Evropské úmluvě o lidských právech.",
+      "paragraphs": [
+        "Článek 51 – Oblast použití: 1. Ustanovení této listiny jsou určena orgánům, institucím a jiným subjektům Unie při dodržování zásady subsidiarity a členským státům, výhradně pokud uplatňují právo Unie. Respektují tedy práva, dodržují zásady a podporují jejich uplatňování v souladu se svými pravomocemi, při zachování mezí pravomocí, které jsou Unii svěřeny ve Smlouvách.",
+        "2. Tato listina nerozšiřuje oblast působnosti práva Unie nad rámec pravomocí Unie, ani nevytváří žádnou novou pravomoc či úkol pro Unii, ani nemění pravomoc a úkoly stanovené ve Smlouvách.",
+        "Článek 52 – Rozsah a výklad práv a zásad: 1. Každé omezení výkonu práv a svobod uznaných touto listinou musí být stanoveno zákonem a respektovat podstatu těchto práv a svobod. Při dodržení zásady proporcionality mohou být omezení zavedena pouze tehdy, pokud jsou nezbytná a pokud skutečně odpovídají cílům obecného zájmu, které uznává Unie, nebo potřebě ochrany práv a svobod druhého.",
+        "3. Pokud tato listina obsahuje práva odpovídající právům zaručeným Úmluvou o ochraně lidských práv a základních svobod, jsou smysl a rozsah těchto práv stejné jako ty, které jim přikládá uvedená úmluva. Toto ustanovení nebrání tomu, aby právo Unie poskytovalo širší ochranu.",
+        "Článek 53 – Úroveň ochrany: Žádné ustanovení této listiny nesmí být vykládáno jako omezení nebo narušení lidských práv a základních svobod, které v oblasti své působnosti uznává právo Unie, mezinárodní právo a mezinárodní smlouvy, jichž je Unie nebo všechny členské státy stranou, včetně Úmluvy o ochraně lidských práv a základních svobod, a ústavy členských států."
+      ],
+      "detailedCommentary": "Článek 51 odst. 1 vymezuje hranici mezi působností práva EU a čistě vnitrostátním právem. Členský stát je Listinou vázán pouze tehdy, jedná-li v oblasti působnosti práva Unie (např. při provádění směrnice, aplikaci nařízení nebo při odůvodňování odchylky od základní svobody vnitřního trhu). Článek 52 odst. 3 pak zajišťuje harmonii mezi Listinou a EÚLP: standard EÚLP představuje minimální práh ochrany, který právo Unie nesmí snížit, avšak může jej překonat."
+    },
+    "sch": {
+      "id": "sch",
+      "title": "Systémové srovnání: Evropská unie a Rada Evropy (SDEU vs. ESLP)",
+      "category": "Právní stanoviska a vysvětlení",
+      "sourceId": "Interní metodický materiál Úřadu vlády Marenie",
+      "date": "Rok 1, jaro",
+      "provisionOrCase": "Čl. 6 a čl. 19 SEU; čl. 52 odst. 3 LZPEU; čl. 19 EÚLP",
+      "verificationStatus": "needs_verification",
+      "verificationNote": "Čl. 6 a 19 SEU ověřeny v českém znění; čl. 19 EÚLP [K OVĚŘENÍ – mimo podklady].",
+      "summary": "Přehled oddělených institucionálních a procesních struktur ochrany základních práv v Evropské unii a v Radě Evropy.",
+      "paragraphs": [
+        "1. Evropská unie a Soudní dvůr Evropské unie (SDEU, Lucemburk): SDEU je soudním orgánem Evropské unie (čl. 19 SEU). Zajišťuje dodržování práva při výkladu a provádění Smluv EU. Základní práva chrání na základě Listiny základních práv EU (čl. 6 odst. 1 SEU) a jako obecné zásady práva Unie vyplývající z EÚLP a ze společných ústavních tradic členských států (čl. 6 odst. 3 SEU).",
+        "2. Rada Evropy a Evropský soud pro lidská práva (ESLP, Štrasburk): ESLP je mezinárodní soud zřízený Evropskou úmluvou o lidských právech (EÚLP) v rámci Rady Evropy. Rozhoduje o individuálních a mezistátních stížnostech na porušení EÚLP smluvními stranami Úmluvy.",
+        "3. Vzájemný vztah: Jde o dva odlišné právní systémy. ESLP není orgánem Evropské unie a nemá pravomoc rušit akty Unie. SDEU není obecným soudem pro přezkum souladu veškerého jednání členských států s EÚLP; ustanovení EÚLP využívá jako zdroj poznatků při výkladu práva Unie."
+      ],
+      "detailedCommentary": "Ačkoli jsou všechny členské státy EU zároveň smluvními stranami EÚLP, Evropská unie sama dosud k EÚLP nepřistoupila (srov. čl. 6 odst. 2 SEU). Oba soudní systémy proto působí paralelně: zatímco SDEU hlídá jednotu, přednost a dodržování práva EU včetně základních práv v oblasti působnosti unijního práva, ESLP posuzuje mezinárodněprávní odpovědnost států za dodržení závazků z EÚLP."
+    },
+    "mp": {
+      "id": "mp",
+      "title": "Interní právní posouzení Ministerstva spravedlnosti k postupu legislativy",
+      "category": "Právní stanoviska a vysvětlení",
+      "sourceId": "Č. j. MS-142/R1-LP (odemčeno volbou S1 = A)",
+      "date": "Rok 1, jaro",
+      "provisionOrCase": "Čl. 51 odst. 1 LZPEU; čl. 4 odst. 3 SEU",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní interní dokument vlády Marenie.",
+      "summary": "Metodika předběžného přezkumu vládních návrhů provádějících právo Unie z hlediska Listiny základních práv EU.",
+      "paragraphs": [
+        "Ministerstvo spravedlnosti předkládá závazný kontrolní list pro všechny resorty: u každého legislativního či podzákonného návrhu je nutné nejprve určit, zda provádí směrnici, doplňuje nařízení nebo jinak spadá do oblasti působnosti práva Unie.",
+        "Pokud návrh spadá do působnosti práva Unie podle čl. 51 odst. 1 Listiny, musí předkladatel doložit test proporcionality každého omezení podle čl. 52 odst. 1 Listiny ještě před zařazením materiálu na program schůze vlády."
+      ],
+      "detailedCommentary": "Preventivní kontrola sice prodlužuje přípravu návrhů přibližně o tři týdny, avšak minimalizuje riziko, že vláda schválí opatření odporující základním právům chráněným právem Unie."
+    },
+    "kom_prip": {
+      "id": "kom_prip",
+      "title": "Připomínky Evropské komise k notifikačním návrhům Marenie",
+      "category": "Vládní a úřední dokumenty",
+      "sourceId": "KOM-NOT/R1-08 (odemčeno volbou S1 = B)",
+      "date": "Rok 1, léto",
+      "provisionOrCase": "Čl. 51 odst. 1 LZPEU",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní úřední dokument.",
+      "summary": "Upozornění útvarů Komise na nutnost doplnit odůvodnění dopadů na základní práva u prováděcích předpisů.",
+      "paragraphs": [
+        "Útvary Evropské komise berou na vědomí rychlé předložení prováděcích návrhů Marenie, avšak upozorňují, že v důvodových zprávách chybí posouzení slučitelnosti s Listinou základních práv EU.",
+        "Komise připomíná, že primární odpovědnost za soulad vnitrostátních prováděcích opatření s Listinou nese členský stát již při jejich přijímání."
+      ],
+      "detailedCommentary": "Spoléhání na následnou reakci Komise urychluje domácí legislativní proces, ale ponechává odhalení právních vad až na vnější kontrolu."
+    },
+    "stiz_obc": {
+      "id": "stiz_obc",
+      "title": "Soubor stížností občanů a podnětů veřejného ochránce práv",
+      "category": "Důkazy a podklady",
+      "sourceId": "VOP-MAR/R1-19 (odemčeno volbou S1 = C)",
+      "date": "Rok 1, léto",
+      "provisionOrCase": "Čl. 51 odst. 1 LZPEU",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní spisový podklad.",
+      "summary": "Přehled podnětů namítajících absenci posouzení dopadů vládních nařízení na základní práva.",
+      "paragraphs": [
+        "Veřejný ochránce práv Marenie upozorňuje vládu na rostoucí počet podnětů občanů a profesních komor, které poukazují na to, že resorty při provádění předpisů EU nehodnotí přiměřenost zásahů do práv dotčených osob.",
+        "Absence předběžné právní kontroly zvyšuje pravděpodobnost následných soudních sporů a nutnosti dodatečných oprav."
+      ],
+      "detailedCommentary": "Reaktivní model šetří čas při schvalování návrhů, avšak přenáší náklady právní nejistoty na adresáty norem i na stát v navazujících řízeních."
+    },
+    "dec_syr": {
+      "id": "dec_syr",
+      "title": "Rozhodnutí Komise o prodeji přebytečného másla a sýra příjemcům sociálních dávek (fiktivní)",
+      "category": "Právní předpisy",
+      "sourceId": "Fiktivní prováděcí rozhodnutí Komise (vzorováno rozhodnutím 69/71/EHS)",
+      "date": "Rok 1, podzim",
+      "provisionOrCase": "Čl. 1 a čl. 4 rozhodnutí (srovnání jazykových verzí)",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní právní akt vytvořený podle skutkového půdorysu věci 29/69, Stauder.",
+      "summary": "Zmocňující rozhodnutí Komise umožňující členským státům dodávat přebytečné mléčné výrobky za sníženou cenu příjemcům vybraných sociálních dávek.",
+      "paragraphs": [
+        "Článek 1: Členské státy se zmocňují poskytnout příjemcům určitých sociálních dávek založených na nedostatečných příjmech možnost nakupovat přebytečný sýr za sníženou cenu.",
+        "Článek 4 (marenské znění): Členské státy přijmou veškerá nezbytná opatření, aby příjemci mohli výrobek zakoupit pouze proti předložení kuponu vystaveného na jejich jméno.",
+        "Článek 4 (ostatní jazyková znění): Členské státy přijmou veškerá nezbytná opatření, aby příjemci mohli výrobek zakoupit pouze proti předložení individualizovaného kuponu."
+      ],
+      "detailedCommentary": "Rozhodnutí neukládá členským státům povinnost program zavést, pouze je k tomu zmocňuje. Pokud se stát rozhodne zmocnění využít, musí dodržet podmínky čl. 4, jehož jednotlivé jazykové verze se však liší v míře identifikace příjemce."
+    },
+    "st": {
+      "id": "st",
+      "title": "Rozsudek SDEU ze dne 12. 11. 1969, Erich Stauder v. Stadt Ulm, věc 29/69",
+      "category": "Judikatura SDEU",
+      "sourceId": "Sb. rozh. 1969, s. 419 (ECLI:EU:C:1969:57)",
+      "date": "12. listopadu 1969",
+      "provisionOrCase": "Věc 29/69, Stauder, body 2–7 a výrok",
+      "verificationStatus": "translation",
+      "verificationNote": "Autentický český překlad v EUR-Lex není k dispozici; uveden je vlastní český překlad z ověřeného anglického znění rozsudku (včetně klíčových originálních pasáží).",
+      "summary": "Zásadní rozsudek k metodě jednotného výkladu rozdílných jazykových verzí aktu Společenství a k zakotvení základních práv mezi obecnými zásadami práva Společenství.",
+      "paragraphs": [
+        "[Vlastní překlad z anglického originálu] Bod 2: Rozhodnutí zmocňuje členské státy zpřístupnit určité kategorie spotřebitelů máslo za sníženou cenu a čl. 4 ve dvou jazykových verzích hovořil o předložení kuponu vystaveného na jméno příjemce, zatímco ostatní verze hovořily pouze o individualizovaném kuponu.",
+        "Bod 3: Je-li jediné rozhodnutí určeno všem členským státům, nutnost jednotného uplatňování a tedy i jednotného výkladu vylučuje, aby byl jeden text posuzován izolovaně, a vyžaduje, aby byl vykládán jak podle skutečné vůle jeho autora, tak podle cíle, jehož má dosáhnout, ve světle verzí vyhotovených ve všech jazycích (originál EN: 'interpreted on the basis of both the real intention of its author and the aim he seeks to achieve, in the light, in particular, of the versions in all four languages').",
+        "Bod 4: V případě pochybností musí převážit nejméně omezující (nejliberálnější) výklad, pokud postačuje k dosažení cílů sledovaných dotčeným rozhodnutím (originál EN: 'the most liberal interpretation must prevail, provided that it is sufficient to achieve the objectives pursued by the decision in question').",
+        "Bod 6: Ustanovení je proto nutno vykládat tak, že nevyžaduje – ačkoli nezakazuje – identifikaci příjemců jménem (originál EN: 'not requiring – although it does not prohibit – the identification of beneficiaries by name').",
+        "Bod 7: Takto vykládané sporné ustanovení neobsahuje nic, co by mohlo ohrozit základní lidská práva zakotvená v obecných zásadách práva Společenství, jejichž dodržování zajišťuje Soudní dvůr (originál EN: 'contains nothing capable of prejudicing the fundamental human rights enshrined in the general principles of Community law and protected by the Court')."
+      ],
+      "detailedCommentary": "Soudní dvůr ve věci Stauder nevyslovil závěr, že by kupony se jménem porušovaly základní práva; takovou otázku vůbec neřešil, protože výkladem dospěl k závěru, že unijní rozhodnutí jmennou identifikaci nevyžaduje. Současně však v bodě 7 položil základní kámen ochrany základních práv v právu Unie tím, že je zařadil mezi obecné zásady práva Společenství chráněné Soudním dvorem."
+    },
+    "ga_roemer": {
+      "id": "ga_roemer",
+      "title": "Stanovisko generálního advokáta Karla Roemera ze dne 29. 10. 1969 ve věci 29/69, Stauder",
+      "category": "Právní stanoviska a vysvětlení",
+      "sourceId": "Sb. rozh. 1969, s. 426 (Stanovisko generálního advokáta – nikoli rozsudek)",
+      "date": "29. října 1969",
+      "provisionOrCase": "Stanovisko GA ve věci 29/69, Stauder",
+      "verificationStatus": "translation",
+      "verificationNote": "Vlastní shrnutí z anglického znění stanoviska generálního advokáta. Nezaměňovat se závazným rozsudkem Soudního dvora.",
+      "summary": "Právní názor generálního advokáta přednesený před vydáním rozsudku, upozorňující na to, že volba konkrétního způsobu kontroly zůstává na vnitrostátních orgánech.",
+      "paragraphs": [
+        "[Upozornění: Níže uvedený text je stanoviskem generálního advokáta, nikoli rozsudkem Soudního dvora.]",
+        "Generální advokát Roemer ve svém stanovisku upozornil, že pokud rozhodnutí Společenství samo neukládá jmennou identifikaci příjemců a ponechává členským státům volnost při volbě kontrolních metod, přesouvá se případný problém slučitelnosti konkrétního provedení se základními právy na vnitrostátní úroveň."
+      ],
+      "detailedCommentary": "Stanovisko generálního advokáta není pro Soudní dvůr závazné a nelze je vydávat za výrok soudu. Ukazuje však, proč volba jmenných kuponů členským státem (S2 = A) zůstává právně nejistá: Soudní dvůr ji neposvětil, pouze konstatoval, že ji unijní akt nevyžaduje."
+    },
+    "hz": {
+      "id": "hz",
+      "title": "Hodnotící zpráva o provozu anonymizovaného kuponového systému",
+      "category": "Důkazy a podklady",
+      "sourceId": "MPSV-MAR/R1-44 (odemčeno volbou S2 = B)",
+      "date": "Rok 1, zima",
+      "provisionOrCase": "Interní vyhodnocení sociálního programu",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní důkazní podklad.",
+      "summary": "Zpráva dokládající bezproblémové fungování číslovaných kuponů bez uvádění jména příjemce.",
+      "paragraphs": [
+        "Zavedení individualizovaných číslovaných kuponů bez uvedení jména a druhu sociální dávky umožnilo spolehlivou kontrolu oprávněnosti při výdeji na sociálním úřadě a zabránilo zneužívání programu.",
+        "V obchodní síti nedošlo k odhalování identity příjemců a správní žaloba pana E. Hartla byla vzata zpět jako bezpředmětná."
+      ],
+      "detailedCommentary": "Dokument potvrzuje, že legitimního cíle kontroly bylo dosaženo méně invazivním prostředkem při navýšení administrativních nákladů o 8 %."
+    },
+    "us_hartl": {
+      "id": "us_hartl",
+      "title": "Ústavní stížnost Emila Hartla a stanovisko veřejného ochránce práv",
+      "category": "Důkazy a podklady",
+      "sourceId": "ÚS-MAR 118/R1 (odemčeno volbou S2 = A)",
+      "date": "Rok 1, zima",
+      "provisionOrCase": "Podání stěžovatele a vyjádření ombudsmana",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní důkazní podklad.",
+      "summary": "Napadení povinnosti předkládat obchodníkům jmenné sociální kupony pro zásah do lidské důstojnosti a soukromí.",
+      "paragraphs": [
+        "Stěžovatel Emil Hartl namítá, že ačkoli rozhodnutí Komise jmenné kupony nevyžadovalo, vláda Marenie zvolila nejinvazivnější formu identifikace, která nutí příjemce invalidního důchodu odhalovat své osobní údaje a sociální status při každém nákupu.",
+        "Veřejný ochránce práv se ve svém stanovisku ke stížnosti připojil s tím, že kontrolu oprávněnosti bylo možno zajistit šetrnějšími prostředky."
+      ],
+      "detailedCommentary": "Dokument ukazuje praktický důsledek rozhodnutí S2 = A: ačkoli nedošlo k porušení rozhodnutí Komise, vnitrostátní volba vyvolala vážný spor o ochranu základních práv."
+    },
+    "reg_vino": {
+      "id": "reg_vino",
+      "title": "Nařízení Rady o dočasném zákazu nové výsadby vinic (fiktivní)",
+      "category": "Právní předpisy",
+      "sourceId": "Fiktivní nařízení Rady EU (vzorováno nařízením Rady (EHS) č. 1162/76)",
+      "date": "Rok 2, jaro",
+      "provisionOrCase": "Čl. 1 a čl. 2 nařízení Rady",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní unijní nařízení vytvořené podle skutkového stavu věci 44/79, Hauer.",
+      "summary": "Přímo použitelné nařízení Rady zavádějící tříletý zákaz veškeré nové výsadby vinné révy ke stabilizaci trhu s vínem.",
+      "paragraphs": [
+        "Článek 1: Po dobu tří let ode dne vstupu tohoto nařízení v platnost se na celém území Unie zakazuje veškerá nová výsadba odrůd vinné révy zařazených do kategorie moštových odrůd.",
+        "Článek 2: Výjimky z tohoto zákazu se vztahují výlučně na opětovnou výsadbu prováděnou za účelem nahrazení vyklučených vinic na stejné ploše a na výsadbu uskutečňovanou v rámci schválených plánů pozemkových úprav."
+      ],
+      "detailedCommentary": "Nařízení je obecně závazné a přímo použitelné v každém členském státě. Nepřipouští, aby vnitrostátní úřady udělovaly výjimky nad rámec čl. 2 jen proto, že je pozemek podle domácích pravidel vhodný k vinařství."
+    },
+    "ha": {
+      "id": "ha",
+      "title": "Rozsudek SDEU ze dne 13. 12. 1979, Liselotte Hauer v. Land Rheinland-Pfalz, věc 44/79",
+      "category": "Judikatura SDEU",
+      "sourceId": "Sb. rozh. 1979, s. 3727 (ECLI:EU:C:1979:290)",
+      "date": "13. prosince 1979",
+      "provisionOrCase": "Věc 44/79, Hauer, body 14–15, 18–20, 22–23, 28–30 a výrok",
+      "verificationStatus": "verified",
+      "verificationNote": "Autentické české znění ověřeno v podkladech. Poznámka k datu: v českém znění bodu 2 rozsudku je uvedeno nařízení č. 1162/76 „ze dne 17. května 1976“, zatímco úvodní část, bod 1 a výrok uvádějí správné datum 17. března 1976.",
+      "summary": "Klíčový rozsudek o autonomním unijním přezkumu základních práv, rozlišení zbavení majetku od omezení jeho užívání a testu proporcionality.",
+      "paragraphs": [
+        "Bod 14: Otázka týkající se případného zásahu do základních práv aktem orgánů Společenství může být posouzena pouze v rámci samotného práva Společenství. Zavedení zvláštních posuzovacích kritérií vycházejících z právních předpisů nebo z ústavního pořádku určitého členského státu by zasažením do věcné jednoty a účinnosti práva Společenství mělo nutně za následek narušení jednoty společného trhu a ohrožení soudržnosti Společenství.",
+        "Bod 15: Základní práva jsou nedílnou součástí obecných zásad práva, jejichž dodržování zajišťuje Soudní dvůr. Při zajišťování ochrany těchto práv je Soudní dvůr povinen vycházet z ústavních tradic společných členským státům tak, že ve Společenství nemohou být přijata opatření neslučitelná se základními právy uznanými ústavami těchto států. Mezinárodní nástroje týkající se ochrany lidských práv, na kterých členské státy spolupracovaly nebo ke kterým přistoupily, mohou rovněž poskytnout vodítka, k nimž je třeba v rámci práva Společenství přihlédnout.",
+        "Bod 19: Zákaz nové výsadby vinic stanovený nařízením č. 1162/76 nelze považovat za akt zbavující majetku, neboť vlastník může se svým majetkem nadále nakládat a svobodně jej užívat k jakýmkoli jiným nezakázaným účelům. Naopak není pochyb o tom, že tento zákaz omezuje užívání majetku.",
+        "Bod 23: Je tedy třeba zkoumat, zda omezení zavedená spornou právní úpravou skutečně odpovídají cílům obecného zájmu sledovaným Společenstvím a zda nepředstavují vzhledem ke sledovanému cíli nepřiměřený a neúnosný zásah do výsad vlastníka, jímž by byla ohrožena samotná podstata práva vlastnit majetek.",
+        "Body 28–30: Opatření sledovalo dvojí cíl: okamžitě zastavit trvalý nárůst přebytků vína a poskytnout orgánům Společenství čas potřebný k zavedení strukturální politiky. Povolení nové výsadby by jen zvýšilo stávající přebytky. Opatření dočasné povahy tak neobsahuje žádné nepřiměřené omezení výkonu práva vlastnit majetek."
+      ],
+      "detailedCommentary": "Rozsudek Hauer rozvíjí doktrínu z věci Stauder ve třech směrech: (1) vylučuje přímé poměřování aktů Unie vnitrostátními ústavami kvůli ochraně jednoty a účinnosti práva Unie; (2) zakotvuje společné ústavní tradice a EÚLP (zejména čl. 1 Dodatkového protokolu č. 1) jako výkladová vodítka; (3) formuluje test proporcionality omezení vlastnického práva (cíl obecného zájmu, přiměřenost a zachování podstaty práva)."
+    },
+    "l17": {
+      "id": "l17",
+      "title": "Listina základních práv Evropské unie – čl. 15, 16 a 17",
+      "category": "Právní předpisy",
+      "sourceId": "Úř. věst. C 202, 7. 6. 2016, s. 389",
+      "date": "2000 / 2007",
+      "provisionOrCase": "Čl. 15 odst. 1, čl. 16 a čl. 17 odst. 1 LZPEU",
+      "verificationStatus": "verified",
+      "verificationNote": "Autentické české znění ověřeno v podkladech.",
+      "summary": "Zakotvení svobody volby povolání, svobody podnikání a práva na vlastnictví v Listině základních práv EU.",
+      "paragraphs": [
+        "Článek 15 odst. 1: Každý má právo pracovat a vykonávat svobodně zvolené nebo přijaté povolání.",
+        "Článek 16: Svoboda podnikání se uznává v souladu s právem Unie a vnitrostátními zákony a zvyklostmi.",
+        "Článek 17 odst. 1 – Právo na vlastnictví: Každý má právo vlastnit zákonně nabytý majetek, užívat jej, nakládat s ním a odkazovat jej. Nikdo nesmí být zbaven svého majetku s výjimkou veřejného zájmu, v případech a za podmínek, které stanoví zákon, a při včasném vyplacení spravedlivé náhrady za jeho ztrátu. Užívání majetku může rovněž být upraveno zákonem v míře nezbytné z hlediska obecného zájmu."
+      ],
+      "detailedCommentary": "Třetí věta čl. 17 odst. 1 Listiny přímo kodifikuje rozlišení mezi zbavením majetku (vyžadujícím spravedlivou náhradu) a úpravou užívání majetku v obecném zájmu, které Soudní dvůr aplikoval již v rozsudku Hauer."
+    },
+    "prot1_art1": {
+      "id": "prot1_art1",
+      "title": "Dodatkový protokol č. 1 k EÚLP – článek 1 (Ochrana majetku)",
+      "category": "Právní předpisy",
+      "sourceId": "Citováno dle rozsudku SDEU ve věci 44/79, Hauer, bod 18",
+      "date": "20. března 1952",
+      "provisionOrCase": "Čl. 1 Dodatkového protokolu č. 1 k EÚLP",
+      "verificationStatus": "needs_verification",
+      "verificationNote": "Uvedeno v autentickém českém znění citovaném v bodě 18 rozsudku Hauer; samostatný text protokolu z databáze HUDOC [K OVĚŘENÍ].",
+      "summary": "Ustanovení EÚLP rozlišující pokojné užívání majetku, zbavení majetku a právo států upravovat užívání majetku v obecném zájmu.",
+      "paragraphs": [
+        "Podle citace v rozsudku Hauer (bod 18) stanoví článek 1 Dodatkového protokolu k Evropské úmluvě o ochraně lidských práv a základních svobod:",
+        "„Každá fyzická nebo právnická osoba má právo pokojně užívat svůj majetek. Nikdo nemůže být zbaven svého majetku s výjimkou veřejného zájmu a za podmínek, které stanoví zákon a obecné zásady mezinárodního práva.",
+        "Předchozí ustanovení nebrání právu států přijímat zákony, které považují za nezbytné, aby upravily užívání majetku v souladu s obecným zájmem nebo zajistily placení daní či jiných poplatků nebo pokut.“"
+      ],
+      "detailedCommentary": "Druhý odstavec čl. 1 Dodatkového protokolu výslovně uznává pravomoc veřejné moci přijímat předpisy upravující užívání majetku v souladu s obecným zájmem, což posloužilo Soudnímu dvoru ve věci Hauer jako klíčové vodítko."
+    },
+    "lt": {
+      "id": "lt",
+      "title": "Vysvětlující informační materiál vlády pro pěstitele v Sarvských vinicích",
+      "category": "Důkazy a podklady",
+      "sourceId": "MZe-MAR/R2-11 (odemčeno volbou S3 = B nebo nápravou N3 = B)",
+      "date": "Rok 2",
+      "provisionOrCase": "Veřejná komunikace k provádění nařízení Rady",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní úřední dokument.",
+      "summary": "Informační leták objasňující pěstitelům dočasný charakter zákazu nové výsadby a kroky vlády v Radě EU.",
+      "paragraphs": [
+        "Vláda Marenské republiky informuje pěstitele v Sarvských vinicích, že tříletý zákaz nové výsadby je přímo použitelným nařízením Evropské unie, které zavazuje všechny členské státy stejně.",
+        "Zákaz nezbavuje vlastníky jejich pozemků ani nebrání obnově stávajících vinic v rámci zákonných výjimek. Vláda současně v Radě EU prosazuje urychlené přijetí strukturálních opatření pro vinařský sektor."
+      ],
+      "detailedCommentary": "Dokument dokládá řádné plnění unijních povinností spojené s transparentním vysvětlením účelu dočasného omezení adresátům."
+    },
+    "dk": {
+      "id": "dk",
+      "title": "Dopis Evropské komise – Formální upozornění (čl. 258 SFEU)",
+      "category": "Vládní a úřední dokumenty",
+      "sourceId": "SG-Greffe(R3)INF-04 (odemčeno volbou S3 = A nebo C)",
+      "date": "Rok 3, jaro",
+      "provisionOrCase": "Předsoudní fáze řízení o nesplnění povinnosti",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní úřední dokument.",
+      "summary": "Výzva Evropské komise k odstranění nejednotného uplatňování zákazu nové výsadby vinic v Marenii.",
+      "paragraphs": [
+        "Evropská komise obdržela podněty dokládající, že marenské správní orgány na základě pokynu vlády povolují novou výsadbu vinic mimo taxativní výjimky stanovené v čl. 2 nařízení Rady.",
+        "Komise upozorňuje, že takový postup narušuje jednotnou a účinnou aplikaci nařízení v celé Unii (srov. rozsudek ve věci 44/79, Hauer, bod 14), a vyzývá Marenii ke zjednání nápravy."
+      ],
+      "detailedCommentary": "Formální upozornění představuje první stupeň řízení podle čl. 258 SFEU, ve kterém má členský stát možnost chybu uznat a uvést vnitrostátní praxi do souladu s právem Unie."
+    },
+    "zak_pobyt": {
+      "id": "zak_pobyt",
+      "title": "Zákon Marenie o pobytu cizinců – výtah (fiktivní)",
+      "category": "Právní předpisy",
+      "sourceId": "Zákon č. 84/Sb. m. (fiktivní vnitrostátní předpis)",
+      "date": "Rok 3, jaro",
+      "provisionOrCase": "§ 42 odst. 1 písm. b) zákona o pobytu cizinců",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní vnitrostátní ustanovení pro potřeby případu.",
+      "summary": "Vnitrostátní ustanovení umožňující správní vyhoštění cizince ze třetí země po překročení doby povoleného pobytu.",
+      "paragraphs": [
+        "§ 42 odst. 1: Ministerstvo vnitra rozhodne o správním vyhoštění státního příslušníka třetí země, jestliže setrvává na území Marenie po uplynutí doby pobytu stanovené ve vízu bez příslušného povolení k pobytu.",
+        "§ 42 odst. 3: Při rozhodování o vyhoštění správní orgán přihlédne k závazkům vyplývajícím z práva Evropské unie a z mezinárodních smluv o lidských právech."
+      ],
+      "detailedCommentary": "Ačkoli cizinec formálně porušil podmínky pobytu, správní orgán nemůže aplikovat § 42 odst. 1 mechanicky, pokud se na situaci vztahuje právo Unie nebo ochrana rodinného života."
+    },
+    "ca": {
+      "id": "ca",
+      "title": "Rozsudek SDEU ze dne 11. 7. 2002, Mary Carpenter v. Secretary of State for the Home Department, věc C-60/00",
+      "category": "Judikatura SDEU",
+      "sourceId": "Sb. rozh. 2002, s. I-6279 (ECLI:EU:C:2002:434)",
+      "date": "11. července 2002",
+      "provisionOrCase": "Věc C-60/00, Carpenter, body 29–30, 36–46 a výrok",
+      "verificationStatus": "verified",
+      "verificationNote": "Autentické české znění ověřeno v podkladech. Poznámka: rozsudek vykládá čl. 49 ES (dnes čl. 56 SFEU [K OVĚŘENÍ]) a tehdejší směrnici 73/148/EHS; scénář vychází ze stavu právní úpravy k roku 2002.",
+      "summary": "Zásadní rozhodnutí o dopadu volného poskytování služeb na pobyt rodinného příslušníka ze třetí země v domovském státě poskytovatele a o spravedlivé rovnováze podle čl. 8 EÚLP.",
+      "paragraphs": [
+        "Bod 30: Služby poskytované poskytovatelem usazeným v jednom členském státě příjemcům usazeným v jiných členských státech představují přeshraniční poskytování služeb ve smyslu čl. 49 ES; tohoto práva se může poskytovatel dovolávat vůči státu, v němž je usazen, pokud jsou služby poskytovány příjemcům usazeným v jiném členském státě.",
+        "Bod 36: Směrnice 73/148/EHS neupravuje právo pobytu rodinných příslušníků poskytovatele služeb v jeho členském státě původu.",
+        "Bod 39: Odlučení manželů by poškodilo jejich rodinný život a tím i podmínky výkonu základní svobody panem Carpenterem, neboť tato svoboda by nemohla mít plný účinek, pokud by byl pan Carpenter odrazován od jejího výkonu překážkami kladenými v zemi jeho původu vstupu a pobytu jeho manželky.",
+        "Bod 40: Členský stát se může dovolat důvodů obecného zájmu k odůvodnění vnitrostátního opatření, které může bránit výkonu volného poskytování služeb, pouze tehdy, je-li toto opatření v souladu se základními právy, jejichž dodržování zajišťuje Soudní dvůr.",
+        "Bod 42: I když Úmluva cizinci nezaručuje žádné právo vstupu nebo pobytu na území určité země jako takové, může vyhoštění osoby ze země, kde žijí její blízcí příbuzní, představovat zásah do práva na respektování rodinného života chráněného čl. 8 odst. 1 Úmluvy. Takový zásah porušuje Úmluvu, nesplňuje-li požadavky jejího odst. 2, tedy není-li ‚v souladu se zákonem‘, veden jedním nebo více legitimními cíli a ‚nezbytný v demokratické společnosti‘.",
+        "Body 43–45: Rozhodnutí o vyhoštění paní Carpenterové nerespektuje spravedlivou rovnováhu mezi dotčenými zájmy, a to na jedné straně právem pana Carpentera na respektování jeho rodinného života a na druhé straně ochranou veřejného pořádku a veřejné bezpečnosti. Ačkoli paní Carpenterová porušila přistěhovalecké předpisy, její chování od příjezdu nebylo předmětem žádné jiné výtky, která by zakládala obavu, že by v budoucnu představovala nebezpečí pro veřejný pořádek a veřejnou bezpečnost, a manželství je opravdové."
+      ],
+      "detailedCommentary": "Rozsudek Carpenter ukazuje dvě klíčová pravidla: (1) situace občana usazeného ve vlastním státě není čistě vnitrostátní, pokud z tohoto státu poskytuje přeshraniční služby do jiných členských států; (2) členský stát může omezit základní svobodu důvodem obecného zájmu jen tehdy, respektuje-li přitom základní práva, včetně spravedlivé rovnováhy u rodinného života."
+    },
+    "l7": {
+      "id": "l7",
+      "title": "Listina základních práv Evropské unie – čl. 7 a čl. 15 odst. 2",
+      "category": "Právní předpisy",
+      "sourceId": "Úř. věst. C 202, 7. 6. 2016, s. 389",
+      "date": "2000 / 2007",
+      "provisionOrCase": "Čl. 7 a čl. 15 odst. 2 LZPEU",
+      "verificationStatus": "verified",
+      "verificationNote": "Autentické české znění ověřeno v podkladech. Soulad čl. 7 Listiny s čl. 8 EÚLP vyplývá z Vysvětlení k Listině [K OVĚŘENÍ].",
+      "summary": "Ochrana soukromého a rodinného života a svoboda občanů Unie poskytovat služby v každém členském státě.",
+      "paragraphs": [
+        "Článek 7 – Respektování soukromého a rodinného života: Každý má právo na respektování svého soukromého a rodinného života, obydlí a komunikace.",
+        "Článek 15 odst. 2: Každý občan Unie má svobodu hledat si zaměstnání, pracovat, usazovat se nebo poskytovat služby v kterémkoli členském státě."
+      ],
+      "detailedCommentary": "Podle čl. 52 odst. 3 Listiny má právo zaručené čl. 7 Listiny stejný smysl a rozsah jako právo zaručené čl. 8 EÚLP, které Soudní dvůr aplikoval v rozsudku Carpenter."
+    },
+    "ind": {
+      "id": "ind",
+      "title": "Rozhodnutí o individuálním posouzení pobytové věci rodiny T. Elmera",
+      "category": "Důkazy a podklady",
+      "sourceId": "MV-MAR/OVP-732 (odemčeno volbou S4 = B nebo nápravou N4 = B)",
+      "date": "Rok 3",
+      "provisionOrCase": "Správní spis Ministerstva vnitra",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní úřední spis.",
+      "summary": "Individuální přezkum spravedlivé rovnováhy mezi rodinným životem a ochranou veřejného pořádku.",
+      "paragraphs": [
+        "Ministerstvo vnitra po provedeném dokazování konstatuje, že manželství pana Tomáše Elmera a jeho manželky je opravdové, manželka řádně pečuje o nezletilé děti, vede bezúhonný život a nepředstavuje žádné nebezpečí pro veřejný pořádek ani veřejnou bezpečnost.",
+        "S přihlédnutím k přeshraničním podnikatelským aktivitám pana Elmera v Haldersku a Rennsku by vyhoštění představovalo nepřiměřený zásah do práva na respektování rodinného života ve spojení se svobodou volného poskytování služeb."
+      ],
+      "detailedCommentary": "Individuální posouzení naplňuje požadavek spravedlivé rovnováhy stanovený v bodech 43–45 rozsudku Carpenter."
+    },
+    "ozn_d7_1": {
+      "id": "ozn_d7_1",
+      "title": "Oznámení shromáždění spolku Alpská iniciativa na dálnici D7 (Rok 3)",
+      "category": "Vládní a úřední dokumenty",
+      "sourceId": "PŘ-VOR/OZN-19 (fiktivní správní spis)",
+      "date": "Rok 3, podzim",
+      "provisionOrCase": "Podání podle zákona o právu shromažďovacím",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní dokument vzorovaný skutkovým stavem věci C-112/00, Schmidberger.",
+      "summary": "Řádné předběžné oznámení občanského shromáždění upozorňujícího na nárůst kamionového tranzitu v průsmyku Vorholm.",
+      "paragraphs": [
+        "Spolek Alpská iniciativa oznamuje konání poklidného veřejného shromáždění na dálnici D7 v horském průsmyku Vorholm v délce trvání nejvýše 30 hodin.",
+        "Účelem shromáždění je upozornit veřejnost a politickou reprezentaci na neúnosné zhoršování životního prostředí a zdraví obyvatel alpského údolí v důsledku tranzitní nákladní dopravy mezi Rennskem a Trevánií."
+      ],
+      "detailedCommentary": "Shromáždění je řádně oznámeno předem a nesměřuje k blokádě konkrétního druhu či původu zboží, avšak vzhledem k významu koridoru D7 vyžaduje poměření se svobodou volného pohybu zboží."
+    },
+    "sb": {
+      "id": "sb",
+      "title": "Rozsudek SDEU ze dne 12. 6. 2003, Eugen Schmidberger, Internationale Transporte und Planzüge v. Republik Österreich, věc C-112/00",
+      "category": "Judikatura SDEU",
+      "sourceId": "Sb. rozh. 2003, s. I-5659 (ECLI:EU:C:2003:333)",
+      "date": "12. června 2003",
+      "provisionOrCase": "Věc C-112/00, Schmidberger, body 57–64, 66–68, 71–82, 84–93 a výrok",
+      "verificationStatus": "verified",
+      "verificationNote": "Autentické české znění ověřeno v podkladech.",
+      "summary": "Stěžejní rozsudek o odpovědnosti členského státu za pasivitu při blokádě dálnice soukromými osobami a o poměřování základních práv se základními svobodami.",
+      "paragraphs": [
+        "Body 57–62: Skutečnost, že členský stát nezasáhne, aby zabránil překážkám volného pohybu zboží vyvolaným jednáním soukromých osob na jeho území, může narušovat obchod uvnitř Společenství stejně jako aktivní jednání. Čl. 30 a 34 Smlouvy (nyní čl. 34 a 35 SFEU) ve spojení s čl. 5 Smlouvy (nyní čl. 4 odst. 3 SEU) ukládají členským státům přijmout veškerá nezbytná a vhodná opatření k zajištění volného pohybu zboží na jejich území, a to rovněž pro tranzit zboží.",
+        "Bod 64: Nezakázání shromáždění, které vedlo k úplnému uzavření důležité dopravní trasy po dobu téměř 30 hodin, je s to omezit obchod zbožím uvnitř Společenství, a musí být proto kvalifikováno jako opatření s účinkem rovnocenným množstevnímu omezení neslučitelné se Smlouvou, ledaže může být takové nezakázání objektivně odůvodněno.",
+        "Bod 66: Konkrétní cíle sledované shromážděním nejsou jako takové v řízení tohoto druhu rozhodující.",
+        "Body 71–74: Základní práva jsou integrální součástí obecných zásad práva, jejichž dodržování zajišťuje Soudní dvůr, přičemž se inspiruje ústavními tradicemi společnými členským státům a mezinárodními smlouvami, zejména EÚLP. Ochrana základních práv je tak oprávněným zájmem, který v zásadě odůvodňuje omezení povinností uložených právem Společenství, a to i na základě základní svobody zaručené Smlouvou, jako je volný pohyb zboží.",
+        "Body 78–82: Ani volný pohyb zboží, ani svoboda projevu a svoboda shromažďování nejsou absolutními výsadami. Je proto třeba zvážit proti sobě stojící zájmy a vzhledem ke všem okolnostem každého případu určit, zda byla zachována spravedlivá rovnováha mezi těmito zájmy. Příslušné orgány mají v tomto ohledu širokou posuzovací pravomoc; je však třeba ověřit, zda omezení obchodu byla přiměřená legitimnímu sledovanému cíli.",
+        "Body 84–88: Na rozdíl od věci Komise v. Francie (C-265/95) se shromáždění konalo po oznámení a rozhodnutí nezakázat; překážka se týkala jediné trasy, jednorázově a po dobu necelých 30 hodin; cílem občanů nebylo bránit obchodu se zbožím určitého druhu nebo původu; příslušné orgány přijaly různá organizační a doprovodná opatření a včas informovaly účastníky provozu; šlo o izolovanou akci bez vyvolání obecného pocitu nebezpečí.",
+        "Body 89–90 a 93: Úplný zákaz řádně oznámeného shromáždění by představoval nepřijatelný zásah do základních práv demonstrantů a přísná omezení místa či doby by mohla akci zbavit podstatné části jejího významu. Vnitrostátní orgány se tak mohly důvodně domnívat, že oprávněného cíle shromáždění nelze dosáhnout opatřeními méně omezujícími obchod."
+      ],
+      "detailedCommentary": "Rozsudek Schmidberger představuje vrcholnou syntézu judikatury v této hře: (1) nečinnost státu vůči soukromým osobám může být překážkou volného pohybu zboží; (2) ochrana základních práv (svobody projevu a shromažďování) může takovou překážku objektivně odůvodnit; (3) neexistuje automatická přednost ani jedné hodnoty, nýbrž se provádí individuální poměřování přiměřenosti za zohlednění organizačních a informačních opatření státu."
+    },
+    "l11": {
+      "id": "l11",
+      "title": "Listina základních práv Evropské unie – čl. 11 a 12",
+      "category": "Právní předpisy",
+      "sourceId": "Úř. věst. C 202, 7. 6. 2016, s. 389",
+      "date": "2000 / 2007",
+      "provisionOrCase": "Čl. 11 odst. 1 a čl. 12 odst. 1 LZPEU",
+      "verificationStatus": "verified",
+      "verificationNote": "Autentické české znění ověřeno v podkladech. Korespondence s čl. 10 a 11 EÚLP dle Vysvětlení k Listině [K OVĚŘENÍ].",
+      "summary": "Zakotvení svobody projevu a informací a svobody shromažďování a sdružování v Listině základních práv EU.",
+      "paragraphs": [
+        "Článek 11 odst. 1 – Svoboda projevu a informací: Každý má právo na svobodu projevu. Toto právo zahrnuje svobodu zastávat názory a přijímat a rozšiřovat informace nebo myšlenky bez zasahování veřejné moci a bez ohledu na hranice.",
+        "Článek 12 odst. 1 – Svoboda shromažďování a sdružování: Každý má právo na svobodu pokojného shromažďování a na svobodu sdružovat se s jinými na všech úrovních, zejména v oblasti politické, odborové a občanské."
+      ],
+      "detailedCommentary": "Práva podle čl. 11 a 12 Listiny odpovídají právům zaručeným čl. 10 a 11 EÚLP a mohou být omezena pouze za podmínek stanovených v čl. 52 odst. 1 Listiny (zákonný základ, zachování podstaty práva, legitimní cíl a proporcionalita)."
+    },
+    "sfeu_34_35": {
+      "id": "sfeu_34_35",
+      "title": "Smlouva o fungování EU (čl. 34 a 35) a Smlouva o EU (čl. 4 odst. 3)",
+      "category": "Právní předpisy",
+      "sourceId": "Konsolidované znění Smluv (Úř. věst. C 202/2016)",
+      "date": "Platné znění",
+      "provisionOrCase": "Čl. 34 a 35 SFEU; čl. 4 odst. 3 SEU",
+      "verificationStatus": "needs_verification",
+      "verificationNote": "Čl. 4 odst. 3 SEU ověřeno v českém znění; čl. 34 a 35 SFEU (bývalé čl. 28 a 29 ES, v rozsudku Schmidberger čl. 30 a 34 Smlouvy o ES) [K OVĚŘENÍ oficiálního českého textu].",
+      "summary": "Zákaz množstevních omezení dovozu a vývozu i opatření s rovnocenným účinkem a zásada loajální spolupráce.",
+      "paragraphs": [
+        "Článek 34 SFEU [K OVĚŘENÍ]: Množstevní omezení dovozu, jakož i veškerá opatření s rovnocenným účinkem, jsou mezi členskými státy zakázána.",
+        "Článek 35 SFEU [K OVĚŘENÍ]: Množstevní omezení vývozu, jakož i veškerá opatření s rovnocenným účinkem, jsou mezi členskými státy zakázána.",
+        "Článek 4 odst. 3 SEU (ověřeno): Podle zásady loajální spolupráce se Unie a členské státy navzájem respektují a pomáhají si při plnění úkolů vyplývajících ze Smluv. Členské státy učiní veškerá vhodná obecná nebo zvláštní opatření k plnění závazků, které vyplývají ze Smluv nebo z aktů orgánů Unie. Členské státy usnadňují Unii plnění jejích úkolů a zdrží se jakýchkoli opatření, jež by mohla ohrozit dosažení cílů Unie."
+      ],
+      "detailedCommentary": "Spojení čl. 34 a 35 SFEU s čl. 4 odst. 3 SEU zakládá pozitivní povinnost členského státu přijmout přiměřená opatření proti překážkám volného pohybu a tranzitu zboží na svém území."
+    },
+    "cmp_sb_k5": {
+      "id": "cmp_sb_k5",
+      "title": "Předpřipravené srovnání: Schmidberger (body 84–88) vs. situace na D7",
+      "category": "Právní stanoviska a vysvětlení",
+      "sourceId": "Analytický podklad Úřadu vlády (odemčeno v K5)",
+      "date": "Rok 3, podzim",
+      "provisionOrCase": "Schmidberger, věc C-112/00, body 84–88",
+      "verificationStatus": "verified",
+      "verificationNote": "Vychází z ověřeného českého znění rozsudku Schmidberger.",
+      "summary": "Strukturované srovnání čtyř okruhů okolností z rozsudku Schmidberger se skutkovým stavem oznámeného shromáždění na dálnici D7.",
+      "paragraphs": [
+        "Tato analytická pomůcka porovnává skutkové okolnosti posuzované Soudním dvorem v bodech 84–88 rozsudku Schmidberger se skutkovým stavem oznámeného shromáždění spolku Alpská iniciativa na dálnici D7 v průsmyku Vorholm.",
+        "Pro zobrazení přehledné srovnávací tabulky použijte tlačítko „Porovnat s případem D7“ v nástrojové liště tohoto dokumentu."
+      ],
+      "detailedCommentary": "Srovnání pomáhá ověřit, které faktory má vláda ve svých rukou (organizační a informační opatření) a které vyplývají z povahy samotného shromáždění.",
+      "comparisonId": "cmp_sb_k5"
+    },
+    "pk": {
+      "id": "pk",
+      "title": "Protokol koridoru D7 – organizační a informační opatření",
+      "category": "Důkazy a podklady",
+      "sourceId": "MD-MAR/KOR-D7 (odemčeno volbou S5 = B nebo D)",
+      "date": "Rok 3, podzim",
+      "provisionOrCase": "Dopravně-bezpečnostní dokumentace koridoru",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní důkazní listina použitelná v Kapitole 6.",
+      "summary": "Úřední záznam o koordinaci policie, značení objízdných tras a mezinárodní informační kampani před uzavřením D7.",
+      "paragraphs": [
+        "Ministerstvo dopravy a Policejní ředitelství zavedly pro dálniční koridor D7 přes průsmyk Vorholm standardizovaný Protokol doprovodných opatření.",
+        "Protokol dokládá včasnou informační kampaň v sdělovacích prostředcích Marenie, Rennska i Trevánie, nasazení pořádkových a dopravních hlídek a vyznačení objízdných tras k minimalizaci dopadů na tranzitní dopravu."
+      ],
+      "detailedCommentary": "Tento důkaz v závěrečné kapitole prokazuje, že marenské orgány přijaly organizační a informační opatření odpovídající bodu 87 rozsudku Schmidberger."
+    },
+    "roz_zakaz_d7": {
+      "id": "roz_zakaz_d7",
+      "title": "Rozhodnutí správního soudu ke zákazu prvního shromáždění na D7",
+      "category": "Vládní a úřední dokumenty",
+      "sourceId": "KS-ORV 14A/R3 (odemčeno volbou S5 = A)",
+      "date": "Rok 3, zima",
+      "provisionOrCase": "Soudní přezkum preventivního zákazu shromáždění",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní úřední dokument.",
+      "summary": "Rozhodnutí správního soudu vytýkající orgánům plošný zákaz shromáždění bez vyzkoušení mírnějších opatření.",
+      "paragraphs": [
+        "Správní soud zrušil rozhodnutí o preventivním zákazu shromáždění spolku Alpská iniciativa pro nepřiměřený zásah do svobody shromažďování.",
+        "Soud uvedl, že správní orgány nezvážily možnost umožnit konání akce za současného přijetí organizačních a informačních opatření (srov. Schmidberger, bod 89). V důsledku zákazu nebyl vypracován žádný protokol doprovodných opatření koridoru D7."
+      ],
+      "detailedCommentary": "V důsledku dřívějšího zákazu nemůže vláda v Kapitole 6 doložit existenci zavedeného protokolu organizačních opatření."
+    },
+    "stiznost_dopravci": {
+      "id": "stiznost_dopravci",
+      "title": "Stížnost Svazu dopravců na nečinnost orgánů při prvním shromáždění",
+      "category": "Důkazy a podklady",
+      "sourceId": "SD-MAR/R3-88 (odemčeno volbou S5 = C)",
+      "date": "Rok 3, zima",
+      "provisionOrCase": "Podnět dopravců Evropské komisi",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní důkazní podklad.",
+      "summary": "Dokumentace dopravců dokládající absenci včasných dopravních informací a koordinace při podzimní blokádě D7.",
+      "paragraphs": [
+        "Svaz mezinárodních dopravců zdokumentoval, že při podzimním shromáždění na D7 marenské orgány neinformovaly zahraniční dopravce v předstihu ani nezajistily dopravní koordinaci v průsmyku Vorholm.",
+        "Stížnost byla postoupena Evropské komisi jako doklad dlouhodobé absence organizačních opatření státu."
+      ],
+      "detailedCommentary": "Tento podklad oslabuje důkazní pozici Marenie v Kapitole 6, neboť dokládá absenci doprovodných opatření podle bodu 87 rozsudku Schmidberger."
+    },
+    "fz": {
+      "id": "fz",
+      "title": "Žaloba Evropské komise proti Marenské republice – shrnutí žalobních důvodů",
+      "category": "Vládní a úřední dokumenty",
+      "sourceId": "Věc C-418/R4, Komise v. Marenie (fiktivní řízení podle čl. 258 SFEU)",
+      "date": "Rok 4, jaro",
+      "provisionOrCase": "Čl. 258 SFEU; čl. 34 a 35 SFEU ve spojení s čl. 4 odst. 3 SEU",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní procesní dokument pro závěrečnou případovou studii.",
+      "summary": "Shrnutí žaloby Komise podané k SDEU kvůli 61hodinové blokádě dálnice D7 při druhém shromáždění spolku Alpská iniciativa.",
+      "paragraphs": [
+        "Evropská komise se domáhá, aby Soudní dvůr Evropské unie určil, že Marenská republika tím, že nezakázala druhé shromáždění spolku Alpská iniciativa na dálnici D7 v průsmyku Vorholm a nepřijala nezbytná a vhodná opatření k zajištění tranzitu zboží, nesplnila povinnosti, které pro ni vyplývají z čl. 34 a 35 SFEU ve spojení s čl. 4 odst. 3 SEU.",
+        "Komise opírá žalobu zejména o tři námitky: (1) blokáda trvala přibližně 61 hodin (více než dvojnásobek doby ve věci Schmidberger); (2) orgány měly shromáždění zakázat nebo přesunout mimo dálnici; (3) ochrana svobody shromažďování nemůže odůvodnit tak závažnou překážku základní svobody vnitřního trhu."
+      ],
+      "detailedCommentary": "Žaloba směřuje k určení nesplnění povinnosti podle práva Unie. Obrana Marenie se musí soustředit na metodu poměřování z rozsudku Schmidberger a na konkrétní skutkové okolnosti ze spisu."
+    },
+    "spis_k6": {
+      "id": "spis_k6",
+      "title": "Spisová dokumentace druhého shromáždění na dálnici D7 (Rok 4)",
+      "category": "Důkazy a podklady",
+      "sourceId": "SPIS-VOR/R4-02 (fiktivní spisový soubor)",
+      "date": "Rok 4, jaro",
+      "provisionOrCase": "Oznámení, policejní zpráva a dopravní posudek",
+      "verificationStatus": "fictional",
+      "verificationNote": "Fiktivní skutkové podklady pro závěrečné podání.",
+      "summary": "Souhrn ověřitelných skutkových zjištění o průběhu jarního shromáždění v průsmyku Vorholm.",
+      "paragraphs": [
+        "1. Oznámení a informování: Spolek Alpská iniciativa oznámil shromáždění 12 dní předem s plánovanou délkou 36 hodin. Orgány shromáždění nezakázaly a 10 dní předem zveřejnily upozornění pro dopravce v Marenii, Rennsku i Trevánii.",
+        "2. Průběh a délka: Skutečné uzavření dálnice D7 trvalo přibližně 61 hodin z důvodu dvou menších potyček s protidemonstranty, které prodloužily vyklizení komunikace. Podle policejní zprávy byla způsobená majetková škoda nepatrná a nedošlo k újmě na zdraví.",
+        "3. Dopravní alternativa: Dálnice D7 je jedinou vysokokapacitní trasou přes průsmyk Vorholm. Horská objízdná silnice je pro těžká nákladní vozidla nepřístupná a železniční kyvadlová přeprava pokrývá odhadem 15 % běžného kamionového tranzitu.",
+        "4. Povaha akce: Cílem shromáždění bylo upozornit na dopravní zátěž v alpském údolí, nikoli bránit obchodu se zbožím určitého druhu nebo původu."
+      ],
+      "detailedCommentary": "Tyto čtyři body tvoří jediný ověřitelný skutkový základ, z něhož musí vycházet oddíl 1 (Skutkový stav) i právní argumentace v závěrečném podání."
+    },
+    "sfeu_258": {
+      "id": "sfeu_258",
+      "title": "Smlouva o fungování Evropské unie – článek 258 (Řízení o nesplnění povinnosti)",
+      "category": "Právní předpisy",
+      "sourceId": "Konsolidované znění SFEU (Úř. věst. C 83/2010 a C 202/2016)",
+      "date": "Platné znění",
+      "provisionOrCase": "Čl. 258 SFEU",
+      "verificationStatus": "verified",
+      "verificationNote": "Autentické české znění ověřeno (konsolidované znění SFEU).",
+      "summary": "Ustanovení zakládající pravomoc Evropské komise podat žalobu k Soudnímu dvoru EU proti členskému státu pro nesplnění povinnosti ze Smluv.",
+      "paragraphs": [
+        "Článek 258 SFEU: „Má-li Komise za to, že členský stát nesplnil povinnost, která pro něj vyplývá ze Smluv, vydá o tom odůvodněné stanovisko poté, co umožnila tomuto státu, aby předložil své připomínky.",
+        "Neuposlechne-li tento stát stanoviska ve lhůtě stanovené Komisí, může Komise předložit věc Soudnímu dvoru Evropské unie.“"
+      ],
+      "detailedCommentary": "Článek 258 SFEU upravuje přímou žalobu Komise proti členskému státu před SDEU. Předmětem řízení je výhradně dodržení povinností vyplývajících z práva Evropské unie."
+    }
+  }
+}
