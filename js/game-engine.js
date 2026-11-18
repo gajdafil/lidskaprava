@@ -140,8 +140,10 @@ export class GameEngine {
    * @returns {boolean}
    */
   isReadOnlyView() {
-    return this.state.viewingChapterId !== this.state.currentChapterId ||
-      this.state.completedChapters.includes(this.state.viewingChapterId);
+    return (
+      this.state.viewingChapterId !== this.state.currentChapterId ||
+      this.state.completedChapters.includes(this.state.viewingChapterId)
+    );
   }
 
   /**
@@ -156,6 +158,23 @@ export class GameEngine {
 
     this.state.viewingChapterId = chapterId;
     this.state.screen = 'game';
+    this._notify();
+  }
+
+  /**
+   * Přepne na zvolený zpřístupněný krok aktuální kapitoly a uloží stav.
+   * @param {number} index
+   */
+  setStepIndex(index) {
+    if (this.isReadOnlyView()) return;
+    const effectiveSteps = this.getEffectiveStepIds(this.state.currentChapterId);
+    if (index < 0 || index >= effectiveSteps.length) return;
+
+    const targetStepId = effectiveSteps[index];
+    const canOpen = this.isStepCompleted(targetStepId) || index <= this.state.currentStepIndex;
+    if (!canOpen) return;
+
+    this.state.currentStepIndex = index;
     this._notify();
   }
 
@@ -359,7 +378,6 @@ export class GameEngine {
       return;
     }
 
-    // Dokončení celé kapitoly
     if (!this.state.completedChapters.includes(currentChapter.id)) {
       this.state.completedChapters.push(currentChapter.id);
     }
@@ -375,7 +393,6 @@ export class GameEngine {
       this._syncUnlocksForChapter(nextChapter.id);
       this._notify();
     } else {
-      // Kampaň dokončena -> přechod na závěrečný akademický posudek
       this.state.completedAt = new Date().toISOString();
       this.state.screen = 'assessment';
       this._notify();
@@ -473,11 +490,11 @@ export class GameEngine {
   }
 
   /**
-   * Nastaví šířku bočního panelu archivu v procentech (v rozmezí 26–62 %).
+   * Nastaví šířku bočního panelu archivu v procentech (v rozmezí 26–68 %).
    * @param {number} widthPct
    */
   setArchiveWidth(widthPct) {
-    this.state.archiveWidthPct = Math.max(26, Math.min(62, Math.round(widthPct)));
+    this.state.archiveWidthPct = Math.max(26, Math.min(68, Math.round(widthPct)));
     saveState(this.state);
   }
 
