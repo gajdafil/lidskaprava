@@ -1,0 +1,16 @@
+:root{--n:#0b1f3a;--b:#2457a6;--g:#b8923a;--p:#f3f6fb;--fs:17px}
+*{box-sizing:border-box}body{margin:0;font:var(--fs)/1.55 system-ui,sans-serif;background:var(--n);color:#14213a}
+header{display:flex;gap:10px;align-items:center;padding:10px 20px;background:var(--n);color:#fff;border-bottom:2px solid var(--g)}
+.logo{font:italic 700 1.25em Georgia,serif;flex:1}header button{background:none;color:#fff;border:1px solid #fff5;padding:4px 10px;border-radius:3px;cursor:pointer}
+main{max-width:860px;margin:20px auto;padding:26px 30px;background:var(--p);border-radius:4px;animation:in .25s}
+@keyframes in{from{opacity:0;transform:translateY(6px)}}
+h2{font-family:Georgia,serif;color:var(--n);margin-top:0}.opt{display:block;width:100%;text-align:left;margin:8px 0;padding:10px 14px;border:1px solid #9bb0d0;background:#fff;border-radius:3px;cursor:pointer;font:inherit}
+.opt:hover,.opt.sel{border-color:var(--b);background:#e6eefb}.opt.bad{background:#fbe6e6;border-color:#b33}.opt.good{background:#e3f3e3;border-color:#2a7a2a}
+.btn{background:var(--b);color:#fff;border:0;padding:9px 18px;border-radius:3px;cursor:pointer;font:inherit;margin:6px 6px 0 0}.btn.alt{background:#fff;color:var(--b);border:1px solid var(--b)}
+.note{border-left:4px solid var(--g);padding:6px 12px;background:#fff;margin:10px 0}.small{font-size:.85em;color:#46557a}
+#drawer{position:fixed;right:0;top:0;bottom:0;width:min(440px,92vw);background:#fff;padding:20px;overflow:auto;box-shadow:-4px 0 18px #0006}
+.bar{height:10px;background:#d5deee}.bar i{display:block;height:100%;background:var(--b)}
+@media print{body{background:#fff}header,.noprint{display:none}main{margin:0;box-shadow:none}}
+
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}.tb{border:1px solid var(--b);background:#fff;padding:3px 8px;border-radius:3px;cursor:pointer;font:inherit;font-size:.8em}.tb.on{background:var(--b);color:#fff}.dv{position:absolute;left:0;top:0;bottom:0;width:6px;cursor:col-resize;background:var(--g)}mark{background:#ffe08a}
+@media(max-width:900px){main{margin-right:auto!important}}
