@@ -1,6 +1,6 @@
 /**
  * archive.js
- * Řízení pravého panelu: Pracovní plocha pramenů (záložky + čtečka), Katalog spisu a Instituce a mapy.
+ * Řízení pravého panelu: Pracovní plocha pramenů (záložky + čtečka), Katalog archivu a Instituce a mapy.
  */
 
 import { renderDocumentView, renderComparisonTable } from './documents.js';
@@ -18,18 +18,27 @@ export class ArchivePanel {
     this.onStateChange = onStateChange;
 
     this.mode = 'reader'; // 'reader' | 'catalog' | 'institutions'
-    this.catalogFilter = 'all'; // 'all' | 'primarni_pravo' | 'judikatura_sdeu' | 'vnitrostatni_pravo' | 'procesni_spis' | 'diplomaticke_podklady'
+    this.catalogFilter = 'Všechny kategorie';
     this.searchQuery = '';
     this.showComparison = false;
-    this.activeHighlightForStepId = null;
     this.lastActiveDocId = null;
+    this.currentStepDef = null;
 
     // Reference na DOM prvky z index.html
-    this.tabsContainer = document.getElementById('archive-tabs');
+    this.workspaceView = document.getElementById('view-doc-workspace');
+    this.tabsContainer = document.getElementById('doc-tabs-bar');
     this.docToolbar = document.getElementById('doc-toolbar');
     this.docReader = document.getElementById('doc-reader');
-    this.catalogContainer = document.getElementById('archive-catalog');
-    this.institutionsContainer = document.getElementById('institutions-view');
+    this.catalogView = document.getElementById('view-doc-catalog');
+    this.catalogSelect = document.getElementById('archive-cat-select');
+    this.catalogList = document.getElementById('archive-doc-list');
+    this.institutionsView = document.getElementById('view-institutions');
+    this.institutionsList = document.getElementById('institutions-list');
+    this.schemaEuCoeBox = document.getElementById('schema-eu-coe-box');
+    this.mapMarenieBox = document.getElementById('map-marenie-box');
+    this.infringementSection = document.getElementById('viz-infringement-section');
+    this.schemaInfringementBox = document.getElementById('schema-infringement-box');
+    this.openTabsCountEl = document.getElementById('open-tabs-count');
     this.btnHighlight = document.getElementById('btn-highlight-passage');
     this.btnToggleCompare = document.getElementById('btn-toggle-compare');
     this.modeButtons = document.querySelectorAll('.archive-mode-btn');
@@ -38,30 +47,33 @@ export class ArchivePanel {
   }
 
   /**
-   * Napojí posluchače na ovládací prvky uvnitř archivu (zvýraznění pasáže, srovnávací tabulka, delegované akce).
+   * Napojí posluchače na ovládací prvky uvnitř archivu.
    */
   bindInternalEvents() {
+    this.modeButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const nextMode = btn.getAttribute('data-archive-mode');
+        if (nextMode) {
+          this.setMode(nextMode);
+        }
+      });
+    });
+
     if (this.btnHighlight) {
       this.btnHighlight.addEventListener('click', () => {
-        if (!this.currentStepDef || !this.currentStepDef.highlightDocId) return;
-        const targetDocId = this.currentStepDef.highlightDocId;
+        const activeDocId = this.engine.state.activeDocTab;
+        const targetDocId = activeDocId || this.currentStepDef?.highlightDocId;
+        if (!targetDocId) return;
 
-       if (this.activeHighlightForStepId === this.currentStepDef.id) {
-  this.activeHighlightForStepId = null;
-} else {
-  const isUnlocked = this.engine.state.unlockedDocs.includes(targetDocId);
-
-  if (!isUnlocked) {
-    console.warn(`Dokument ${targetDocId} není odemčen.`);
-    return;
-  }
-
-  this.activeHighlightForStepId = this.currentStepDef.id;
-  this.engine.openDocument(targetDocId);
-  this.setMode('reader');
-}
+        if (!this.engine.state.unlockedDocs.includes(targetDocId)) {
+          return;
         }
-        this.sync(this.currentStepDef);
+
+        if (!activeDocId) {
+          this.engine.openDocument(targetDocId);
+        }
+        this.engine.toggleDocumentHighlight(targetDocId);
+        this.setMode('reader');
         if (this.onStateChange) this.onStateChange();
       });
     }
@@ -70,12 +82,20 @@ export class ArchivePanel {
       this.btnToggleCompare.addEventListener('click', () => {
         this.showComparison = !this.showComparison;
         this.btnToggleCompare.setAttribute('aria-pressed', String(this.showComparison));
-        this.btnToggleCompare.classList.toggle('is-active', this.showComparison);
+        this.btnToggleCompare.textContent = this.showComparison
+          ? 'Skrýt srovnávací tabulku'
+          : 'Porovnat s případem D7';
         this.renderReaderView();
       });
     }
 
-    // Delegované klikání uvnitř záložek, čtečky a katalogu
+    if (this.catalogSelect) {
+      this.catalogSelect.addEventListener('change', (e) => {
+        this.catalogFilter = e.target.value || 'Všechny kategorie';
+        this.renderCatalogView();
+      });
+    }
+
     const pane = document.getElementById('archive-pane');
     if (pane) {
       pane.addEventListener('click', (e) => {
@@ -83,6 +103,9 @@ export class ArchivePanel {
         if (closeBtn) {
           e.stopPropagation();
           const docId = closeBtn.getAttribute('data-close-doc');
+          if (docId === this.engine.state.activeDocTab) {
+            this.showComparison = false;
+          }
           this.engine.closeDocumentTab(docId);
           this.sync(this.currentStepDef);
           if (this.onStateChange) this.onStateChange();
@@ -92,22 +115,12 @@ export class ArchivePanel {
         const tabBtn = e.target.closest('[data-open-doc]');
         if (tabBtn) {
           const docId = tabBtn.getAttribute('data-open-doc');
-          this.showComparison = false;
-          if (this.btnToggleCompare) {
-            this.btnToggleCompare.setAttribute('aria-pressed', 'false');
-            this.btnToggleCompare.classList.remove('is-active');
+          if (docId !== this.engine.state.activeDocTab) {
+            this.showComparison = false;
           }
           this.engine.openDocument(docId);
           this.setMode('reader');
           if (this.onStateChange) this.onStateChange();
-          return;
-        }
-
-        const filterBtn = e.target.closest('[data-catalog-filter]');
-        if (filterBtn) {
-          this.catalogFilter = filterBtn.getAttribute('data-catalog-filter');
-          this.renderCatalogView();
-          return;
         }
       });
 
@@ -119,7 +132,6 @@ export class ArchivePanel {
       });
     }
 
-    // Ukládání pozice posuvníku ve čtečce
     if (this.docReader) {
       this.docReader.addEventListener('scroll', () => {
         const activeDocId = this.engine.state.activeDocTab;
@@ -139,7 +151,7 @@ export class ArchivePanel {
 
     this.modeButtons.forEach((btn) => {
       const isMatch = btn.getAttribute('data-archive-mode') === newMode;
-      btn.classList.toggle('is-active', isMatch);
+      btn.classList.toggle('active', isMatch);
       btn.setAttribute('aria-selected', String(isMatch));
     });
 
@@ -147,11 +159,9 @@ export class ArchivePanel {
     const isCatalog = newMode === 'catalog';
     const isInstitutions = newMode === 'institutions';
 
-    if (this.tabsContainer) this.tabsContainer.hidden = !isReader;
-    if (this.docToolbar) this.docToolbar.hidden = !isReader;
-    if (this.docReader) this.docReader.hidden = !isReader;
-    if (this.catalogContainer) this.catalogContainer.hidden = !isCatalog;
-    if (this.institutionsContainer) this.institutionsContainer.hidden = !isInstitutions;
+    if (this.workspaceView) this.workspaceView.hidden = !isReader;
+    if (this.catalogView) this.catalogView.hidden = !isCatalog;
+    if (this.institutionsView) this.institutionsView.hidden = !isInstitutions;
 
     if (isReader) {
       this.renderTabs();
@@ -162,24 +172,25 @@ export class ArchivePanel {
       this.renderInstitutionsView();
     }
   }
-setCategoryFilter(category) {
-  this.catalogFilter = category || 'all';
-  this.renderCatalogView();
-}
+
+  setCategoryFilter(category) {
+    this.catalogFilter = category || 'Všechny kategorie';
+    this.renderCatalogView();
+  }
+
   /**
    * Resetuje lokální UI stav archivu při zahájení nové kampaně.
    */
   reset() {
     this.mode = 'reader';
-    this.catalogFilter = 'all';
+    this.catalogFilter = 'Všechny kategorie';
     this.searchQuery = '';
     this.showComparison = false;
-    this.activeHighlightForStepId = null;
     this.lastActiveDocId = null;
 
     if (this.btnToggleCompare) {
       this.btnToggleCompare.setAttribute('aria-pressed', 'false');
-      this.btnToggleCompare.classList.remove('is-active');
+      this.btnToggleCompare.textContent = 'Porovnat s případem D7';
     }
     this.setMode('reader');
   }
@@ -191,22 +202,42 @@ setCategoryFilter(category) {
   sync(currentStepDef = null) {
     this.currentStepDef = currentStepDef;
 
-    // Aktualizace tlačítka „Zvýraznit relevantní pasáž“ v liště čtečky
-    if (this.btnHighlight) {
-      const hasHighlight = Boolean(currentStepDef && currentStepDef.highlightDocId);
-      this.btnHighlight.hidden = !hasHighlight;
-
-      if (hasHighlight) {
-        const isOn = this.activeHighlightForStepId === currentStepDef.id;
-        this.btnHighlight.setAttribute('aria-pressed', String(isOn));
-        this.btnHighlight.classList.toggle('is-active', isOn);
-        this.btnHighlight.textContent = isOn
-          ? 'Zrušit zvýraznění pasáže'
-          : 'Zvýraznit relevantní pasáž';
-      }
+    if (this.openTabsCountEl) {
+      this.openTabsCountEl.textContent = String((this.engine.state.openDocTabs || []).length);
     }
 
     this.setMode(this.mode);
+  }
+
+  /**
+   * Vyhledá klíčové fráze pro zvýraznění v daném dokumentu.
+   * @param {string} docId
+   * @returns {string[]}
+   */
+  _resolveHighlightPhrases(docId) {
+    if (
+      this.currentStepDef &&
+      this.currentStepDef.highlightDocId === docId &&
+      Array.isArray(this.currentStepDef.highlightPhrases)
+    ) {
+      return this.currentStepDef.highlightPhrases;
+    }
+
+    const allQuestions = Object.values(this.data.questions || {});
+    const matching = allQuestions.filter(
+      (q) => q && q.highlightDocId === docId && Array.isArray(q.highlightPhrases)
+    );
+    if (matching.length > 0) {
+      return matching.flatMap((q) => q.highlightPhrases);
+    }
+
+    return [
+      'výhradně pokud uplatňují právo Unie',
+      'spravedlivou rovnováhu',
+      'ochrana základních práv je oprávněným zájmem',
+      'nepřiměřený a neúnosný zásah',
+      'obecných zásad práva'
+    ];
   }
 
   /**
@@ -219,9 +250,12 @@ setCategoryFilter(category) {
     const activeDocId = this.engine.state.activeDocTab;
     const docsMap = this.data.documents.documents || {};
 
+    if (this.openTabsCountEl) {
+      this.openTabsCountEl.textContent = String(openTabs.length);
+    }
+
     if (openTabs.length === 0) {
-      this.tabsContainer.innerHTML =
-        '<div class="archive-tabs-empty">Žádný otevřený dokument. Vyberte spis v Katalogu pramenů.</div>';
+      this.tabsContainer.innerHTML = '';
       return;
     }
 
@@ -230,11 +264,10 @@ setCategoryFilter(category) {
         const doc = docsMap[docId];
         if (!doc) return '';
         const isActive = docId === activeDocId;
-        const shortLabel = doc.code ? `${doc.code}: ${doc.shortTitle || doc.title}` : doc.title;
 
         return `
-          <div class="doc-tab ${isActive ? 'is-active' : ''}" role="tab" aria-selected="${isActive}" data-open-doc="${this.escapeHtml(docId)}">
-            <span class="doc-tab-title" title="${this.escapeHtml(doc.title)}">${this.escapeHtml(shortLabel)}</span>
+          <div class="doc-tab ${isActive ? 'active' : ''}" role="tab" aria-selected="${isActive}" data-open-doc="${this.escapeHtml(docId)}">
+            <span class="doc-tab-title" title="${this.escapeHtml(doc.title)}">${this.escapeHtml(doc.title)}</span>
             <button type="button" class="doc-tab-close" data-close-doc="${this.escapeHtml(docId)}" aria-label="Zavřít záložku ${this.escapeHtml(doc.title)}">×</button>
           </div>
         `;
@@ -248,62 +281,60 @@ setCategoryFilter(category) {
   renderReaderView() {
     if (!this.docReader) return;
 
-    if (this.showComparison) {
-      this.docReader.innerHTML = renderComparisonTable(
-        this.data.documents,
-        this.engine.state.unlockedDocs || []
-      );
-      return;
-    }
-console.log('=== DIAGNOSTIKA ČTEČKY ===');
-
-console.log('this.data:', this.data);
-console.log('this.data.documents:', this.data.documents);
-
-console.log(
-  'Klíče this.data.documents:',
-  Object.keys(this.data.documents || {})
-);
-
-console.log(
-  'this.data.documents.documents:',
-  this.data.documents?.documents
-);
-
-console.log(
-  'Klíče dokumentů:',
-  Object.keys(this.data.documents?.documents || {})
-);
-
-console.log('activeDocTab:', this.engine.state.activeDocTab);
-console.log('openDocTabs:', this.engine.state.openDocTabs);
-console.log('unlockedDocs:', this.engine.state.unlockedDocs);
-
-console.log('=== KONEC DIAGNOSTIKY ===');
     const activeDocId = this.engine.state.activeDocTab;
     const docsMap = this.data.documents.documents || {};
     const doc = activeDocId ? docsMap[activeDocId] : null;
 
     if (!doc) {
+      if (this.docToolbar) this.docToolbar.hidden = true;
+      this.showComparison = false;
       this.docReader.innerHTML = `
-        <div class="reader-empty-state">
-          <p><strong>Pracovní plocha je prázdná.</strong></p>
-          <p>Otevřete některý z odemčených dokumentů v záložce <em>Katalog pramenů</em> nebo v odkazech u zadání úlohy.</p>
+        <div class="empty-state">
+          <p>Zatím nemáte otevřený žádný dokument.</p>
+          <p class="small">Vyberte dokument z <strong>Katalogu archivu</strong> nebo klikněte na odkazovaný pramen v zadání úlohy.</p>
         </div>
       `;
       return;
     }
 
-    const highlightTarget =
-      this.currentStepDef &&
-      this.activeHighlightForStepId === this.currentStepDef.id &&
-      this.currentStepDef.highlightDocId === activeDocId
-        ? this.currentStepDef.highlightPassage || null
-        : null;
+    if (this.docToolbar) this.docToolbar.hidden = false;
 
-    this.docReader.innerHTML = renderDocumentView(doc, highlightTarget);
+    const isHighlighted = Boolean(this.engine.state.highlightedDocs?.[activeDocId]);
+    if (this.btnHighlight) {
+      this.btnHighlight.hidden = false;
+      this.btnHighlight.setAttribute('aria-pressed', String(isHighlighted));
+      this.btnHighlight.textContent = isHighlighted
+        ? 'Zrušit zvýraznění pasáží'
+        : 'Zvýraznit relevantní pasáže';
+    }
 
-    // Obnovení pozice posuvníku při přepnutí záložky
+    const unlockedDocs = this.engine.state.unlockedDocs || [];
+    const hasComparison =
+      Boolean(doc.comparisonId && this.data.documents.comparisons?.[doc.comparisonId]) ||
+      (activeDocId === 'sb' && unlockedDocs.includes('cmp_sb_k5'));
+
+    if (this.btnToggleCompare) {
+      this.btnToggleCompare.hidden = !hasComparison;
+      if (!hasComparison) {
+        this.showComparison = false;
+      }
+      this.btnToggleCompare.setAttribute('aria-pressed', String(this.showComparison));
+      this.btnToggleCompare.textContent = this.showComparison
+        ? 'Skrýt srovnávací tabulku'
+        : 'Porovnat s případem D7';
+    }
+
+    if (this.showComparison && hasComparison) {
+      this.docReader.innerHTML = renderComparisonTable(
+        this.data.documents,
+        unlockedDocs
+      );
+      return;
+    }
+
+    const highlightPhrases = isHighlighted ? this._resolveHighlightPhrases(activeDocId) : null;
+    this.docReader.innerHTML = renderDocumentView(doc, highlightPhrases);
+
     if (this.lastActiveDocId !== activeDocId) {
       this.lastActiveDocId = activeDocId;
       const savedScroll = this.engine.state.docScrollPositions?.[activeDocId] || 0;
@@ -315,162 +346,140 @@ console.log('=== KONEC DIAGNOSTIKY ===');
    * Vykreslí katalog všech pramenů rozdělený podle kategorií a stavu odemčení.
    */
   renderCatalogView() {
-    if (!this.catalogContainer) return;
+    if (!this.catalogList) return;
 
     const docsMap = this.data.documents.documents || {};
     const unlockedSet = new Set(this.engine.state.unlockedDocs || []);
     const allDocs = Object.values(docsMap);
 
-    const categories = [
-      { id: 'all', label: 'Všechny prameny' },
-      { id: 'primarni_pravo', label: 'Primární právo EU' },
-      { id: 'judikatura_sdeu', label: 'Judikatura SDEU' },
-      { id: 'vnitrostatni_pravo', label: 'Vnitrostátní právo Marenska' },
-      { id: 'procesni_spis', label: 'Procesní spis' },
-      { id: 'diplomaticke_podklady', label: 'Podklady a stanoviska' }
-    ];
+    const categories = Array.isArray(this.data.documents.categories) && this.data.documents.categories.length > 0
+      ? this.data.documents.categories
+      : ['Všechny kategorie', ...new Set(allDocs.map((d) => d.category).filter(Boolean))];
+
+    if (this.catalogSelect) {
+      if (!categories.includes(this.catalogFilter)) {
+        this.catalogFilter = categories[0];
+      }
+      this.catalogSelect.innerHTML = categories
+        .map(
+          (cat) => `
+          <option value="${this.escapeHtml(cat)}" ${this.catalogFilter === cat ? 'selected' : ''}>
+            ${this.escapeHtml(cat)}
+          </option>
+        `
+        )
+        .join('');
+    }
 
     const query = this.searchQuery.trim().toLowerCase();
 
     const filteredDocs = allDocs.filter((doc) => {
-      if (this.catalogFilter !== 'all' && doc.category !== this.catalogFilter) {
-        return false;
+      if (this.catalogFilter !== 'Všechny kategorie' && this.catalogFilter !== 'all') {
+        if (doc.category !== this.catalogFilter) return false;
       }
       if (!query) return true;
       if (!unlockedSet.has(doc.id)) return false;
-      const haystack = `${doc.code || ''} ${doc.title || ''} ${doc.summary || ''} ${doc.citation || ''}`.toLowerCase();
+      const haystack = `${doc.title || ''} ${doc.summary || ''} ${doc.provisionOrCase || ''} ${doc.sourceId || ''}`.toLowerCase();
       return haystack.includes(query);
     });
 
-    const filterButtonsHtml = categories
-      .map(
-        (cat) => `
-        <button type="button"
-                class="catalog-filter-pill ${this.catalogFilter === cat.id ? 'is-active' : ''}"
-                data-catalog-filter="${cat.id}">
-          ${this.escapeHtml(cat.label)}
-        </button>
-      `
-      )
-      .join('');
+    if (filteredDocs.length === 0) {
+      this.catalogList.innerHTML =
+        '<p class="small">Zadanému filtru neodpovídá žádný dokument.</p>';
+      return;
+    }
 
-    const cardsHtml = filteredDocs
+    this.catalogList.innerHTML = filteredDocs
       .map((doc) => {
         const isUnlocked = unlockedSet.has(doc.id);
         if (!isUnlocked) {
           return `
-            <article class="catalog-card is-locked">
-              <div class="catalog-card-header">
-                <span class="doc-code-badge">${this.escapeHtml(doc.code || doc.id)}</span>
-                <span class="doc-status-badge locked">Zatím nezařazeno do spisu</span>
-              </div>
-              <h4 class="catalog-card-title">${this.escapeHtml(doc.title)}</h4>
-              <p class="catalog-card-locked-note">Dokument se zpřístupní v další fázi řízení nebo na základě procesního postupu.</p>
+            <article class="catalog-item locked">
+              <div class="catalog-item-meta">${this.escapeHtml(doc.category || '')} • Neodemčeno</div>
+              <h4>${this.escapeHtml(doc.title)}</h4>
+              <p class="small" style="margin-bottom: 0;">
+                Dokument se zpřístupní v další fázi mandátu nebo na základě rozhodnutí vlády.
+              </p>
             </article>
           `;
         }
 
+        const metaParts = [doc.category, doc.provisionOrCase || doc.date].filter(Boolean);
+
         return `
-          <article class="catalog-card is-unlocked">
-            <div class="catalog-card-header">
-              <span class="doc-code-badge">${this.escapeHtml(doc.code || doc.id)}</span>
-              <span class="doc-category-label">${this.escapeHtml(doc.categoryLabel || doc.category || '')}</span>
-            </div>
-            <h4 class="catalog-card-title">${this.escapeHtml(doc.title)}</h4>
-            ${doc.citation ? `<div class="catalog-card-citation">${this.escapeHtml(doc.citation)}</div>` : ''}
-            ${doc.summary ? `<p class="catalog-card-summary">${this.escapeHtml(doc.summary)}</p>` : ''}
-            <div class="catalog-card-actions">
-              <button type="button" class="btn btn-sm btn-secondary" data-open-doc="${this.escapeHtml(doc.id)}">
-                Otevřít ve čtečce
-              </button>
-            </div>
+          <article class="catalog-item">
+            <div class="catalog-item-meta">${this.escapeHtml(metaParts.join(' • '))}</div>
+            <h4>${this.escapeHtml(doc.title)}</h4>
+            ${doc.summary ? `<p class="small">${this.escapeHtml(doc.summary)}</p>` : ''}
+            <button type="button" class="btn btn-alt btn-sm" data-open-doc="${this.escapeHtml(doc.id)}">
+              Otevřít ve čtečce
+            </button>
           </article>
         `;
       })
       .join('');
-
-    this.catalogContainer.innerHTML = `
-      <div class="catalog-controls">
-        <div class="catalog-search-row">
-          <label for="archive-search-input" class="sr-only">Hledat v odemčených pramenech</label>
-          <input type="search"
-                 id="archive-search-input"
-                 class="catalog-search-input"
-                 placeholder="Hledat podle názvu, spisové značky nebo obsahu..."
-                 value="${this.escapeHtml(this.searchQuery)}" />
-        </div>
-        <div class="catalog-filters" role="group" aria-label="Filtrovat prameny podle druhu">
-          ${filterButtonsHtml}
-        </div>
-      </div>
-      <div class="catalog-list">
-        ${cardsHtml || '<p class="catalog-empty">Zadanému filtru neodpovídá žádný dokument.</p>'}
-      </div>
-    `;
   }
 
   /**
-   * Vykreslí přehled institucí (EU vs. Rada Evropy vs. Marensko) a procesní mapu řízení.
+   * Vykreslí přehled institucí (EU vs. Rada Evropy vs. Marensko) a procesní schémata.
    */
   renderInstitutionsView() {
-    if (!this.institutionsContainer) return;
-
+    const instData = this.data.institutions || {};
     const unlockedInstIds = new Set(this.engine.state.unlockedInstitutions || []);
-    const institutions = this.data.institutions.institutions || [];
-    const comparisonNote = this.data.institutions.systemicComparison || null;
+    const institutions = instData.institutions || [];
+    const diagrams = instData.diagrams || {};
 
-    const instCardsHtml = institutions
-      .map((inst) => {
-        const isUnlocked = unlockedInstIds.has(inst.id);
-        if (!isUnlocked) {
+    if (this.institutionsList) {
+      this.institutionsList.innerHTML = institutions
+        .map((inst) => {
+          const isUnlocked = unlockedInstIds.has(inst.id);
+          if (!isUnlocked) {
+            return `
+              <article class="inst-card locked">
+                <div class="inst-system">${this.escapeHtml(inst.system || 'Neodemčená instituce')}</div>
+                <h4>${this.escapeHtml(inst.name)}</h4>
+                <p class="small" style="margin-bottom: 0;">
+                  Instituce zatím nevstoupila do aktuální fáze rozhodování vlády.
+                </p>
+              </article>
+            `;
+          }
+
           return `
-            <article class="institution-card is-locked">
+            <article class="inst-card">
+              <div class="inst-system">${this.escapeHtml(inst.system || '')}</div>
               <h4>${this.escapeHtml(inst.name)}</h4>
-              <p class="institution-locked-text">Instituce zatím nevstoupila do aktuální fáze případu.</p>
+              ${inst.role ? `<p class="small"><strong>Role:</strong> ${this.escapeHtml(inst.role)}</p>` : ''}
+              ${inst.powers ? `<p class="small"><strong>Pravomoci:</strong> ${this.escapeHtml(inst.powers)}</p>` : ''}
+              ${inst.legalBasis ? `<p class="small"><strong>Právní základ:</strong> ${this.escapeHtml(inst.legalBasis)}</p>` : ''}
+              ${inst.relations ? `<p class="small" style="margin-bottom: 0;"><strong>Vztahy:</strong> ${this.escapeHtml(inst.relations)}</p>` : ''}
             </article>
           `;
-        }
+        })
+        .join('');
+    }
 
-        const powersHtml = Array.isArray(inst.keyPowers)
-          ? `<ul class="institution-powers">${inst.keyPowers.map((p) => `<li>${this.escapeHtml(p)}</li>`).join('')}</ul>`
-          : '';
+    if (this.schemaEuCoeBox && diagrams.euCoeSchema) {
+      this.schemaEuCoeBox.innerHTML = diagrams.euCoeSchema;
+    }
 
-        return `
-          <article class="institution-card is-unlocked">
-            <div class="institution-card-top">
-              <span class="institution-system-badge">${this.escapeHtml(inst.system || '')}</span>
-              ${inst.seat ? `<span class="institution-seat">${this.escapeHtml(inst.seat)}</span>` : ''}
-            </div>
-            <h4>${this.escapeHtml(inst.name)}</h4>
-            <p class="institution-role">${this.escapeHtml(inst.role || '')}</p>
-            ${powersHtml}
-            ${
-              inst.caseRelevance
-                ? `<div class="institution-relevance"><strong>Význam v kauze Marensko:</strong> ${this.escapeHtml(inst.caseRelevance)}</div>`
-                : ''
-            }
-          </article>
-        `;
-      })
-      .join('');
+    if (this.mapMarenieBox && diagrams.marenieMap) {
+      this.mapMarenieBox.innerHTML = diagrams.marenieMap;
+    }
 
-    const comparisonBlockHtml = comparisonNote
-      ? `
-        <section class="institutions-comparison-box">
-          <h4>${this.escapeHtml(comparisonNote.title || 'Rozlišení systémů: Evropská unie vs. Rada Evropy')}</h4>
-          <p>${this.escapeHtml(comparisonNote.summary || '')}</p>
-        </section>
-      `
-      : '';
+    const unlockedDocs = this.engine.state.unlockedDocs || [];
+    const showInfringement =
+      unlockedDocs.includes('dk') ||
+      unlockedDocs.includes('sfeu_258') ||
+      unlockedDocs.includes('fz') ||
+      this.engine.state.currentChapterId === 'K6';
 
-    this.institutionsContainer.innerHTML = `
-      <div class="institutions-wrapper">
-        ${comparisonBlockHtml}
-        <div class="institutions-list">
-          ${instCardsHtml}
-        </div>
-      </div>
-    `;
+    if (this.infringementSection) {
+      this.infringementSection.hidden = !showInfringement;
+    }
+    if (showInfringement && this.schemaInfringementBox && diagrams.infringementSchema) {
+      this.schemaInfringementBox.innerHTML = diagrams.infringementSchema;
+    }
   }
 
   /**
