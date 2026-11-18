@@ -954,23 +954,7 @@ this.reporter = new AssessmentReporter(engine);
       });
     });
 
-    // Nástrojová lišta čtečky (#btn-toggle-highlight, #btn-toggle-compare)
-    document.getElementById('btn-toggle-highlight')?.addEventListener('click', () => {
-      const activeId = this.engine.state.activeDocTab;
-      if (!activeId) return;
-      this.audio.playClick();
-      this.engine.toggleDocumentHighlight(activeId);
-    });
-
-    document.getElementById('btn-toggle-compare')?.addEventListener('click', () => {
-      const activeId = this.engine.state.activeDocTab;
-      if (!activeId) return;
-      this.audio.playClick();
-      this.documentViewer.toggleComparison(activeId);
-      this.render();
-    });
-
-    // Filtr kategorií v katalogu archivu (#archive-cat-select)
+     // Filtr kategorií v katalogu archivu (#archive-cat-select)
     document.getElementById('archive-cat-select')?.addEventListener('change', (e) => {
       this.archivePanel.setCategoryFilter(e.target.value);
       this.render();
