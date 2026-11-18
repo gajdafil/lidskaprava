@@ -227,7 +227,7 @@ function testOptimalPlaythrough(data) {
 
   const report = engine.getAssessmentReport();
   assert.ok(report.results.totalPercentage >= 95, `Očekávána úspěšnost >= 95 %, získáno ${report.results.totalPercentage} %`);
-  assert.equal(report.results.gradeId, 'vytecne', `Očekávána známka vytecne, získáno ${report.results.gradeId}`);
+  assert.equal(report.results.gradeId, 'vyborne', `Očekávána známka vyborne, získáno ${report.results.gradeId}`);
   assert.equal(report.competencyNarratives.length, 8, 'Posudek musí obsahovat všech 8 kompetencí.');
 
   console.log(
