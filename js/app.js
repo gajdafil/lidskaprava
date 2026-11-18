@@ -1141,7 +1141,7 @@ this.reporter = new AssessmentReporter(engine);
           const chosen = this.draftSelections[stepId];
           if (stepId && chosen) {
             this.audio.playSeal();
-            this.archivePanel.setMode('workspace');
+            this.archivePanel.setMode('reader');
             this.engine.confirmStrategicDecision(stepId, chosen);
           }
           break;
@@ -1152,7 +1152,7 @@ this.reporter = new AssessmentReporter(engine);
           const chosen = this.draftSelections[stepId];
           if (stepId && chosen) {
             this.audio.playSeal();
-            this.archivePanel.setMode('workspace');
+            this.archivePanel.setMode('reader');
             this.engine.confirmRemedialDecision(stepId, chosen);
           }
           break;
@@ -1190,7 +1190,7 @@ this.reporter = new AssessmentReporter(engine);
           const { docId } = target.dataset;
           if (docId) {
             this.audio.playDocumentOpen();
-            this.archivePanel.setMode('workspace');
+            this.archivePanel.setMode('reader');
             this.engine.openDocument(docId);
           }
           break;
