@@ -247,7 +247,31 @@ export class ArchivePanel {
       );
       return;
     }
+console.log('=== DIAGNOSTIKA ČTEČKY ===');
 
+console.log('this.data:', this.data);
+console.log('this.data.documents:', this.data.documents);
+
+console.log(
+  'Klíče this.data.documents:',
+  Object.keys(this.data.documents || {})
+);
+
+console.log(
+  'this.data.documents.documents:',
+  this.data.documents?.documents
+);
+
+console.log(
+  'Klíče dokumentů:',
+  Object.keys(this.data.documents?.documents || {})
+);
+
+console.log('activeDocTab:', this.engine.state.activeDocTab);
+console.log('openDocTabs:', this.engine.state.openDocTabs);
+console.log('unlockedDocs:', this.engine.state.unlockedDocs);
+
+console.log('=== KONEC DIAGNOSTIKY ===');
     const activeDocId = this.engine.state.activeDocTab;
     const docsMap = this.data.documents.documents || {};
     const doc = activeDocId ? docsMap[activeDocId] : null;
