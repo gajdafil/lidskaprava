@@ -1,4 +1,3 @@
-
 /**
  * app.js
  * Vstupní bod a hlavní orchestrátor uživatelského rozhraní simulace
@@ -33,8 +32,6 @@ export class AppController {
     this.engine = engine;
     this.audio = new AudioManager();
 
-    // Archiv je samostatná komponenta. Řídí vlastní režimy,
-    // katalog, vyhledávání, záložky i čtečku dokumentů.
     this.archivePanel = new ArchivePanel({
       engine: engine,
       data: engine.data,
@@ -65,27 +62,16 @@ export class AppController {
   }
 
   _applyFontSize() {
-    document.documentElement.style.setProperty(
-      '--fs',
-      `${this.fontSizePx}px`
-    );
-
+    document.documentElement.style.setProperty('--fs', `${this.fontSizePx}px`);
     try {
-      window.localStorage.setItem(
-        FONT_SIZE_KEY,
-        String(this.fontSizePx)
-      );
+      window.localStorage.setItem(FONT_SIZE_KEY, String(this.fontSizePx));
     } catch {
       // Ignorovat
     }
   }
 
   _changeFontSize(delta) {
-    const next = Math.max(
-      14,
-      Math.min(22, this.fontSizePx + delta)
-    );
-
+    const next = Math.max(14, Math.min(22, this.fontSizePx + delta));
     if (next !== this.fontSizePx) {
       this.fontSizePx = next;
       this._applyFontSize();
@@ -102,12 +88,8 @@ export class AppController {
 
   _savePlayerName(name) {
     this.playerName = String(name || '').trim();
-
     try {
-      window.localStorage.setItem(
-        PLAYER_NAME_KEY,
-        this.playerName
-      );
+      window.localStorage.setItem(PLAYER_NAME_KEY, this.playerName);
     } catch {
       // Ignorovat
     }
@@ -127,51 +109,47 @@ export class AppController {
       this.reporter.recordCompletedCampaign(this.playerName);
     }
 
-    // Aktualizace šířky archivu.
     document.documentElement.style.setProperty(
       '--archive-w',
       `${state.archiveWidthPct || 44}%`
     );
 
-    // 1. Hlavička a stavové odznaky.
+    // 1. Hlavička a stavové odznaky
     this._syncHeader();
 
-    // 2. Chronologická navigace kapitol.
+    // 2. Chronologická navigace kapitol
     this._syncChapterNav();
 
-    // 3. Rozvržení pracovního prostoru.
+    // 3. Rozvržení pracovního prostoru
     const workspaceEl = document.getElementById('workspace');
+    const useSplit = isGame && Boolean(state.archiveOpen);
 
     if (workspaceEl) {
-      const useSplit = isGame && Boolean(state.archiveOpen);
-
       workspaceEl.classList.toggle('split-view', useSplit);
       workspaceEl.classList.toggle('single-view', !useSplit);
     }
 
-    // 4. Viditelnost panelu archivu.
-    // Samotný obsah panelu a jeho režimy spravuje ArchivePanel.
-    const archivePane = document.getElementById('archive-pane');
-
-    if (archivePane) {
-      const showArchive = isGame && Boolean(state.archiveOpen);
-
-      archivePane.hidden = !showArchive;
-      archivePane.style.display = showArchive ? '' : 'none';
+    // 4. Viditelnost tažného dělítka a panelu archivu
+    const resizerEl = document.getElementById('split-resizer');
+    if (resizerEl) {
+      resizerEl.hidden = !useSplit;
     }
 
-    // 5. Upozornění režimu pouze pro čtení.
+    const archivePane = document.getElementById('archive-pane');
+    if (archivePane) {
+      archivePane.hidden = !useSplit;
+      archivePane.style.display = useSplit ? '' : 'none';
+    }
+
+    // 5. Upozornění režimu pouze pro čtení
     const readonlyEl = document.getElementById('readonly-banner');
-
     if (readonlyEl) {
-      const showReadonly =
-        isGame && this.engine.isReadOnlyView();
-
+      const showReadonly = isGame && this.engine.isReadOnlyView();
       readonlyEl.hidden = !showReadonly;
       readonlyEl.style.display = showReadonly ? 'flex' : 'none';
     }
 
-    // 6. Hlavní obsahová plocha.
+    // 6. Hlavní obsahová plocha
     const mainEl = document.getElementById('main');
     let currentStepDef = null;
 
@@ -182,13 +160,12 @@ export class AppController {
         mainEl.innerHTML = this.reporter.render(this.playerName);
       } else {
         const rendered = this._renderGameMain();
-
         mainEl.innerHTML = rendered.html;
         currentStepDef = rendered.stepDef;
       }
     }
 
-    // 7. Synchronizace archivu s aktuálním krokem scénáře.
+    // 7. Synchronizace archivu s aktuálním krokem scénáře
     this.archivePanel.sync(currentStepDef);
   }
 
@@ -210,6 +187,7 @@ export class AppController {
     const btnMute = document.getElementById('btn-mute');
     const btnExit = document.getElementById('btn-exit');
     const btnArchive = document.getElementById('btn-archive');
+    const archiveCountEl = document.getElementById('archive-count');
 
     if (headerStatus) {
       headerStatus.hidden = !isStarted;
@@ -221,34 +199,20 @@ export class AppController {
         chapterBadge.textContent = 'Závěrečný posudek';
       } else {
         const ch = this.engine.getChapter(state.viewingChapterId);
-
-        chapterBadge.textContent = ch
-          ? ch.shortTitle
-          : 'Kapitola 1';
+        chapterBadge.textContent = ch ? ch.shortTitle : 'Kapitola 1';
       }
     }
 
     if (ptsBadge) {
       const results = this.engine.getResults();
-
-      const formattedPts = results.totalEarned
-        .toFixed(1)
-        .replace('.', ',');
-
+      const formattedPts = results.totalEarned.toFixed(1).replace('.', ',');
       ptsBadge.textContent = `Body: ${formattedPts}`;
     }
 
     if (btnMute) {
       const muted = this.audio.isMuted();
-
-      btnMute.textContent = muted
-        ? 'Zvuk: Vyp'
-        : 'Zvuk: Zap';
-
-      btnMute.setAttribute(
-        'aria-pressed',
-        muted ? 'true' : 'false'
-      );
+      btnMute.textContent = muted ? 'Zvuk: Vyp' : 'Zvuk: Zap';
+      btnMute.setAttribute('aria-pressed', muted ? 'true' : 'false');
     }
 
     if (btnExit) {
@@ -256,12 +220,12 @@ export class AppController {
       btnExit.style.display = isStarted ? '' : 'none';
     }
 
-    // Tlačítko pro otevření archivu se zobrazuje pouze tehdy,
-    // když je hráč ve hře a archiv je právě zavřený.
-    if (btnArchive) {
-      const showArchive =
-        state.screen === 'game' && !state.archiveOpen;
+    if (archiveCountEl) {
+      archiveCountEl.textContent = String((state.unlockedDocs || []).length);
+    }
 
+    if (btnArchive) {
+      const showArchive = state.screen === 'game' && !state.archiveOpen;
       btnArchive.hidden = !showArchive;
       btnArchive.style.display = showArchive ? '' : 'none';
     }
@@ -273,14 +237,10 @@ export class AppController {
 
   _syncChapterNav() {
     const navEl = document.getElementById('chapter-nav');
-
     if (!navEl) return;
 
     const state = this.engine.state;
-
-    const showNav =
-      state.screen === 'game' ||
-      state.screen === 'assessment';
+    const showNav = state.screen === 'game' || state.screen === 'assessment';
 
     navEl.hidden = !showNav;
     navEl.style.display = showNav ? 'flex' : 'none';
@@ -292,19 +252,11 @@ export class AppController {
     const pillsHtml = chapters
       .map((ch) => {
         const isDone = state.completedChapters.includes(ch.id);
-
-        const isCurrent =
-          ch.id === state.currentChapterId && !isDone;
-
-        const isViewing =
-          state.screen === 'game' &&
-          ch.id === state.viewingChapterId;
-
-        const canOpen =
-          isDone || ch.id === state.currentChapterId;
+        const isCurrent = ch.id === state.currentChapterId && !isDone;
+        const isViewing = state.screen === 'game' && ch.id === state.viewingChapterId;
+        const canOpen = isDone || ch.id === state.currentChapterId;
 
         const classes = ['chap-pill'];
-
         if (isDone) classes.push('done');
         if (isCurrent) classes.push('current');
         if (isViewing) classes.push('viewing');
@@ -324,15 +276,12 @@ export class AppController {
       })
       .join('');
 
-    const allCompleted =
-      state.completedChapters.length === chapters.length;
+    const allCompleted = state.completedChapters.length === chapters.length;
 
     const reportPill = allCompleted
       ? `<button
           type="button"
-          class="chap-pill done ${
-            state.screen === 'assessment' ? 'viewing' : ''
-          }"
+          class="chap-pill done ${state.screen === 'assessment' ? 'viewing' : ''}"
           data-action="open-assessment"
         >Závěrečný posudek</button>`
       : '';
@@ -352,11 +301,7 @@ export class AppController {
       this.engine.state.completedChapters.length > 0;
 
     const history = this.reporter.loadHistory();
-
-    const currentChapter = this.engine.getChapter(
-      this.engine.state.currentChapterId
-    );
-
+    const currentChapter = this.engine.getChapter(this.engine.state.currentChapterId);
     const currentResults = this.engine.getResults();
 
     return `
@@ -367,16 +312,11 @@ export class AppController {
 
         <h2>${escapeHtml(briefing.title)}</h2>
 
-        <p
-          class="small"
-          style="font-size: 0.96rem; color: var(--ink-700);"
-        >
+        <p class="small" style="font-size: 0.96rem; color: var(--ink-700);">
           ${escapeHtml(briefing.subtitle)}
         </p>
 
-        ${briefing.paragraphs
-          .map((p) => `<p>${escapeHtml(p)}</p>`)
-          .join('')}
+        ${briefing.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join('')}
       </section>
 
       <div class="home-form-row">
@@ -398,56 +338,29 @@ export class AppController {
           ? `<div class="last-session-card">
               <strong>Nalezena rozehraná kampaň</strong>
 
-              <p
-                class="small"
-                style="margin: 0.25rem 0 0.6rem;"
-              >
+              <p class="small" style="margin: 0.25rem 0 0.6rem;">
                 Aktuální období:
-                <strong>
-                  ${escapeHtml(
-                    currentChapter ? currentChapter.title : ''
-                  )}
-                </strong>
-
+                <strong>${escapeHtml(currentChapter ? currentChapter.title : '')}</strong>
                 • Průběžný zisk:
-                <strong>
-                  ${currentResults.totalEarned}
-                  / ${currentResults.totalMaxPoints} b.
-                </strong>
+                <strong>${currentResults.totalEarned} / ${currentResults.totalMaxPoints} b.</strong>
               </p>
 
               <div class="action-bar" style="margin-top: 0;">
-                <button
-                  type="button"
-                  class="btn"
-                  data-action="start-campaign"
-                >
+                <button type="button" class="btn" data-action="start-campaign">
                   Pokračovat v rozehrané kampani
                 </button>
 
-                <button
-                  type="button"
-                  class="btn btn-danger btn-sm"
-                  data-action="new-game"
-                >
+                <button type="button" class="btn btn-danger btn-sm" data-action="new-game">
                   Smazat postup a začít znovu
                 </button>
               </div>
             </div>`
           : `<div class="action-bar">
-              <button
-                type="button"
-                class="btn"
-                data-action="start-campaign"
-              >
+              <button type="button" class="btn" data-action="start-campaign">
                 Ujmout se funkce předsedy vlády (Kapitola 1)
               </button>
 
-              <button
-                type="button"
-                class="btn btn-alt"
-                data-action="open-tutorial-modal"
-              >
+              <button type="button" class="btn btn-alt" data-action="open-tutorial-modal">
                 Metodický tutoriál
               </button>
             </div>`
@@ -473,23 +386,10 @@ export class AppController {
                     .map(
                       (h) => `
                       <tr>
-                        <td>
-                          ${escapeHtml(
-                            new Date(h.completedAt)
-                              .toLocaleDateString('cs-CZ')
-                          )}
-                        </td>
-
+                        <td>${escapeHtml(new Date(h.completedAt).toLocaleDateString('cs-CZ'))}</td>
                         <td>${escapeHtml(h.playerName)}</td>
-
-                        <td>
-                          ${h.totalEarned} / ${h.totalMaxPoints} b.
-                          (${h.totalPercentage} %)
-                        </td>
-
-                        <td>
-                          <strong>${escapeHtml(h.gradeLabel)}</strong>
-                        </td>
+                        <td>${h.totalEarned} / ${h.totalMaxPoints} b. (${h.totalPercentage} %)</td>
+                        <td><strong>${escapeHtml(h.gradeLabel)}</strong></td>
                       </tr>
                     `
                     )
@@ -508,15 +408,8 @@ export class AppController {
 
   _renderGameMain() {
     const state = this.engine.state;
-
-    const chapter = this.engine.getChapter(
-      state.viewingChapterId
-    );
-
-    const effectiveSteps = this.engine.getEffectiveStepIds(
-      chapter.id
-    );
-
+    const chapter = this.engine.getChapter(state.viewingChapterId);
+    const effectiveSteps = this.engine.getEffectiveStepIds(chapter.id);
     const isReadOnly = this.engine.isReadOnlyView();
 
     let viewStepIdx = isReadOnly
@@ -526,28 +419,19 @@ export class AppController {
     if (viewStepIdx >= effectiveSteps.length) {
       viewStepIdx = effectiveSteps.length - 1;
     }
-
     if (viewStepIdx < 0) {
       viewStepIdx = 0;
     }
 
     const activeStepId = effectiveSteps[viewStepIdx];
-
     const stepDef = this.engine.getStepDefinition(activeStepId);
 
     const stepNavHtml = effectiveSteps
       .map((sId, idx) => {
         const done = this.engine.isStepCompleted(sId);
         const isCurrent = idx === viewStepIdx;
-
-        const canClick =
-          isReadOnly ||
-          done ||
-          idx === state.currentStepIndex;
-
-        const btnClass = isCurrent
-          ? 'btn btn-sm'
-          : 'btn btn-alt btn-sm';
+        const canClick = isReadOnly || done || idx === state.currentStepIndex;
+        const btnClass = isCurrent ? 'btn btn-sm' : 'btn btn-alt btn-sm';
 
         return `
           <button
@@ -567,20 +451,11 @@ export class AppController {
 
     if (stepDef) {
       if (stepDef.type === 'E' || stepDef.type === 'R') {
-        taskHtml = this._renderChoiceTask(
-          stepDef,
-          isReadOnly
-        );
+        taskHtml = this._renderChoiceTask(stepDef, isReadOnly);
       } else if (stepDef.type === 'S') {
-        taskHtml = this._renderStrategicTask(
-          stepDef,
-          isReadOnly
-        );
+        taskHtml = this._renderStrategicTask(stepDef, isReadOnly);
       } else if (stepDef.type === 'N') {
-        taskHtml = this._renderRemedialTask(
-          stepDef,
-          isReadOnly
-        );
+        taskHtml = this._renderRemedialTask(stepDef, isReadOnly);
       } else if (stepDef.type === 'A') {
         taskHtml = this.defenseEditor.renderArgumentsTask(
           stepDef,
@@ -605,16 +480,12 @@ export class AppController {
         "
       >
         <div class="eyebrow">
-          ${escapeHtml(chapter.period)}
-          •
-          ${escapeHtml(chapter.caseFocus)}
+          ${escapeHtml(chapter.period)} • ${escapeHtml(chapter.caseFocus)}
         </div>
 
         <h2>${escapeHtml(chapter.title)}</h2>
 
-        ${chapter.intro
-          .map((p) => `<p>${escapeHtml(p)}</p>`)
-          .join('')}
+        ${chapter.intro.map((p) => `<p>${escapeHtml(p)}</p>`).join('')}
 
         <p class="small" style="margin-bottom: 0;">
           <strong>Vzdělávací cíl kapitoly:</strong>
@@ -654,7 +525,6 @@ export class AppController {
     };
 
     const maxAttempts = stepDef.maxAttempts || 3;
-
     const isCompleted = Boolean(stepState.completed);
 
     const eyebrowText =
@@ -665,15 +535,10 @@ export class AppController {
     const optionsHtml = stepDef.options
       .map((opt) => {
         const wasTried = stepState.attempts.includes(opt.id);
-
-        const revealCorrect =
-          isCompleted && opt.correct;
-
-        const revealWrong =
-          wasTried && !opt.correct;
+        const revealCorrect = isCompleted && opt.correct;
+        const revealWrong = wasTried && !opt.correct;
 
         const classes = ['opt'];
-
         if (revealCorrect) classes.push('good');
         if (revealWrong) classes.push('bad');
 
@@ -684,45 +549,26 @@ export class AppController {
             data-action="submit-choice"
             data-step-id="${escapeHtml(stepDef.id)}"
             data-option-id="${escapeHtml(opt.id)}"
-            ${
-              wasTried || isCompleted || isReadOnly
-                ? 'disabled'
-                : ''
-            }
+            ${wasTried || isCompleted || isReadOnly ? 'disabled' : ''}
           >
-            <span class="opt-key">
-              ${escapeHtml(opt.id)}
-            </span>
-
+            <span class="opt-key">${escapeHtml(opt.id)}</span>
             <span>${escapeHtml(opt.text)}</span>
           </button>
         `;
       })
       .join('');
 
-    // Zpětná vazba k již vyzkoušeným možnostem.
     const feedbackNotes = [];
 
     for (const triedId of stepState.attempts) {
-      const opt = stepDef.options.find(
-        (o) => o.id === triedId
-      );
-
+      const opt = stepDef.options.find((o) => o.id === triedId);
       if (!opt) continue;
 
       const tagInfo =
         opt.tag && this.engine.data.scoring.errorTags[opt.tag]
-          ? `<div
-              class="small"
-              style="margin-top: 0.3rem;"
-            >
-              <strong>
-                Chybový štítek ${escapeHtml(opt.tag)}:
-              </strong>
-
-              ${escapeHtml(
-                this.engine.data.scoring.errorTags[opt.tag]
-              )}
+          ? `<div class="small" style="margin-top: 0.3rem;">
+              <strong>Chybový štítek ${escapeHtml(opt.tag)}:</strong>
+              ${escapeHtml(this.engine.data.scoring.errorTags[opt.tag])}
             </div>`
           : '';
 
@@ -736,17 +582,11 @@ export class AppController {
     }
 
     if (isCompleted && !stepState.correct) {
-      const correctOpt = stepDef.options.find(
-        (o) => o.correct
-      );
-
+      const correctOpt = stepDef.options.find((o) => o.correct);
       if (correctOpt) {
         feedbackNotes.push(`
           <div class="note note-good">
-            <strong>
-              Správné řešení (${escapeHtml(correctOpt.id)}):
-            </strong>
-
+            <strong>Správné řešení (${escapeHtml(correctOpt.id)}):</strong>
             ${escapeHtml(correctOpt.feedback)}
           </div>
         `);
@@ -754,39 +594,24 @@ export class AppController {
     }
 
     const hintsUsed = stepState.hintsUsed || 0;
-
-    const totalHints = stepDef.hints
-      ? stepDef.hints.length
-      : 0;
-
-    const revealedHints = (stepDef.hints || []).slice(
-      0,
-      hintsUsed
-    );
+    const totalHints = stepDef.hints ? stepDef.hints.length : 0;
+    const revealedHints = (stepDef.hints || []).slice(0, hintsUsed);
 
     return `
       <section>
-        <div class="eyebrow">
-          ${escapeHtml(eyebrowText)}
-        </div>
+        <div class="eyebrow">${escapeHtml(eyebrowText)}</div>
 
         <h3>${escapeHtml(stepDef.title)}</h3>
 
         <div class="situation-box">
-          <p style="margin-bottom: 0;">
-            ${escapeHtml(stepDef.situation)}
-          </p>
+          <p style="margin-bottom: 0;">${escapeHtml(stepDef.situation)}</p>
         </div>
 
         ${this._renderDocChips(stepDef.relatedDocs)}
 
-        <p>
-          <strong>${escapeHtml(stepDef.question)}</strong>
-        </p>
+        <p><strong>${escapeHtml(stepDef.question)}</strong></p>
 
-        <div class="options-list">
-          ${optionsHtml}
-        </div>
+        <div class="options-list">${optionsHtml}</div>
 
         ${
           totalHints > 0
@@ -796,13 +621,7 @@ export class AppController {
                   class="btn btn-alt btn-sm"
                   data-action="request-hint"
                   data-step-id="${escapeHtml(stepDef.id)}"
-                  ${
-                    hintsUsed >= totalHints ||
-                    isCompleted ||
-                    isReadOnly
-                      ? 'disabled'
-                      : ''
-                  }
+                  ${hintsUsed >= totalHints || isCompleted || isReadOnly ? 'disabled' : ''}
                 >
                   ${
                     hintsUsed >= totalHints
@@ -815,9 +634,7 @@ export class AppController {
         }
 
         ${
-          revealedHints.length > 0 ||
-          feedbackNotes.length > 0 ||
-          isCompleted
+          revealedHints.length > 0 || feedbackNotes.length > 0 || isCompleted
             ? `<div class="feedback-stack">
                 ${revealedHints
                   .map(
@@ -843,10 +660,7 @@ export class AppController {
                           }
                         </strong>
 
-                        <div
-                          class="small"
-                          style="margin-top: 0.25rem;"
-                        >
+                        <div class="small" style="margin-top: 0.25rem;">
                           <strong>Právní opora:</strong>
                           ${escapeHtml(stepDef.lawRef || '')}
                         </div>
@@ -857,11 +671,7 @@ export class AppController {
             : ''
         }
 
-        ${
-          isCompleted
-            ? this._renderAdvanceButton(isReadOnly)
-            : ''
-        }
+        ${isCompleted ? this._renderAdvanceButton(isReadOnly) : ''}
       </section>
     `;
   }
@@ -872,11 +682,7 @@ export class AppController {
 
   _renderStrategicTask(stepDef, isReadOnly) {
     const stepState = this.engine.state.steps[stepDef.id];
-
-    const isConfirmed = Boolean(
-      stepState && stepState.confirmed
-    );
-
+    const isConfirmed = Boolean(stepState && stepState.confirmed);
     const selectedId = isConfirmed
       ? stepState.selectedOptionId
       : this.draftSelections[stepDef.id] || null;
@@ -884,9 +690,7 @@ export class AppController {
     const optionsHtml = stepDef.options
       .map((opt) => {
         const isSelected = selectedId === opt.id;
-
         const classes = ['opt'];
-
         if (isSelected) classes.push('sel');
 
         return `
@@ -898,15 +702,10 @@ export class AppController {
             data-option-id="${escapeHtml(opt.id)}"
             ${isConfirmed || isReadOnly ? 'disabled' : ''}
           >
-            <span class="opt-key">
-              ${escapeHtml(opt.id)}
-            </span>
-
+            <span class="opt-key">${escapeHtml(opt.id)}</span>
             <span>
               <strong>${escapeHtml(opt.text)}</strong>
-
               <br />
-
               <span class="small">
                 <strong>Politický dopad:</strong>
                 ${escapeHtml(opt.politicalImpact)}
@@ -917,39 +716,26 @@ export class AppController {
       })
       .join('');
 
-    const advisorVisible = Boolean(
-      this.advisorNoteRevealed[stepDef.id]
-    );
-
+    const advisorVisible = Boolean(this.advisorNoteRevealed[stepDef.id]);
     const confirmedOption = isConfirmed
-      ? stepDef.options.find(
-          (o) => o.id === stepState.selectedOptionId
-        )
+      ? stepDef.options.find((o) => o.id === stepState.selectedOptionId)
       : null;
 
     return `
       <section>
-        <div class="eyebrow">
-          Strategické rozhodnutí kabinetu
-        </div>
+        <div class="eyebrow">Strategické rozhodnutí kabinetu</div>
 
         <h3>${escapeHtml(stepDef.title)}</h3>
 
         <div class="situation-box">
-          <p style="margin-bottom: 0;">
-            ${escapeHtml(stepDef.situation)}
-          </p>
+          <p style="margin-bottom: 0;">${escapeHtml(stepDef.situation)}</p>
         </div>
 
         ${this._renderDocChips(stepDef.relatedDocs)}
 
-        <p>
-          <strong>${escapeHtml(stepDef.question)}</strong>
-        </p>
+        <p><strong>${escapeHtml(stepDef.question)}</strong></p>
 
-        <div class="options-list">
-          ${optionsHtml}
-        </div>
+        <div class="options-list">${optionsHtml}</div>
 
         ${
           stepDef.advisorNote
@@ -974,10 +760,7 @@ export class AppController {
           advisorVisible
             ? `<div class="feedback-stack">
                 <div class="note note-hint">
-                  <strong>
-                    Právní poradce dr. Adrian Keller:
-                  </strong>
-
+                  <strong>Právní poradce dr. Adrian Keller:</strong>
                   ${escapeHtml(stepDef.advisorNote)}
                 </div>
               </div>`
@@ -1005,27 +788,14 @@ export class AppController {
             ? `<div class="feedback-stack">
                 <div class="note note-good">
                   <strong>
-                    Rozhodnutí kabinetu přijato
-                    (zisk: ${stepState.pointsEarned} b.):
+                    Rozhodnutí kabinetu přijato (zisk: ${stepState.pointsEarned} b.):
                   </strong>
-
-                  <p style="margin: 0.35rem 0;">
-                    ${escapeHtml(
-                      confirmedOption.legalEvaluation
-                    )}
-                  </p>
-
-                  <p
-                    class="small"
-                    style="margin-bottom: 0;"
-                  >
-                    ${escapeHtml(
-                      confirmedOption.consequenceSummary
-                    )}
+                  <p style="margin: 0.35rem 0;">${escapeHtml(confirmedOption.legalEvaluation)}</p>
+                  <p class="small" style="margin-bottom: 0;">
+                    ${escapeHtml(confirmedOption.consequenceSummary)}
                   </p>
                 </div>
               </div>
-
               ${this._renderAdvanceButton(isReadOnly)}`
             : ''
         }
@@ -1039,11 +809,7 @@ export class AppController {
 
   _renderRemedialTask(stepDef, isReadOnly) {
     const stepState = this.engine.state.steps[stepDef.id];
-
-    const isConfirmed = Boolean(
-      stepState && stepState.confirmed
-    );
-
+    const isConfirmed = Boolean(stepState && stepState.confirmed);
     const selectedId = isConfirmed
       ? stepState.selectedOptionId
       : this.draftSelections[stepDef.id] || null;
@@ -1051,9 +817,7 @@ export class AppController {
     const optionsHtml = stepDef.options
       .map((opt) => {
         const isSelected = selectedId === opt.id;
-
         const classes = ['opt'];
-
         if (isSelected) classes.push('sel');
 
         return `
@@ -1065,10 +829,7 @@ export class AppController {
             data-option-id="${escapeHtml(opt.id)}"
             ${isConfirmed || isReadOnly ? 'disabled' : ''}
           >
-            <span class="opt-key">
-              ${escapeHtml(opt.id)}
-            </span>
-
+            <span class="opt-key">${escapeHtml(opt.id)}</span>
             <span>${escapeHtml(opt.text)}</span>
           </button>
         `;
@@ -1076,34 +837,24 @@ export class AppController {
       .join('');
 
     const confirmedOption = isConfirmed
-      ? stepDef.options.find(
-          (o) => o.id === stepState.selectedOptionId
-        )
+      ? stepDef.options.find((o) => o.id === stepState.selectedOptionId)
       : null;
 
     return `
       <section>
-        <div class="eyebrow">
-          Následný vývoj a možnost nápravy
-        </div>
+        <div class="eyebrow">Následný vývoj a možnost nápravy</div>
 
         <h3>${escapeHtml(stepDef.title)}</h3>
 
         <div class="situation-box">
-          <p style="margin-bottom: 0;">
-            ${escapeHtml(stepDef.situation)}
-          </p>
+          <p style="margin-bottom: 0;">${escapeHtml(stepDef.situation)}</p>
         </div>
 
         ${this._renderDocChips(stepDef.relatedDocs)}
 
-        <p>
-          <strong>${escapeHtml(stepDef.question)}</strong>
-        </p>
+        <p><strong>${escapeHtml(stepDef.question)}</strong></p>
 
-        <div class="options-list">
-          ${optionsHtml}
-        </div>
+        <div class="options-list">${optionsHtml}</div>
 
         ${
           !isConfirmed && !isReadOnly
@@ -1124,29 +875,17 @@ export class AppController {
         ${
           isConfirmed && confirmedOption
             ? `<div class="feedback-stack">
-                <div
-                  class="note ${
-                    confirmedOption.points > 0
-                      ? 'note-good'
-                      : 'note-bad'
-                  }"
-                >
+                <div class="note ${confirmedOption.points > 0 ? 'note-good' : 'note-bad'}">
                   <strong>
-                    Postup zaznamenán
-                    (nápravný zápočet: +${stepState.pointsEarned} b.):
+                    Postup zaznamenán (nápravný zápočet: +${stepState.pointsEarned} b.):
                   </strong>
-
-                  <p style="margin: 0.35rem 0;">
-                    ${escapeHtml(confirmedOption.feedback)}
-                  </p>
-
+                  <p style="margin: 0.35rem 0;">${escapeHtml(confirmedOption.feedback)}</p>
                   <div class="small">
                     <strong>Právní opora:</strong>
                     ${escapeHtml(stepDef.lawRef || '')}
                   </div>
                 </div>
               </div>
-
               ${this._renderAdvanceButton(isReadOnly)}`
             : ''
         }
@@ -1165,13 +904,11 @@ export class AppController {
 
     if (unlocked.length === 0) return '';
 
-    const documents =
-      this.engine.data.documents.documents || {};
+    const documents = this.engine.data.documents.documents || {};
 
     const chips = unlocked
       .map((id) => {
         const doc = documents[id];
-
         if (!doc) return '';
 
         return `
@@ -1181,8 +918,7 @@ export class AppController {
             data-action="open-doc"
             data-doc-id="${escapeHtml(id)}"
           >
-            Otevřít v archivu:
-            ${escapeHtml(doc.title)}
+            Otevřít v archivu: ${escapeHtml(doc.title)}
           </button>
         `;
       })
@@ -1199,37 +935,21 @@ export class AppController {
     if (isReadOnly) return '';
 
     const state = this.engine.state;
-
-    const effectiveSteps = this.engine.getEffectiveStepIds(
-      state.currentChapterId
-    );
-
-    const isLastStepOfChapter =
-      state.currentStepIndex + 1 >= effectiveSteps.length;
-
+    const effectiveSteps = this.engine.getEffectiveStepIds(state.currentChapterId);
+    const isLastStepOfChapter = state.currentStepIndex + 1 >= effectiveSteps.length;
     const chapters = this.engine.data.chapters.chapters;
-
-    const isLastChapter =
-      state.currentChapterId ===
-      chapters[chapters.length - 1].id;
+    const isLastChapter = state.currentChapterId === chapters[chapters.length - 1].id;
 
     let label = 'Pokračovat na další krok →';
-
     if (isLastStepOfChapter && !isLastChapter) {
-      label =
-        'Uzavřít kapitolu a přejít do dalšího období →';
+      label = 'Uzavřít kapitolu a přejít do dalšího období →';
     } else if (isLastStepOfChapter && isLastChapter) {
-      label =
-        'Ukončit funkční období a zobrazit závěrečný posudek →';
+      label = 'Ukončit funkční období a zobrazit závěrečný posudek →';
     }
 
     return `
       <div class="action-bar">
-        <button
-          type="button"
-          class="btn"
-          data-action="advance-step"
-        >
+        <button type="button" class="btn" data-action="advance-step">
           ${label}
         </button>
       </div>
@@ -1246,9 +966,7 @@ export class AppController {
     const bodyEl = document.getElementById('modal-body');
     const actionsEl = document.getElementById('modal-actions');
 
-    if (!backdrop || !titleEl || !bodyEl || !actionsEl) {
-      return;
-    }
+    if (!backdrop || !titleEl || !bodyEl || !actionsEl) return;
 
     titleEl.textContent = title;
     bodyEl.innerHTML = bodyHtml;
@@ -1260,7 +978,6 @@ export class AppController {
 
   closeModal() {
     const backdrop = document.getElementById('modal-backdrop');
-
     if (!backdrop) return;
 
     backdrop.hidden = true;
@@ -1272,18 +989,12 @@ export class AppController {
 
     const bodyHtml = `
       <p>${escapeHtml(tut.intro)}</p>
-
       ${tut.sections
         .map(
           (sec) => `
           <div style="margin-bottom: 0.85rem;">
-            <h4 style="margin: 0 0 0.25rem;">
-              ${escapeHtml(sec.heading)}
-            </h4>
-
-            <p style="margin: 0; font-size: 0.92rem;">
-              ${escapeHtml(sec.text)}
-            </p>
+            <h4 style="margin: 0 0 0.25rem;">${escapeHtml(sec.heading)}</h4>
+            <p style="margin: 0; font-size: 0.92rem;">${escapeHtml(sec.text)}</p>
           </div>
         `
         )
@@ -1294,11 +1005,7 @@ export class AppController {
       title: tut.title,
       bodyHtml,
       actionsHtml: `
-        <button
-          type="button"
-          class="btn"
-          data-action="close-modal"
-        >
+        <button type="button" class="btn" data-action="close-modal">
           Rozumím
         </button>
       `
@@ -1308,33 +1015,15 @@ export class AppController {
   openExitConfirmModal() {
     this.openModal({
       title: 'Ukončit rozehranou kampaň?',
-
       bodyHtml: `
-        <p>
-          Opravdu chcete ukončit současnou kampaň
-          a vrátit se na úvodní obrazovku?
-        </p>
-
-        <p class="small">
-          Veškerý dosavadní postup uložený v paměti
-          prohlížeče bude nenávratně vymazán.
-        </p>
+        <p>Opravdu chcete ukončit současnou kampaň a vrátit se na úvodní obrazovku?</p>
+        <p class="small">Veškerý dosavadní postup uložený v paměti prohlížeče bude nenávratně vymazán.</p>
       `,
-
       actionsHtml: `
-        <button
-          type="button"
-          class="btn btn-alt"
-          data-action="close-modal"
-        >
+        <button type="button" class="btn btn-alt" data-action="close-modal">
           Zrušit
         </button>
-
-        <button
-          type="button"
-          class="btn btn-danger"
-          data-action="confirm-reset-game"
-        >
+        <button type="button" class="btn btn-danger" data-action="confirm-reset-game">
           Ano, ukončit a smazat postup
         </button>
       `
@@ -1346,99 +1035,51 @@ export class AppController {
      ======================================================================== */
 
   _bindEvents() {
-    /* ----------------------------------------------------------------------
-       Pevná hlavička
-       ---------------------------------------------------------------------- */
+    document.getElementById('btn-archive')?.addEventListener('click', () => {
+      this.audio.playClick();
+      this.engine.toggleArchive(true);
+    });
 
-    document.getElementById('btn-archive')?.addEventListener(
-      'click',
-      () => {
-        this.audio.playClick();
-        this.engine.toggleArchive(true);
+    document.getElementById('btn-close-archive')?.addEventListener('click', () => {
+      this.audio.playClick();
+      this.engine.toggleArchive(false);
+    });
+
+    document.getElementById('btn-tutorial')?.addEventListener('click', () => {
+      this.audio.playClick();
+      this.openTutorialModal();
+    });
+
+    document.getElementById('btn-fz-dec')?.addEventListener('click', () => {
+      this.audio.playClick();
+      this._changeFontSize(-1);
+    });
+
+    document.getElementById('btn-fz-inc')?.addEventListener('click', () => {
+      this.audio.playClick();
+      this._changeFontSize(1);
+    });
+
+    document.getElementById('btn-mute')?.addEventListener('click', () => {
+      this.audio.toggleMute();
+      this.render();
+    });
+
+    document.getElementById('btn-exit')?.addEventListener('click', () => {
+      this.audio.playClick();
+      this.openExitConfirmModal();
+    });
+
+    document.getElementById('btn-return-active')?.addEventListener('click', () => {
+      this.audio.playClick();
+      this.engine.selectChapter(this.engine.state.currentChapterId);
+    });
+
+    document.getElementById('modal-backdrop')?.addEventListener('click', (e) => {
+      if (e.target.id === 'modal-backdrop') {
+        this.closeModal();
       }
-    );
-
-    document.getElementById('btn-close-archive')?.addEventListener(
-      'click',
-      () => {
-        this.audio.playClick();
-        this.engine.toggleArchive(false);
-      }
-    );
-
-    document.getElementById('btn-tutorial')?.addEventListener(
-      'click',
-      () => {
-        this.audio.playClick();
-        this.openTutorialModal();
-      }
-    );
-
-    document.getElementById('btn-fz-dec')?.addEventListener(
-      'click',
-      () => {
-        this.audio.playClick();
-        this._changeFontSize(-1);
-      }
-    );
-
-    document.getElementById('btn-fz-inc')?.addEventListener(
-      'click',
-      () => {
-        this.audio.playClick();
-        this._changeFontSize(1);
-      }
-    );
-
-    document.getElementById('btn-mute')?.addEventListener(
-      'click',
-      () => {
-        this.audio.toggleMute();
-        this.render();
-      }
-    );
-
-    document.getElementById('btn-exit')?.addEventListener(
-      'click',
-      () => {
-        this.audio.playClick();
-        this.openExitConfirmModal();
-      }
-    );
-
-    document.getElementById('btn-return-active')?.addEventListener(
-      'click',
-      () => {
-        this.audio.playClick();
-
-        this.engine.selectChapter(
-          this.engine.state.currentChapterId
-        );
-      }
-    );
-
-    /*
-     * Režimy archivu, kategorie katalogu a vyhledávání
-     * zde záměrně NEOBSLUHUJEME.
-     *
-     * Tyto prvky spravuje ArchivePanel ve svém
-     * bindInternalEvents(). Dvojí obsluha by mohla
-     * způsobovat opakované překreslování a konflikty
-     * mezi hodnotami data-mode a data-archive-mode.
-     */
-
-    /* ----------------------------------------------------------------------
-       Modální dialog
-       ---------------------------------------------------------------------- */
-
-    document.getElementById('modal-backdrop')?.addEventListener(
-      'click',
-      (e) => {
-        if (e.target.id === 'modal-backdrop') {
-          this.closeModal();
-        }
-      }
-    );
+    });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
@@ -1446,108 +1087,51 @@ export class AppController {
       }
     });
 
-    /* ----------------------------------------------------------------------
-       Tažení a klávesové ovládání oddělovače
-       ---------------------------------------------------------------------- */
-
     const resizer = document.getElementById('split-resizer');
-
     if (resizer) {
       resizer.addEventListener('pointerdown', (e) => {
         e.preventDefault();
-
         resizer.classList.add('dragging');
 
-        let latestPct =
-          this.engine.state.archiveWidthPct || 44;
+        let latestPct = this.engine.state.archiveWidthPct || 44;
 
         const onPointerMove = (moveEvent) => {
           const viewportWidth = window.innerWidth;
-
           if (viewportWidth <= 820) return;
 
-          const rightWidth =
-            viewportWidth - moveEvent.clientX;
+          const rightWidth = viewportWidth - moveEvent.clientX;
+          latestPct = Math.max(26, Math.min(68, Math.round((rightWidth / viewportWidth) * 100)));
 
-          latestPct = Math.max(
-            26,
-            Math.min(
-              68,
-              Math.round(
-                (rightWidth / viewportWidth) * 100
-              )
-            )
-          );
-
-          document.documentElement.style.setProperty(
-            '--archive-w',
-            `${latestPct}%`
-          );
+          document.documentElement.style.setProperty('--archive-w', `${latestPct}%`);
         };
 
         const onPointerUp = () => {
           resizer.classList.remove('dragging');
-
-          window.removeEventListener(
-            'pointermove',
-            onPointerMove
-          );
-
-          window.removeEventListener(
-            'pointerup',
-            onPointerUp
-          );
-
+          window.removeEventListener('pointermove', onPointerMove);
+          window.removeEventListener('pointerup', onPointerUp);
           this.engine.setArchiveWidth(latestPct);
         };
 
-        window.addEventListener(
-          'pointermove',
-          onPointerMove
-        );
-
-        window.addEventListener(
-          'pointerup',
-          onPointerUp
-        );
+        window.addEventListener('pointermove', onPointerMove);
+        window.addEventListener('pointerup', onPointerUp);
       });
 
       resizer.addEventListener('keydown', (e) => {
-        if (
-          e.key === 'ArrowLeft' ||
-          e.key === 'ArrowRight'
-        ) {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
           e.preventDefault();
-
-          const delta =
-            e.key === 'ArrowLeft' ? 3 : -3;
-
+          const delta = e.key === 'ArrowLeft' ? 3 : -3;
           const next = Math.max(
             26,
-            Math.min(
-              68,
-              (this.engine.state.archiveWidthPct || 44) +
-                delta
-            )
+            Math.min(68, (this.engine.state.archiveWidthPct || 44) + delta)
           );
-
           this.engine.setArchiveWidth(next);
-
-          document.documentElement.style.setProperty(
-            '--archive-w',
-            `${next}%`
-          );
+          document.documentElement.style.setProperty('--archive-w', `${next}%`);
         }
       });
     }
 
-    /* ----------------------------------------------------------------------
-       Delegované kliknutí na dynamicky vykreslené prvky
-       ---------------------------------------------------------------------- */
-
     document.body.addEventListener('click', (e) => {
       const target = e.target.closest('[data-action]');
-
       if (!target) return;
 
       const action = target.dataset.action;
@@ -1560,15 +1144,11 @@ export class AppController {
 
         case 'confirm-reset-game':
           this.audio.playClick();
-
           this.closeModal();
-
           this.draftSelections = {};
           this.advisorNoteRevealed = {};
-
           this.archivePanel.reset();
           this.defenseEditor.resetDrafts();
-
           this.engine.startNewGame();
           break;
 
@@ -1594,176 +1174,113 @@ export class AppController {
 
         case 'select-chapter': {
           const chapterId = target.dataset.chapterId;
-
           if (chapterId) {
             this.audio.playClick();
             this.engine.selectChapter(chapterId);
           }
-
           break;
         }
 
         case 'jump-step': {
           const idx = Number(target.dataset.stepIndex);
-
           if (Number.isNaN(idx)) break;
 
           this.audio.playClick();
-
           if (this.engine.isReadOnlyView()) {
-            this.draftSelections[
-              `readonlyStep_${this.engine.state.viewingChapterId}`
-            ] = idx;
-
+            this.draftSelections[`readonlyStep_${this.engine.state.viewingChapterId}`] = idx;
             this.render();
           } else {
-            this.engine.state.currentStepIndex = idx;
-            this.render();
+            this.engine.setStepIndex(idx);
           }
-
           break;
         }
 
         case 'submit-choice': {
           const { stepId, optionId } = target.dataset;
-
           if (stepId && optionId) {
-            this.engine.submitChoiceAnswer(
-              stepId,
-              optionId
-            );
-
-            const updated =
-              this.engine.state.steps[stepId];
-
+            this.engine.submitChoiceAnswer(stepId, optionId);
+            const updated = this.engine.state.steps[stepId];
             if (updated?.correct) {
               this.audio.playSuccess();
             } else {
               this.audio.playError();
             }
           }
-
           break;
         }
 
         case 'request-hint': {
           const { stepId } = target.dataset;
-
           if (stepId) {
             this.audio.playClick();
             this.engine.requestHint(stepId);
           }
-
           break;
         }
 
         case 'select-draft-option': {
           const { stepId, optionId } = target.dataset;
-
           if (stepId && optionId) {
             this.audio.playClick();
-
             this.draftSelections[stepId] = optionId;
-
             this.render();
           }
-
           break;
         }
 
         case 'toggle-advisor-note': {
           const { stepId } = target.dataset;
-
           if (stepId) {
             this.audio.playClick();
-
-            this.advisorNoteRevealed[stepId] =
-              !this.advisorNoteRevealed[stepId];
-
+            this.advisorNoteRevealed[stepId] = !this.advisorNoteRevealed[stepId];
             this.render();
           }
-
           break;
         }
 
         case 'confirm-strategic': {
           const { stepId } = target.dataset;
-
-          const chosen =
-            this.draftSelections[stepId];
-
+          const chosen = this.draftSelections[stepId];
           if (stepId && chosen) {
             this.audio.playSeal();
-
             this.archivePanel.setMode('reader');
-
-            this.engine.confirmStrategicDecision(
-              stepId,
-              chosen
-            );
+            this.engine.confirmStrategicDecision(stepId, chosen);
           }
-
           break;
         }
 
         case 'confirm-remedial': {
           const { stepId } = target.dataset;
-
-          const chosen =
-            this.draftSelections[stepId];
-
+          const chosen = this.draftSelections[stepId];
           if (stepId && chosen) {
             this.audio.playSeal();
-
             this.archivePanel.setMode('reader');
-
-            this.engine.confirmRemedialDecision(
-              stepId,
-              chosen
-            );
+            this.engine.confirmRemedialDecision(stepId, chosen);
           }
-
           break;
         }
 
         case 'confirm-arguments': {
-          const selected =
-            this.defenseEditor.getSelectedArgumentIds();
-
+          const selected = this.defenseEditor.getSelectedArgumentIds();
           if (selected.length > 0) {
             this.audio.playSeal();
-
-            this.engine.confirmArgumentsSelection(
-              selected
-            );
+            this.engine.confirmArgumentsSelection(selected);
           }
-
           break;
         }
 
         case 'move-sec5-arg': {
           const index = Number(target.dataset.index);
           const dir = Number(target.dataset.dir);
-
           this.audio.playClick();
-
-          this.defenseEditor.moveSection5Argument(
-            index,
-            dir
-          );
-
+          this.defenseEditor.moveSection5Argument(index, dir);
           this.render();
-
           break;
         }
 
         case 'confirm-pleading':
           this.audio.playSeal();
-
-          this.engine.confirmPleadingSubmission(
-            this.defenseEditor.getPleadingPayload()
-          );
-
+          this.engine.confirmPleadingSubmission(this.defenseEditor.getPleadingPayload());
           break;
 
         case 'advance-step':
@@ -1773,28 +1290,21 @@ export class AppController {
 
         case 'open-doc': {
           const { docId } = target.dataset;
-
           if (docId) {
             this.audio.playDocumentOpen();
-
             this.archivePanel.setMode('reader');
-
             this.engine.openDocument(docId);
           }
-
           break;
         }
 
         case 'close-doc-tab': {
           e.stopPropagation();
-
           const { docId } = target.dataset;
-
           if (docId) {
             this.audio.playClick();
             this.engine.closeDocumentTab(docId);
           }
-
           break;
         }
 
@@ -1805,11 +1315,7 @@ export class AppController {
 
         case 'export-assessment-md':
           this.audio.playClick();
-
-          this.reporter.downloadMarkdownReport(
-            this.playerName
-          );
-
+          this.reporter.downloadMarkdownReport(this.playerName);
           break;
 
         default:
@@ -1817,43 +1323,20 @@ export class AppController {
       }
     });
 
-    /* ----------------------------------------------------------------------
-       Změna zaškrtávacích polí a přepínačů v kapitole 6
-       ---------------------------------------------------------------------- */
-
     document.body.addEventListener('change', (e) => {
       const target = e.target;
-
       if (!target.dataset) return;
 
-      if (
-        target.dataset.action === 'toggle-arg-checkbox'
-      ) {
+      if (target.dataset.action === 'toggle-arg-checkbox') {
         this.audio.playClick();
-
-        this.defenseEditor.toggleArgument(
-          target.dataset.argId,
-          target.checked
-        );
-
+        this.defenseEditor.toggleArgument(target.dataset.argId, target.checked);
         this.render();
-      } else if (
-        target.dataset.action === 'select-pleading-option'
-      ) {
+      } else if (target.dataset.action === 'select-pleading-option') {
         this.audio.playClick();
-
-        this.defenseEditor.selectPleadingOption(
-          target.dataset.secId,
-          target.dataset.optionId
-        );
-
+        this.defenseEditor.selectPleadingOption(target.dataset.secId, target.dataset.optionId);
         this.render();
       }
     });
-
-    /* ----------------------------------------------------------------------
-       Ukládání jména hráče
-       ---------------------------------------------------------------------- */
 
     document.body.addEventListener('input', (e) => {
       if (e.target && e.target.id === 'player-name-input') {
@@ -1873,15 +1356,12 @@ async function loadAllData() {
   const responses = await Promise.all(
     entries.map(async ([key, url]) => {
       const res = await fetch(url);
-
       if (!res.ok) {
         throw new Error(
           `Nepodařilo se načíst datový soubor ${url} (HTTP ${res.status}).`
         );
       }
-
       const json = await res.json();
-
       return [key, json];
     })
   );
@@ -1895,35 +1375,20 @@ async function loadAllData() {
 
 async function bootstrap() {
   const mainEl = document.getElementById('main');
-
   if (!mainEl) return;
 
   try {
     const data = await loadAllData();
-
     const engine = new GameEngine(data);
-
     const app = new AppController(engine);
-
     app.render();
   } catch (error) {
-    console.error(
-      'Chyba při spuštění simulace:',
-      error
-    );
-
+    console.error('Chyba při spuštění simulace:', error);
     mainEl.innerHTML = `
       <div class="note note-bad" role="alert">
         <h2>Chyba při inicializaci aplikace</h2>
-
-        <p>
-          ${escapeHtml(error.message || String(error))}
-        </p>
-
-        <p
-          class="small"
-          style="margin-bottom: 0;"
-        >
+        <p>${escapeHtml(error.message || String(error))}</p>
+        <p class="small" style="margin-bottom: 0;">
           Ujistěte se, že aplikaci spouštíte přes lokální
           nebo webový HTTP server (nikoli přímo přes protokol
           <code>file://</code>, který blokuje načítání modulů
@@ -1935,8 +1400,5 @@ async function bootstrap() {
 }
 
 if (typeof document !== 'undefined') {
-  document.addEventListener(
-    'DOMContentLoaded',
-    bootstrap
-  );
+  document.addEventListener('DOMContentLoaded', bootstrap);
 }
