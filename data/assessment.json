@@ -1,1 +1,111 @@
-
+{
+  "overallIntro": {
+    "vyborne": "Tvůj výkon v simulaci prokázal vysokou úroveň právní orientace v systému ochrany základních práv v Evropské unii. Dokázal jsi důsledně rozlišovat pravomoci institucí EU a Rady Evropy, přesně pracovat s judikaturou Soudního dvora a poměřovat kolidující zájmy i pod politickým tlakem.",
+    "velmi_dobre": "Dosáhl jsi velmi solidního výsledku, který svědčí o dobré znalosti pramenů práva EU i judikatury Soudního dvora. V dílčích krocích se však objevily nepřesnosti při výkladu nebo strategickém vyvažování, na které se níže podrobně zaměřuji.",
+    "dobre": "Kampaň jsi dokončil s vyhovujícím základem, avšak tvá rozhodnutí vykazují opakované metodické rezervy v práci s prameny, judikaturou či testem proporcionality. Níže uvedený rozbor ukazuje konkrétní místa, kde politický instinkt převážil nad právní přesností.",
+    "nevyhovel": "Tvůj výkon v simulaci zatím nesplňuje požadavky na právně obhajitelné řízení státu v rámci Evropské unie. Opakovaně docházelo k záměně právních systémů, nepřesnému čtení rozsudků nebo k rozhodnutím, která jsou v přímém rozporu se závazným právem Unie.",
+    "downgradeNote": "Ačkoli tvůj celkový bodový zisk dosáhl hranice 90 %, výsledná klasifikace byla podle hodnoticích pravidel snížena na stupeň „velmi dobře“, protože nebyla splněna podmínka vyrovnaného profilu (alespoň šest z osmi kompetencí na 75 bodech a žádná pod 50 body)."
+  },
+  "competencyFeedback": {
+    "C1": {
+      "nevyhovela": "V rozlišování evropských právních systémů jsi dosáhl pouze {score} bodů ze 100 (pásmo nevyhověla). Opakovaně jsi směšoval pravomoci Soudního dvora EU a Evropského soudu pro lidská práva nebo výkladový vztah Listiny a EÚLP.",
+      "zakladni": "V rozlišování evropských právních systémů jsi získal {score} bodů ze 100 (pásmo základní). Základní strukturu obou organizací rozeznáváš, ale v hraničních otázkách rozsahu přezkumu SDEU jsi zaváhal.",
+      "dobra": "V rozlišování evropských právních systémů jsi dosáhl {score} bodů ze 100 (pásmo dobrá). Převážně správně odděluješ systém Evropské unie od systému Rady Evropy, drobná zaváhání se týkala detailů jejich vzájemného působení.",
+      "velmi_dobra": "V rozlišování evropských právních systémů jsi dosáhl {score} bodů ze 100 (pásmo velmi dobrá). Spolehlivě odlišuješ SDEU od ESLP a přesně chápeš roli EÚLP v právu Evropské unie.",
+      "recommendation": "Doporučení: Vždy si nejprve ujasni, podle jaké mezinárodní smlouvy daný soud jedná (SEU/SFEU u SDEU v Lucemburku oproti EÚLP u ESLP ve Štrasburku) a na základě jakého procesního titulu byl spor zahájen."
+    },
+    "C2": {
+      "nevyhovela": "V identifikaci právního problému jsi dosáhl {score} bodů ze 100 (pásmo nevyhověla). Unikaly ti předběžné otázky výkladu, povaha zásahu do práva či existence přeshraničního prvku.",
+      "zakladni": "V identifikaci právního problému jsi dosáhl {score} bodů ze 100 (pásmo základní). Věcný spor dokážeš pojmenovat, ale přehlížíš klíčové předběžné právní otázky.",
+      "dobra": "V identifikaci právního problému jsi dosáhl {score} bodů ze 100 (pásmo dobrá). Většinu skutkových situací jsi správně právně kvalifikoval.",
+      "velmi_dobra": "V identifikaci právního problému jsi dosáhl {score} bodů ze 100 (pásmo velmi dobrá). Přesně rozpoznáváš, kdy situace spadá do působnosti práva Unie i jakou právní otázku je nutné vyřešit jako první.",
+      "recommendation": "Doporučení: Před hodnocením přiměřenosti si vždy polož dvě předběžné otázky: spadá situace vůbec do působnosti práva EU a jaký je přesný obsah sporné povinnosti?"
+    },
+    "C3": {
+      "nevyhovela": "Ve výběru právního základu jsi získal {score} bodů ze 100 (pásmo nevyhověla). Nepřesně jsi určoval použitelnost Listiny podle čl. 51 odst. 1 i relevantní ustanovení Smluv.",
+      "zakladni": "Ve výběru právního základu jsi dosáhl {score} bodů ze 100 (pásmo základní). Základní ustanovení dokážeš vyhledat, ale činí ti potíže určit jejich přesnou použitelnost v konkrétním případě.",
+      "dobra": "Ve výběru právního základu jsi dosáhl {score} bodů ze 100 (pásmo dobrá). Relevantní ustanovení Smluv a Listiny vybíráš převážně správně.",
+      "velmi_dobra": "Ve výběru právního základu jsi dosáhl {score} bodů ze 100 (pásmo velmi dobrá). S jistotou určuješ aplikovatelné normy primárního práva Unie i odpovídající články Listiny.",
+      "recommendation": "Doporučení: U každého opatření členského státu ověřuj podmínku čl. 51 odst. 1 Listiny („výhradně pokud uplatňují právo Unie“) a důsledně odlišuj historickou citaci ze Smlouvy o ES od platného číslování SFEU."
+    },
+    "C4": {
+      "nevyhovela": "V práci s judikaturou jsi dosáhl {score} bodů ze 100 (pásmo nevyhověla). Opakovaně jsi Soudnímu dvoru připisoval právní závěry, které v rozsudcích vůbec nevyslovil.",
+      "zakladni": "V práci s judikaturou jsi získal {score} bodů ze 100 (pásmo základní). Rozsudky sice dokážeš přiřadit k tématu, ale dopouštíš se nepřesností při interpretaci jejich konkrétních odstavců.",
+      "dobra": "V práci s judikaturou jsi dosáhl {score} bodů ze 100 (pásmo dobrá). Závěry klíčových rozsudků vystihuješ převážně věrně, s dílčími nepřesnostmi v detailech.",
+      "velmi_dobra": "V práci s judikaturou jsi dosáhl {score} bodů ze 100 (pásmo velmi dobrá). Pečlivě rozlišuješ, co Soudní dvůr skutečně rozhodl, co ponechal otevřené a jaké skutkové okolnosti odůvodnily jeho závěr.",
+      "recommendation": "Doporučení: Při práci s judikaturou vždy ověřuj doslovné znění odkazovaných bodů rozsudku a striktně odděluj závazný výrok soudu od stanoviska generálního advokáta i vlastních domněnek."
+    },
+    "C5": {
+      "nevyhovela": "V oblasti proporcionality a konfliktu práv jsi dosáhl {score} bodů ze 100 (pásmo nevyhověla). Sklouzával jsi k absolutizaci jedné hodnoty nebo k paušálnímu upřednostnění politického zájmu bez poměřování.",
+      "zakladni": "V oblasti proporcionality a konfliktu práv jsi získal {score} bodů ze 100 (pásmo základní). Chápeš nutnost omezení odůvodnit, ale v konkrétním vyvažování jsi opakovaně chyboval.",
+      "dobra": "V oblasti proporcionality a konfliktu práv jsi dosáhl {score} bodů ze 100 (pásmo dobrá). Kolidující zájmy dokážeš poměřovat věcně, byť v některých rozhodnutích zůstaly rezervy.",
+      "velmi_dobra": "V oblasti proporcionality a konfliktu práv jsi dosáhl {score} bodů ze 100 (pásmo velmi dobrá). Důsledně aplikuješ test legitimního cíle, přiměřenosti, zachování podstaty práva i spravedlivé rovnováhy.",
+      "recommendation": "Doporučení: Žádné ze sporných práv ani svobod v těchto případech není absolutní. Vždy zvaž, zda sledovaného legitimního cíle nelze dosáhnout šetrnějším opatřením."
+    },
+    "C6": {
+      "nevyhovela": "V procesní orientaci jsi dosáhl {score} bodů ze 100 (pásmo nevyhověla). Chyboval jsi při určení příslušného soudního řízení i při volbě procesní strategie vlády.",
+      "zakladni": "V procesní orientaci jsi získal {score} bodů ze 100 (pásmo základní). Základní institucionální rámec znáš, ale v procesních krocích státu jsi zvolil méně obhajitelné postupy.",
+      "dobra": "V procesní orientaci jsi dosáhl {score} bodů ze 100 (pásmo dobrá). Většinu procesních a institucionálních otázek jsi vyřešil správně.",
+      "velmi_dobra": "V procesní orientaci jsi dosáhl {score} bodů ze 100 (pásmo velmi dobrá). Správně určuješ pravomoc SDEU v řízení podle čl. 258 SFEU i přiměřenou procesní obranu státu.",
+      "recommendation": "Doporučení: Procesní strategii státu před SDEU vždy opírej výlučně o důkazy, které má vláda skutečně založené ve spisu."
+    },
+    "C7": {
+      "nevyhovela": "V právní argumentaci jsi dosáhl {score} bodů ze 100 (pásmo nevyhověla). V závěrečném řízení jsi zařadil právně chybné argumenty nebo sestavil podání bez vnitřní logické návaznosti.",
+      "zakladni": "V právní argumentaci jsi získal {score} bodů ze 100 (pásmo základní). Rozpoznáš základní teze obhajoby, ale chybí jim přesná struktura a důsledné oddělení od zavádějících tvrzení.",
+      "dobra": "V právní argumentaci jsi dosáhl {score} bodů ze 100 (pásmo dobrá). Tvá argumentace proti námitkám Komise je převážně věcná a dobře strukturovaná.",
+      "velmi_dobra": "V právní argumentaci jsi dosáhl {score} bodů ze 100 (pásmo velmi dobrá). Přesně vyvracíš námitky Komise, vybíráš podložené argumenty a řadíš je do přesvědčivého právního podání.",
+      "recommendation": "Doporučení: Právní podání vždy vystav od nesporného skutkového stavu přes vymezení právní otázky a norem k metodě judikatury a teprve poté k aplikaci na konkrétní okolnosti."
+    },
+    "C8": {
+      "nevyhovela": "V návrhu právního řešení jsi dosáhl {score} bodů ze 100 (pásmo nevyhověla). Ve strategických situacích jsi opakovaně volil politicky líbivé, avšak právně neudržitelné kroky bez účinné nápravy.",
+      "zakladni": "V návrhu právního řešení jsi získal {score} bodů ze 100 (pásmo základní). Některá rozhodnutí vlády vystavila stát zbytečnému právnímu riziku či zásahu do základních práv.",
+      "dobra": "V návrhu právního řešení jsi dosáhl {score} bodů ze 100 (pásmo dobrá). Většinu krizí jsi řešil právně obhajitelným způsobem, případně jsi pochybení dokázal napravit.",
+      "velmi_dobra": "V návrhu právního řešení jsi dosáhl {score} bodů ze 100 (pásmo velmi dobrá). Dokázal jsi skloubit legitimní politické cíle vlády s nejméně zásahovými zákonnými prostředky.",
+      "recommendation": "Doporučení: Když politický tlak vyžaduje rychlý zásah, hledej vždy nejméně invazivní zákonný prostředek; pokud již k chybě dojde, zjednej neprodlenou a věcnou nápravu."
+    }
+  },
+  "strategicEvaluations": {
+    "S1": {
+      "A": "V Kapitole 1 (S1) jsi zavedl povinnou preventivní kontrolu návrhů na Ministerstvu spravedlnosti (stupeň 3/3). Tím jsi zajistil systematické ověřování čl. 51 odst. 1 Listiny ještě před schválením návrhů.",
+      "B": "V Kapitole 1 (S1) jsi ponechal kontrolu souladu na dialogu s Evropskou komisí (stupeň 2/3). Jde o právně obhajitelný postup, který však odkládá detekci možných zásahů do práv až do vnější fáze.",
+      "C": "V Kapitole 1 (S1) jsi zvolil čistě reaktivní přístup až na základě stížností občanů (stupeň 1/3), čímž jsi vystavil vládu zvýšenému riziku schválení vadných prováděcích předpisů."
+    },
+    "S2": {
+      "A": "V Kapitole 2 (S2) jsi prosadil kupony vystavené na jméno příjemce (stupeň 1/3). Ačkoli rozhodnutí Komise jmennou identifikaci podle věci Stauder nevyžadovalo ani nezakazovalo, zvolil jsi nejinvazivnější vnitrostátní variantu, což vyvolalo ústavní stížnost pana Hartla.",
+      "B": "V Kapitole 2 (S2) jsi zavedl anonymizované číslované kupony s ověřením na sociálním úřadě (stupeň 3/3). Dosáhl jsi cíle kontroly nejméně zásahovým prostředkem bez ponižování příjemců dávek.",
+      "C": "V Kapitole 2 (S2) jsi kuponový program vůbec nespustil (stupeň 2/3). Postup je právně nezávadný, neboť rozhodnutí stát pouze zmocňovalo, avšak rezignoval jsi na naplnění sociálního cíle."
+    },
+    "S3": {
+      "A": "V Kapitole 3 (S3) jsi veřejně pozastavil uplatňování unijního zákazu na vhodných vinicích (stupeň 0/3). Šlo o přímý rozpor s přímo použitelným nařízením i se zásadou jednoty práva Unie (Hauer, bod 14), což vyvolalo formální upozornění Komise.",
+      "B": "V Kapitole 3 (S3) jsi důsledně uplatnil nařízení, vysvětlil pěstitelům jeho dočasnou povahu a prosazoval strukturální reformu v Radě EU (stupeň 3/3). Tím jsi plně respektoval závaznost práva Unie.",
+      "C": "V Kapitole 3 (S3) jsi pokynem nařídil extenzivní výklad výjimek ze zákazu výsadby (stupeň 1/3). Tento pokus o obejití taxativních pravidel nařízení (srov. Hauer, body 11–12) vedl k formálnímu upozornění Komise."
+    },
+    "S4": {
+      "A": "V Kapitole 4 (S4) jsi nařídil okamžité vykonání vyhoštění manželky pana Elmera (stupeň 0/3). Rozhodnutí porušilo spravedlivou rovnováhu mezi rodinným životem a veřejným pořádkem (Carpenter, body 43–45) a způsobilo faktické odloučení rodiny.",
+      "B": "V Kapitole 4 (S4) jsi výkon vyhoštění pozastavil a nařídil individuální posouzení případu (stupeň 3/3). Správně jsi zohlednil opravdovost manželství, bezúhonnost i vazbu na přeshraniční služby manžela.",
+      "C": "V Kapitole 4 (S4) jsi vyhoštění vykonal s pouhým příslibem možnosti budoucí žádosti ze zahraničí (stupeň 1/3). Možnost pozdější žádosti neodstraňuje nepřiměřenost samotného přerušení rodinného života."
+    },
+    "S5": {
+      "A": "V Kapitole 5 (S5) jsi shromáždění na dálnici D7 preventivně zakázal (stupeň 1/3). Úplný zákaz bez vyzkoušení mírnějších opatření představoval nepřiměřený zásah do svobody shromažďování (Schmidberger, bod 89) a připravil vládu o doložený protokol doprovodných opatření.",
+      "B": "V Kapitole 5 (S5) jsi shromáždění nezakázal a současně uložil policejní koordinaci, včasnou informační kampaň, vyznačení objízdných tras a časový limit 30 hodin (stupeň 3/3). Postup plně odpovídá doktríně rozsudku Schmidberger a doložil připravenost koridoru.",
+      "C": "V Kapitole 5 (S5) jsi shromáždění nezakázal, avšak nepřijal jsi žádná doprovodná ani informační opatření (stupeň 1/3). Taková pasivita odporuje povinnosti státu podle čl. 4 odst. 3 SEU (Schmidberger, body 59 a 87).",
+      "D": "V Kapitole 5 (S5) jsi shromáždění vykázal na odstavný pruh na nejvýše tři hodiny (stupeň 2/3). Volba spadá do široké posuzovací pravomoci, avšak bod 90 rozsudku Schmidberger varuje, že tak přísné podmínky mohou akci zbavit podstatné části významu."
+    },
+    "S6_with_docs": {
+      "A": "V Kapitole 6 (S6) jsi zvolil plnou procesní obranu směřující k zamítnutí žaloby (stupeň 3/3). Vzhledem k tomu, že jsi měl z předchozí kapitoly doložena organizační a informační opatření koridoru D7, stála tato obrana na pevném důkazním základě.",
+      "B": "V Kapitole 6 (S6) jsi zvolil obranu v podstatné části spojenou s uznáním dílčího nedostatku a nápravným plánem (stupeň 2/3). Postup je poctivý a právně obhajitelný, ačkoli při doložených opatřeních koridoru stát v části sporu zbytečně ustoupil.",
+      "C": "V Kapitole 6 (S6) jsi odmítl pravomoc SDEU s odkazem na přednost marenské ústavy (stupeň 0/3). Tento postoj je v přímém rozporu se Smlouvami i s judikaturou SDEU (Hauer, bod 14)."
+    },
+    "S6_without_docs": {
+      "A": "V Kapitole 6 (S6) jsi zvolil plnou procesní obranu bez uznání jakýchkoli nedostatků (stupeň 1/3). Protože však z předchozí kapitoly chyběl doložený protokol organizačních opatření koridoru D7, nebyla plná obrana dostatečně podložena důkazy ve smyslu bodu 87 rozsudku Schmidberger.",
+      "B": "V Kapitole 6 (S6) jsi správně přizpůsobil procesní strategii důkazní situaci: obhájil jsi samotné nezakázání shromáždění, avšak poctivě jsi uznal dílčí nedostatek při prodloužení blokády a předložil nápravný plán (stupeň 3/3).",
+      "C": "V Kapitole 6 (S6) jsi odmítl pravomoc SDEU s odkazem na přednost marenské ústavy (stupeň 0/3). Tento postoj je v přímém rozporu se Smlouvami i s judikaturou SDEU (Hauer, bod 14)."
+    }
+  },
+  "remedialEvaluations": {
+    "N3_repaired": "V návaznosti na formální upozornění Komise (N3) jsi zrušil vadný pokyn a obnovil jednotné uplatňování nařízení Rady, čímž jsi pochybení z Kapitoly 3 účinně napravil.",
+    "N3_unrepaired": "Ani po doručení formálního upozornění Komise (N3) jsi protiprávní postup úřadů neodstranil, takže porušení práva Unie nadále trvalo.",
+    "N4_repaired": "Po vykonaném vyhoštění (N4) jsi rozhodnutí zrušil a umožnil manželce pana Elmera návrat k rodině. Tím jsi zjednal dostupnou nápravu, avšak doba faktického odloučení rodiny zůstává nevratným následkem.",
+    "N4_unrepaired": "Po vykonaném vyhoštění (N4) jsi nezjednal nápravu umožňující společný rodinný život, takže zásah do práv chráněných ve věci Carpenter trval."
+  }
+}
