@@ -159,9 +159,18 @@ export class ArchivePanel {
     const isCatalog = newMode === 'catalog';
     const isInstitutions = newMode === 'institutions';
 
-    if (this.workspaceView) this.workspaceView.hidden = !isReader;
-    if (this.catalogView) this.catalogView.hidden = !isCatalog;
-    if (this.institutionsView) this.institutionsView.hidden = !isInstitutions;
+    if (this.workspaceView) {
+      this.workspaceView.hidden = !isReader;
+      this.workspaceView.style.display = isReader ? '' : 'none';
+    }
+    if (this.catalogView) {
+      this.catalogView.hidden = !isCatalog;
+      this.catalogView.style.display = isCatalog ? '' : 'none';
+    }
+    if (this.institutionsView) {
+      this.institutionsView.hidden = !isInstitutions;
+      this.institutionsView.style.display = isInstitutions ? '' : 'none';
+    }
 
     if (isReader) {
       this.renderTabs();
@@ -286,7 +295,10 @@ export class ArchivePanel {
     const doc = activeDocId ? docsMap[activeDocId] : null;
 
     if (!doc) {
-      if (this.docToolbar) this.docToolbar.hidden = true;
+      if (this.docToolbar) {
+        this.docToolbar.hidden = true;
+        this.docToolbar.style.display = 'none';
+      }
       this.showComparison = false;
       this.docReader.innerHTML = `
         <div class="empty-state">
@@ -297,11 +309,15 @@ export class ArchivePanel {
       return;
     }
 
-    if (this.docToolbar) this.docToolbar.hidden = false;
+    if (this.docToolbar) {
+      this.docToolbar.hidden = false;
+      this.docToolbar.style.display = '';
+    }
 
     const isHighlighted = Boolean(this.engine.state.highlightedDocs?.[activeDocId]);
     if (this.btnHighlight) {
       this.btnHighlight.hidden = false;
+      this.btnHighlight.style.display = '';
       this.btnHighlight.setAttribute('aria-pressed', String(isHighlighted));
       this.btnHighlight.textContent = isHighlighted
         ? 'Zrušit zvýraznění pasáží'
@@ -315,6 +331,7 @@ export class ArchivePanel {
 
     if (this.btnToggleCompare) {
       this.btnToggleCompare.hidden = !hasComparison;
+      this.btnToggleCompare.style.display = hasComparison ? '' : 'none';
       if (!hasComparison) {
         this.showComparison = false;
       }
@@ -476,6 +493,7 @@ export class ArchivePanel {
 
     if (this.infringementSection) {
       this.infringementSection.hidden = !showInfringement;
+      this.infringementSection.style.display = showInfringement ? '' : 'none';
     }
     if (showInfringement && this.schemaInfringementBox && diagrams.infringementSchema) {
       this.schemaInfringementBox.innerHTML = diagrams.infringementSchema;
