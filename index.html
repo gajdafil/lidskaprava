@@ -1,35 +1,140 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="cs">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>L’état, c’est moi – anebo ne? | Ochrana základních práv v EU</title>
+  <title>L’état, c’est moi – anebo ne? | Ochrana základních práv v Evropské unii</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
-  <header class="topbar noprint">
+  <header class="app-header noprint">
     <div class="brand">
       <span class="logo">L’état, c’est moi – anebo ne?</span>
-      <span class="subtitle">Úřad předsedy vlády Marenské republiky</span>
+      <span class="brand-subtitle">Ochrana základních práv v Evropské unii</span>
     </div>
-    <nav id="chapter-nav" class="chapter-nav" aria-label="Postup kampaní"></nav>
-    <div class="toolbar">
-      <span id="pts" class="pts-badge" hidden></span>
-      <button type="button" class="top-btn" id="btn-home" hidden>Úvodní obrazovka</button>
-      <button type="button" class="top-btn primary" id="btn-archive" hidden>Archiv a instituce</button>
-      <button type="button" class="top-btn" id="btn-mute" title="Ztlumit nebo zapnout funkční zvuky">Zvuk: zapnuto</button>
+
+    <div class="header-status" id="header-status" hidden>
+      <span class="status-pill" id="chapter-badge" title="Aktuální kapitola">Kapitola 1</span>
+      <span class="status-pill status-score" id="pts-badge" title="Právní úspěšnost">Body: 0,0</span>
+    </div>
+
+    <nav class="header-controls" aria-label="Hlavní ovládání aplikace">
+      <button type="button" class="hdr-btn" id="btn-archive" hidden>
+        Archiv <span class="badge-count" id="archive-count">0</span>
+      </button>
+      <button type="button" class="hdr-btn" id="btn-tutorial">Tutoriál</button>
       <div class="font-controls" role="group" aria-label="Velikost písma">
-        <button type="button" class="top-btn" id="btn-fz-down" title="Zmenšit písmo">A−</button>
-        <button type="button" class="top-btn" id="btn-fz-up" title="Zvětšit písmo">A+</button>
+        <button type="button" class="hdr-btn hdr-btn-icon" id="btn-fz-dec" title="Zmenšit písmo" aria-label="Zmenšit písmo">A−</button>
+        <button type="button" class="hdr-btn hdr-btn-icon" id="btn-fz-inc" title="Zvětšit písmo" aria-label="Zvětšit písmo">A+</button>
       </div>
-    </div>
+      <button type="button" class="hdr-btn" id="btn-mute" aria-pressed="false">Zvuk: Zap</button>
+      <button type="button" class="hdr-btn hdr-btn-danger" id="btn-exit" hidden>Ukončit kampaň</button>
+    </nav>
   </header>
 
-  <div id="workspace" class="workspace">
-    <main id="main" class="main-pane" tabindex="-1"></main>
-    <div id="resizer" class="resizer noprint" hidden title="Tažením upravíte šířku panelů"></div>
-    <aside id="drawer" class="drawer-pane noprint" hidden aria-label="Archiv, instituce a mapy"></aside>
+  <nav class="chapter-nav noprint" id="chapter-nav" aria-label="Chronologie kampaně" hidden></nav>
+
+  <div class="workspace single-view" id="workspace">
+    <section class="main-pane" id="main-pane" aria-live="polite">
+      <div class="readonly-banner noprint" id="readonly-banner" hidden>
+        <span>Prohlížíte dokončenou kapitolu pouze pro čtení. Odpovědi ani bodové hodnocení nelze měnit.</span>
+        <button type="button" class="btn btn-sm" id="btn-return-active">Zpět k aktivnímu kroku</button>
+      </div>
+      <main id="main" class="main-content"></main>
+    </section>
+
+    <div
+      class="split-resizer noprint"
+      id="split-resizer"
+      role="separator"
+      aria-orientation="vertical"
+      aria-label="Upravit poměr panelů zadání a archivu"
+      tabindex="0"
+      hidden
+    ></div>
+
+    <aside class="archive-pane noprint" id="archive-pane" aria-label="Vládní archiv a právní prameny" hidden>
+      <div class="archive-header">
+        <div class="archive-mode-tabs" role="tablist" aria-label="Režim archivu">
+          <button type="button" class="mode-tab active" role="tab" aria-selected="true" data-mode="workspace">
+            Otevřené dokumenty (<span id="open-tabs-count">0</span>)
+          </button>
+          <button type="button" class="mode-tab" role="tab" aria-selected="false" data-mode="catalog">
+            Katalog archivu
+          </button>
+          <button type="button" class="mode-tab" role="tab" aria-selected="false" data-mode="institutions">
+            Instituce a mapy
+          </button>
+        </div>
+        <button type="button" class="hdr-btn hdr-btn-close" id="btn-close-archive" aria-label="Skrýt archiv">Skrýt</button>
+      </div>
+
+      <!-- Režim 1: Pracovní plocha se záložkami dokumentů -->
+      <div class="archive-view" id="view-doc-workspace">
+        <div class="doc-tabs-bar" id="doc-tabs-bar" role="tablist" aria-label="Záložky otevřených dokumentů"></div>
+        <div class="doc-toolbar" id="doc-toolbar" hidden>
+          <button type="button" class="btn btn-alt btn-sm" id="btn-toggle-highlight" aria-pressed="false">
+            Zvýraznit relevantní pasáže
+          </button>
+          <button type="button" class="btn btn-alt btn-sm" id="btn-toggle-compare" hidden>
+            Porovnat s případem D7
+          </button>
+        </div>
+        <div class="doc-reader" id="doc-reader">
+          <div class="empty-state">
+            <p>Zatím nemáte otevřený žádný dokument.</p>
+            <p class="small">Vyberte dokument z <strong>Katalogu archivu</strong> nebo klikněte na odkazovaný pramen v zadání úlohy.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Režim 2: Katalog archivu s filtrem kategorií -->
+      <div class="archive-view" id="view-doc-catalog" hidden>
+        <div class="catalog-filter-bar">
+          <label for="archive-cat-select" class="small"><strong>Kategorie pramene:</strong></label>
+          <select id="archive-cat-select" class="select-control"></select>
+        </div>
+        <div class="catalog-list" id="archive-doc-list"></div>
+      </div>
+
+      <!-- Režim 3: Postupně odemykaná institucionální mapa a vizualizace -->
+      <div class="archive-view" id="view-institutions" hidden>
+        <div class="institutions-scroll" id="institutions-scroll">
+          <section class="viz-section">
+            <h3 class="viz-title">Institucionální mapa</h3>
+            <p class="small">Instituce se odemykají postupně podle toho, jak vstupují do rozhodování vlády.</p>
+            <div id="institutions-list" class="institutions-list"></div>
+          </section>
+
+          <section class="viz-section">
+            <h3 class="viz-title">Systém EU a systém Rady Evropy</h3>
+            <div id="schema-eu-coe-box" class="viz-box"></div>
+          </section>
+
+          <section class="viz-section">
+            <h3 class="viz-title">Orientační mapa Marenie</h3>
+            <div id="map-marenie-box" class="viz-box"></div>
+          </section>
+
+          <section class="viz-section" id="viz-infringement-section" hidden>
+            <h3 class="viz-title">Řízení o nesplnění povinnosti (čl. 258 SFEU)</h3>
+            <div id="schema-infringement-box" class="viz-box"></div>
+          </section>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Modální dialog pro potvrzení, upozornění, tutoriál a obnovu dat -->
+  <div class="modal-backdrop noprint" id="modal-backdrop" hidden>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <h2 id="modal-title">Upozornění</h2>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-actions" id="modal-actions"></div>
+    </div>
   </div>
 
   <script type="module" src="js/app.js"></script>
