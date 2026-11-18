@@ -21,13 +21,14 @@ const DATA_FILES = {
   assessment: 'data/assessment.json'
 };
 
+const FONT_SIZE_KEY = 'letat_cest_moi_font_size_v1';
+const PLAYER_NAME_KEY = 'letat_cest_moi_player_name_v1';
+
 export class AppController {
   /**
-   * @param {HTMLElement} rootEl
    * @param {GameEngine} engine
    */
-  constructor(rootEl, engine) {
-    this.rootEl = rootEl;
+  constructor(engine) {
     this.engine = engine;
     this.audio = new AudioManager();
     this.documentViewer = new DocumentViewer(engine);
@@ -35,67 +36,185 @@ export class AppController {
     this.defenseEditor = new DefenseEditor(engine);
     this.reporter = new AssessmentReporter(engine);
 
-    this.institutionsModalOpen = false;
+    this.fontSizePx = this._loadFontSize();
+    this.playerName = this._loadPlayerName();
     this.advisorNoteRevealed = {};
     this.draftSelections = {};
 
-    this._bindDelegatedEvents();
+    this._applyFontSize();
+    this._bindEvents();
     this.engine.subscribe(() => this.render());
+  }
+
+  _loadFontSize() {
+    try {
+      const val = Number(window.localStorage.getItem(FONT_SIZE_KEY));
+      return val >= 14 && val <= 22 ? val : 17;
+    } catch {
+      return 17;
+    }
+  }
+
+  _applyFontSize() {
+    document.documentElement.style.setProperty('--fs', `${this.fontSizePx}px`);
+    try {
+      window.localStorage.setItem(FONT_SIZE_KEY, String(this.fontSizePx));
+    } catch {
+      // Ignorovat
+    }
+  }
+
+  _changeFontSize(delta) {
+    const next = Math.max(14, Math.min(22, this.fontSizePx + delta));
+    if (next !== this.fontSizePx) {
+      this.fontSizePx = next;
+      this._applyFontSize();
+    }
+  }
+
+  _loadPlayerName() {
+    try {
+      return window.localStorage.getItem(PLAYER_NAME_KEY) || '';
+    } catch {
+      return '';
+    }
+  }
+
+  _savePlayerName(name) {
+    this.playerName = String(name || '').trim();
+    try {
+      window.localStorage.setItem(PLAYER_NAME_KEY, this.playerName);
+    } catch {
+      // Ignorovat
+    }
   }
 
   render() {
     const state = this.engine.state;
-    document.documentElement.style.setProperty(
-      '--archive-width',
-      `${state.archiveWidthPct || 42}%`
-    );
+    const isGame = state.screen === 'game';
+    const isAssessment = state.screen === 'assessment';
 
-    let mainHtml = '';
-    if (state.screen === 'briefing') {
-      mainHtml = this._renderBriefingScreen();
-    } else if (state.screen === 'tutorial') {
-      mainHtml = this._renderTutorialScreen();
-    } else if (state.screen === 'assessment') {
-      mainHtml = this.reporter.render();
-    } else {
-      mainHtml = this._renderGameWorkspace();
+    if (isAssessment) {
+      this.reporter.recordCompletedCampaign(this.playerName);
     }
 
-    const modalHtml = this.institutionsModalOpen
-      ? this.documentViewer.renderInstitutionsModal()
-      : '';
+    // Aktualizace šířky archivu (--archive-w)
+    document.documentElement.style.setProperty(
+      '--archive-w',
+      `${state.archiveWidthPct || 44}%`
+    );
 
-    this.rootEl.innerHTML = `
-      ${this._renderTopbar()}
-      ${mainHtml}
-      ${modalHtml}
-    `;
+    // 1. Hlavička a stavové odznaky
+    this._syncHeader();
 
-    if (state.screen === 'game' && state.archiveOpen) {
-      this.archivePanel.bindScrollPersistence();
+    // 2. Chronologická navigace kapitol (#chapter-nav)
+    this._syncChapterNav();
+
+    // 3. Režim rozvržení pracovního prostoru (.single-view vs .split-view)
+    const workspaceEl = document.getElementById('workspace');
+    if (workspaceEl) {
+      const useSplit = isGame && Boolean(state.archiveOpen);
+      workspaceEl.classList.toggle('split-view', useSplit);
+      workspaceEl.classList.toggle('single-view', !useSplit);
+    }
+
+    // 4. Upozornění režimu pouze pro čtení (#readonly-banner)
+    const readonlyEl = document.getElementById('readonly-banner');
+    if (readonlyEl) {
+      const showReadonly = isGame && this.engine.isReadOnlyView();
+      readonlyEl.hidden = !showReadonly;
+      readonlyEl.style.display = showReadonly ? 'flex' : 'none';
+    }
+
+    // 5. Hlavní obsahová plocha (#main)
+    const mainEl = document.getElementById('main');
+    let currentStepDef = null;
+
+    if (mainEl) {
+      if (state.screen === 'briefing') {
+        mainEl.innerHTML = this._renderHomeScreen();
+      } else if (state.screen === 'assessment') {
+        mainEl.innerHTML = this.reporter.render(this.playerName);
+      } else {
+        const rendered = this._renderGameMain();
+        mainEl.innerHTML = rendered.html;
+        currentStepDef = rendered.stepDef;
+      }
+    }
+
+    // 6. Boční panel archivu (#archive-pane)
+    this.archivePanel.sync(currentStepDef);
+  }
+
+  _syncHeader() {
+    const state = this.engine.state;
+    const isStarted =
+      state.screen === 'game' ||
+      state.screen === 'assessment' ||
+      Object.keys(state.steps).length > 0;
+
+    const headerStatus = document.getElementById('header-status');
+    const chapterBadge = document.getElementById('chapter-badge');
+    const ptsBadge = document.getElementById('pts-badge');
+    const btnMute = document.getElementById('btn-mute');
+    const btnExit = document.getElementById('btn-exit');
+
+    if (headerStatus) {
+      headerStatus.hidden = !isStarted;
+      headerStatus.style.display = isStarted ? 'flex' : 'none';
+    }
+
+    if (chapterBadge) {
+      if (state.screen === 'assessment') {
+        chapterBadge.textContent = 'Závěrečný posudek';
+      } else {
+        const ch = this.engine.getChapter(state.viewingChapterId);
+        chapterBadge.textContent = ch ? ch.shortTitle : 'Kapitola 1';
+      }
+    }
+
+    if (ptsBadge) {
+      const results = this.engine.getResults();
+      const formattedPts = results.totalEarned.toFixed(1).replace('.', ',');
+      ptsBadge.textContent = `Body: ${formattedPts}`;
+    }
+
+    if (btnMute) {
+      const muted = this.audio.isMuted();
+      btnMute.textContent = muted ? 'Zvuk: Vyp' : 'Zvuk: Zap';
+      btnMute.setAttribute('aria-pressed', muted ? 'true' : 'false');
+    }
+
+    if (btnExit) {
+      btnExit.hidden = !isStarted;
+      btnExit.style.display = isStarted ? '' : 'none';
     }
   }
 
-  /* ========================================================================
-     1. Horní navigační lišta
-     ======================================================================== */
+  _syncChapterNav() {
+    const navEl = document.getElementById('chapter-nav');
+    if (!navEl) return;
 
-  _renderTopbar() {
     const state = this.engine.state;
-    const chapters = this.engine.data.chapters.chapters;
-    const results = this.engine.getResults();
+    const showNav = state.screen === 'game' || state.screen === 'assessment';
+    navEl.hidden = !showNav;
+    navEl.style.display = showNav ? 'flex' : 'none';
 
-    const chapterPills = chapters
+    if (!showNav) return;
+
+    const chapters = this.engine.data.chapters.chapters || [];
+    const pillsHtml = chapters
       .map((ch) => {
-        const isCompleted = state.completedChapters.includes(ch.id);
-        const isCurrentActive = ch.id === state.currentChapterId;
+        const isDone = state.completedChapters.includes(ch.id);
+        const isCurrent = ch.id === state.currentChapterId && !isDone;
         const isViewing =
           state.screen === 'game' && ch.id === state.viewingChapterId;
-        const isUnlocked = isCompleted || isCurrentActive;
+        const canOpen = isDone || ch.id === state.currentChapterId;
 
-        const classes = ['chapter-pill'];
-        if (isViewing) classes.push('is-active');
-        if (isCompleted) classes.push('is-completed');
+        const classes = ['chap-pill'];
+        if (isDone) classes.push('done');
+        if (isCurrent) classes.push('current');
+        if (isViewing) classes.push('viewing');
 
         return `
           <button
@@ -103,142 +222,135 @@ export class AppController {
             class="${classes.join(' ')}"
             data-action="select-chapter"
             data-chapter-id="${escapeHtml(ch.id)}"
-            ${isUnlocked ? '' : 'disabled'}
+            ${canOpen ? '' : 'disabled'}
             title="${escapeHtml(ch.title)}"
           >
-            ${escapeHtml(ch.shortTitle)}${isCompleted ? ' ✓' : ''}
+            ${escapeHtml(ch.shortTitle)}${isDone ? ' ✓' : ''}
           </button>
         `;
       })
       .join('');
 
-    const isGameScreen = state.screen === 'game';
-    const isCompletedCampaign = state.completedChapters.length === chapters.length;
+    const allCompleted = state.completedChapters.length === chapters.length;
+    const reportPill = allCompleted
+      ? `<button
+          type="button"
+          class="chap-pill done ${state.screen === 'assessment' ? 'viewing' : ''}"
+          data-action="open-assessment"
+        >Závěrečný posudek</button>`
+      : '';
 
-    return `
-      <header class="topbar no-print">
-        <div class="topbar-brand">
-          <div class="brand-emblem" aria-hidden="true">§</div>
-          <div>
-            <div class="brand-title">${escapeHtml(this.engine.data.chapters.meta.title)}</div>
-            <span class="brand-subtitle">Vláda Marenské republiky • Ochrana základních práv v EU</span>
-          </div>
-        </div>
-
-        <nav class="chapter-nav" aria-label="Kapitoly kampaně">
-          ${chapterPills}
-          ${
-            isCompletedCampaign
-              ? `<button type="button" class="chapter-pill ${
-                  state.screen === 'assessment' ? 'is-active' : 'is-completed'
-                }" data-action="open-assessment">Posudek</button>`
-              : ''
-          }
-        </nav>
-
-        <div class="topbar-actions">
-          <span class="score-pill" title="Průběžný bodový zisk právní úspěšnosti">
-            Skóre: ${results.totalEarned} / ${results.totalMaxPoints} b.
-          </span>
-          <button
-            type="button"
-            class="btn btn-topbar"
-            data-action="toggle-audio"
-            title="Zapnout nebo ztlumit zvukovou odezvu"
-          >
-            ${this.audio.isMuted() ? '🔇 Zvuk vyp.' : '🔊 Zvuk zap.'}
-          </button>
-          <button type="button" class="btn btn-topbar" data-action="open-tutorial">
-            Tutoriál
-          </button>
-          <button type="button" class="btn btn-topbar" data-action="open-institutions">
-            Instituce &amp; Mapy (${state.unlockedInstitutions.length})
-          </button>
-          ${
-            isGameScreen
-              ? `<button type="button" class="btn btn-topbar ${
-                  state.archiveOpen ? 'is-active' : ''
-                }" data-action="toggle-archive">
-                  Archiv (${state.unlockedDocs.length})
-                </button>`
-              : ''
-          }
-          <button type="button" class="btn btn-topbar" data-action="new-game">
-            Nová hra
-          </button>
-        </div>
-      </header>
-    `;
+    navEl.innerHTML = `${pillsHtml}${reportPill}`;
   }
 
   /* ========================================================================
-     2. Úvodní briefing a Technický tutoriál
+     1. Úvodní obrazovka (Briefing, volba jména, obnovení a historie)
      ======================================================================== */
 
-  _renderBriefingScreen() {
+  _renderHomeScreen() {
     const briefing = this.engine.data.chapters.briefing;
     const hasProgress =
       Object.keys(this.engine.state.steps).length > 0 ||
       this.engine.state.completedChapters.length > 0;
+    const history = this.reporter.loadHistory();
+
+    const currentChapter = this.engine.getChapter(this.engine.state.currentChapterId);
+    const currentResults = this.engine.getResults();
 
     return `
-      <main class="standalone-container">
-        <article class="editorial-card">
-          <div class="editorial-kicker">Úřad vlády Marenské republiky • Orvelin</div>
-          <h1>${escapeHtml(briefing.title)}</h1>
-          <p class="editorial-subtitle">${escapeHtml(briefing.subtitle)}</p>
-          <div class="editorial-body">
-            ${briefing.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join('')}
-          </div>
-          <div class="action-bar">
-            <button type="button" class="btn btn-primary" data-action="start-campaign">
-              ${hasProgress ? 'Pokračovat v rozehrané kampani' : 'Ujmout se funkce (Kapitola 1)'}
-            </button>
-            <button type="button" class="btn btn-gold" data-action="open-tutorial">
-              Přečíst technický tutoriál
-            </button>
-          </div>
-        </article>
-      </main>
-    `;
-  }
+      <section class="home-hero">
+        <div class="eyebrow">Úřad vlády Marenské republiky • Orvelin</div>
+        <h2>${escapeHtml(briefing.title)}</h2>
+        <p class="small" style="font-size: 0.96rem; color: var(--ink-700);">
+          ${escapeHtml(briefing.subtitle)}
+        </p>
+        ${briefing.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join('')}
+      </section>
 
-  _renderTutorialScreen() {
-    const tut = this.engine.data.chapters.tutorial;
+      <div class="home-form-row">
+        <label for="player-name-input"><strong>Jméno předsedy vlády (do posudku):</strong></label>
+        <input
+          type="text"
+          id="player-name-input"
+          class="text-input"
+          placeholder="Např. JUDr. Jan Novák"
+          value="${escapeHtml(this.playerName)}"
+        />
+      </div>
 
-    return `
-      <main class="standalone-container">
-        <article class="editorial-card">
-          <div class="editorial-kicker">Metodický průvodce simulací</div>
-          <h1>${escapeHtml(tut.title)}</h1>
-          <p class="editorial-subtitle">${escapeHtml(tut.intro)}</p>
-          <div class="tutorial-grid">
-            ${tut.sections
-              .map(
-                (sec) => `
-                <section class="tutorial-item">
-                  <h3>${escapeHtml(sec.heading)}</h3>
-                  <p>${escapeHtml(sec.text)}</p>
-                </section>
-              `
-              )
-              .join('')}
-          </div>
-          <div class="action-bar">
-            <button type="button" class="btn btn-primary" data-action="start-campaign">
-              Přejít do pracovního rozhraní vlády
-            </button>
-          </div>
-        </article>
-      </main>
+      ${
+        hasProgress
+          ? `<div class="last-session-card">
+              <strong>Nalezena rozehraná kampaň</strong>
+              <p class="small" style="margin: 0.25rem 0 0.6rem;">
+                Aktuální období: <strong>${escapeHtml(
+                  currentChapter ? currentChapter.title : ''
+                )}</strong> • Průběžný zisk: <strong>${
+              currentResults.totalEarned
+            } / ${currentResults.totalMaxPoints} b.</strong>
+              </p>
+              <div class="action-bar" style="margin-top: 0;">
+                <button type="button" class="btn" data-action="start-campaign">
+                  Pokračovat v rozehrané kampani
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" data-action="new-game">
+                  Smazat postup a začít znovu
+                </button>
+              </div>
+            </div>`
+          : `<div class="action-bar">
+              <button type="button" class="btn" data-action="start-campaign">
+                Ujmout se funkce předsedy vlády (Kapitola 1)
+              </button>
+              <button type="button" class="btn btn-alt" data-action="open-tutorial-modal">
+                Metodický tutoriál
+              </button>
+            </div>`
+      }
+
+      ${
+        history.length > 0
+          ? `<section style="margin-top: 1.5rem;">
+              <h3>Historie dokončených mandátů</h3>
+              <table class="history-table">
+                <thead>
+                  <tr>
+                    <th>Datum</th>
+                    <th>Předseda vlády</th>
+                    <th>Bodový zisk</th>
+                    <th>Klasifikace</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${history
+                    .map(
+                      (h) => `
+                      <tr>
+                        <td>${escapeHtml(
+                          new Date(h.completedAt).toLocaleDateString('cs-CZ')
+                        )}</td>
+                        <td>${escapeHtml(h.playerName)}</td>
+                        <td>${h.totalEarned} / ${h.totalMaxPoints} b. (${
+                        h.totalPercentage
+                      } %)</td>
+                        <td><strong>${escapeHtml(h.gradeLabel)}</strong></td>
+                      </tr>
+                    `
+                    )
+                    .join('')}
+                </tbody>
+              </table>
+            </section>`
+          : ''
+      }
     `;
   }
 
   /* ========================================================================
-     3. Hlavní herní pracovní plocha (Levý panel scénáře + Pravý archiv)
+     2. Herní kapitola a aktivní krok scénáře (#main)
      ======================================================================== */
 
-  _renderGameWorkspace() {
+  _renderGameMain() {
     const state = this.engine.state;
     const chapter = this.engine.getChapter(state.viewingChapterId);
     const effectiveSteps = this.engine.getEffectiveStepIds(chapter.id);
@@ -253,20 +365,17 @@ export class AppController {
     const activeStepId = effectiveSteps[viewStepIdx];
     const stepDef = this.engine.getStepDefinition(activeStepId);
 
-    const stepperHtml = effectiveSteps
+    const stepNavHtml = effectiveSteps
       .map((sId, idx) => {
         const done = this.engine.isStepCompleted(sId);
         const isCurrent = idx === viewStepIdx;
         const canClick = isReadOnly || done || idx === state.currentStepIndex;
-
-        const classes = ['step-chip'];
-        if (isCurrent) classes.push('is-current');
-        if (done) classes.push('is-done');
+        const btnClass = isCurrent ? 'btn btn-sm' : 'btn btn-alt btn-sm';
 
         return `
           <button
             type="button"
-            class="${classes.join(' ')}"
+            class="${btnClass}"
             data-action="jump-step"
             data-step-index="${idx}"
             ${canClick ? '' : 'disabled'}
@@ -277,84 +386,49 @@ export class AppController {
       })
       .join('');
 
-    return `
-      <div class="workspace">
-        <main class="stage-pane">
-          ${
-            isReadOnly
-              ? `<div class="readonly-banner">
-                  <span>
-                    <strong>Režim pouze pro čtení:</strong> Prohlížíte již uzavřenou kapitolu. Původní odpovědi ani body již nelze měnit.
-                  </span>
-                  <button type="button" class="btn btn-sm btn-secondary" data-action="return-active-chapter">
-                    Zpět na aktuální kapitolu
-                  </button>
-                </div>`
-              : ''
-          }
+    let taskHtml = '';
+    if (stepDef) {
+      if (stepDef.type === 'E' || stepDef.type === 'R') {
+        taskHtml = this._renderChoiceTask(stepDef, isReadOnly);
+      } else if (stepDef.type === 'S') {
+        taskHtml = this._renderStrategicTask(stepDef, isReadOnly);
+      } else if (stepDef.type === 'N') {
+        taskHtml = this._renderRemedialTask(stepDef, isReadOnly);
+      } else if (stepDef.type === 'A') {
+        taskHtml = this.defenseEditor.renderArgumentsTask(
+          stepDef,
+          isReadOnly,
+          this._renderAdvanceButton(isReadOnly)
+        );
+      } else if (stepDef.type === 'P') {
+        taskHtml = this.defenseEditor.renderPleadingTask(
+          stepDef,
+          isReadOnly,
+          this._renderAdvanceButton(isReadOnly)
+        );
+      }
+    }
 
-          <section class="chapter-header-card">
-            <div class="chapter-meta-row">
-              <span>${escapeHtml(chapter.period)}</span>
-              <span>•</span>
-              <span>Zaměření: ${escapeHtml(chapter.caseFocus)}</span>
-            </div>
-            <h2>${escapeHtml(chapter.title)}</h2>
-            ${chapter.intro.map((p) => `<p>${escapeHtml(p)}</p>`).join('')}
-            <div class="chapter-goal-box">
-              <strong>Vzdělávací cíl kapitoly:</strong> ${escapeHtml(chapter.goal)}
-            </div>
-          </section>
+    const html = `
+      <section style="margin-bottom: 1.1rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--border);">
+        <div class="eyebrow">${escapeHtml(chapter.period)} • ${escapeHtml(
+      chapter.caseFocus
+    )}</div>
+        <h2>${escapeHtml(chapter.title)}</h2>
+        ${chapter.intro.map((p) => `<p>${escapeHtml(p)}</p>`).join('')}
+        <p class="small" style="margin-bottom: 0;">
+          <strong>Vzdělávací cíl kapitoly:</strong> ${escapeHtml(chapter.goal)}
+        </p>
+      </section>
 
-          <div class="step-stepper" role="tablist" aria-label="Kroky kapitoly">
-            ${stepperHtml}
-          </div>
-
-          ${this._renderStepCard(stepDef, isReadOnly)}
-        </main>
-
-        <div
-          id="pane-resizer"
-          class="pane-resizer ${state.archiveOpen ? '' : 'is-hidden'}"
-          role="separator"
-          aria-orientation="vertical"
-          aria-label="Změnit šířku panelu archivu"
-          title="Tažením změníte šířku bočního archivu"
-        ></div>
-
-        <aside class="archive-pane ${state.archiveOpen ? '' : 'is-hidden'}" aria-label="Vládní archiv">
-          ${this.archivePanel.render(stepDef)}
-        </aside>
+      <div class="action-bar" style="margin-top: 0; margin-bottom: 1.1rem;" role="tablist" aria-label="Kroky kapitoly">
+        ${stepNavHtml}
       </div>
-    `;
-  }
 
-  _renderStepCard(stepDef, isReadOnly) {
-    if (!stepDef) return '';
-    if (stepDef.type === 'E' || stepDef.type === 'R') {
-      return this._renderChoiceTask(stepDef, isReadOnly);
-    }
-    if (stepDef.type === 'S') {
-      return this._renderStrategicTask(stepDef, isReadOnly);
-    }
-    if (stepDef.type === 'N') {
-      return this._renderRemedialTask(stepDef, isReadOnly);
-    }
-    if (stepDef.type === 'A') {
-      return this.defenseEditor.renderArgumentsTask(
-        stepDef,
-        isReadOnly,
-        this._renderAdvanceButton(isReadOnly)
-      );
-    }
-    if (stepDef.type === 'P') {
-      return this.defenseEditor.renderPleadingTask(
-        stepDef,
-        isReadOnly,
-        this._renderAdvanceButton(isReadOnly)
-      );
-    }
-    return '';
+      ${taskHtml}
+    `;
+
+    return { html, stepDef };
   }
 
   _renderChoiceTask(stepDef, isReadOnly) {
@@ -368,7 +442,7 @@ export class AppController {
 
     const maxAttempts = stepDef.maxAttempts || 3;
     const isCompleted = Boolean(stepState.completed);
-    const badgeLabel =
+    const eyebrowText =
       stepDef.type === 'R'
         ? `Námitka Evropské komise • Pokusy: ${stepState.attempts.length}/${maxAttempts}`
         : `Vzdělávací právní úloha • Pokusy: ${stepState.attempts.length}/${maxAttempts}`;
@@ -379,26 +453,9 @@ export class AppController {
         const revealCorrect = isCompleted && opt.correct;
         const revealWrong = wasTried && !opt.correct;
 
-        const classes = ['option-card'];
-        if (revealCorrect) classes.push('is-correct');
-        if (revealWrong) classes.push('is-wrong');
-        if (wasTried || isCompleted || isReadOnly) classes.push('is-disabled');
-
-        let feedbackHtml = '';
-        if (revealCorrect || revealWrong) {
-          const tagDesc =
-            opt.tag && this.engine.data.scoring.errorTags[opt.tag]
-              ? `<div class="tag-pill">Chybový štítek ${escapeHtml(opt.tag)}: ${escapeHtml(
-                  this.engine.data.scoring.errorTags[opt.tag]
-                )}</div>`
-              : '';
-          feedbackHtml = `
-            <div class="option-feedback ${opt.correct ? 'is-correct' : 'is-wrong'}">
-              ${escapeHtml(opt.feedback)}
-              ${tagDesc}
-            </div>
-          `;
-        }
+        const classes = ['opt'];
+        if (revealCorrect) classes.push('good');
+        if (revealWrong) classes.push('bad');
 
         return `
           <button
@@ -409,77 +466,114 @@ export class AppController {
             data-option-id="${escapeHtml(opt.id)}"
             ${wasTried || isCompleted || isReadOnly ? 'disabled' : ''}
           >
-            <div class="option-header">
-              <span class="option-letter">${escapeHtml(opt.id)}</span>
-              <span class="option-text">${escapeHtml(opt.text)}</span>
-            </div>
-            ${feedbackHtml}
+            <span class="opt-key">${escapeHtml(opt.id)}</span>
+            <span>${escapeHtml(opt.text)}</span>
           </button>
         `;
       })
       .join('');
+
+    // Zpětná vazba k vyzkoušeným možnostem
+    const feedbackNotes = [];
+    for (const triedId of stepState.attempts) {
+      const opt = stepDef.options.find((o) => o.id === triedId);
+      if (!opt) continue;
+      const tagInfo =
+        opt.tag && this.engine.data.scoring.errorTags[opt.tag]
+          ? `<div class="small" style="margin-top: 0.3rem;"><strong>Chybový štítek ${escapeHtml(
+              opt.tag
+            )}:</strong> ${escapeHtml(this.engine.data.scoring.errorTags[opt.tag])}</div>`
+          : '';
+      feedbackNotes.push(`
+        <div class="note ${opt.correct ? 'note-good' : 'note-bad'}">
+          <strong>Varianta ${escapeHtml(opt.id)}:</strong> ${escapeHtml(opt.feedback)}
+          ${tagInfo}
+        </div>
+      `);
+    }
+
+    if (isCompleted && !stepState.correct) {
+      const correctOpt = stepDef.options.find((o) => o.correct);
+      if (correctOpt) {
+        feedbackNotes.push(`
+          <div class="note note-good">
+            <strong>Správné řešení (${escapeHtml(correctOpt.id)}):</strong> ${escapeHtml(
+          correctOpt.feedback
+        )}
+          </div>
+        `);
+      }
+    }
 
     const hintsUsed = stepState.hintsUsed || 0;
     const totalHints = stepDef.hints ? stepDef.hints.length : 0;
     const revealedHints = (stepDef.hints || []).slice(0, hintsUsed);
 
     return `
-      <section class="task-card">
-        <span class="task-type-badge">${escapeHtml(badgeLabel)}</span>
+      <section>
+        <div class="eyebrow">${escapeHtml(eyebrowText)}</div>
         <h3>${escapeHtml(stepDef.title)}</h3>
-        <div class="situation-box">${escapeHtml(stepDef.situation)}</div>
-        <div class="task-question">${escapeHtml(stepDef.question)}</div>
+        <div class="situation-box">
+          <p style="margin-bottom: 0;">${escapeHtml(stepDef.situation)}</p>
+        </div>
+
+        ${this._renderDocChips(stepDef.relatedDocs)}
+
+        <p><strong>${escapeHtml(stepDef.question)}</strong></p>
 
         <div class="options-list">${optionsHtml}</div>
 
         ${
           totalHints > 0
-            ? `<div class="advisor-box">
-                <div class="advisor-header">
-                  <span class="advisor-title">Právní poradce dr. Adrian Keller (nápovědy bez bodové ztráty)</span>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-secondary"
-                    data-action="request-hint"
-                    data-step-id="${escapeHtml(stepDef.id)}"
-                    ${hintsUsed >= totalHints || isCompleted || isReadOnly ? 'disabled' : ''}
-                  >
-                    ${
-                      hintsUsed >= totalHints
-                        ? `Všechny nápovědy zobrazeny (${hintsUsed}/${totalHints})`
-                        : `Vyžádat nápovědu (${hintsUsed}/${totalHints})`
-                    }
-                  </button>
-                </div>
+            ? `<div class="action-bar">
+                <button
+                  type="button"
+                  class="btn btn-alt btn-sm"
+                  data-action="request-hint"
+                  data-step-id="${escapeHtml(stepDef.id)}"
+                  ${hintsUsed >= totalHints || isCompleted || isReadOnly ? 'disabled' : ''}
+                >
+                  ${
+                    hintsUsed >= totalHints
+                      ? `Všechny nápovědy poradce zobrazeny (${hintsUsed}/${totalHints})`
+                      : `Nápověda právního poradce dr. Kellera (${hintsUsed}/${totalHints})`
+                  }
+                </button>
+              </div>`
+            : ''
+        }
+
+        ${
+          revealedHints.length > 0 || feedbackNotes.length > 0 || isCompleted
+            ? `<div class="feedback-stack">
+                ${revealedHints
+                  .map(
+                    (h, idx) =>
+                      `<div class="note note-hint"><strong>Nápověda ${idx + 1}:</strong> ${escapeHtml(
+                        h
+                      )}</div>`
+                  )
+                  .join('')}
+                ${feedbackNotes.join('')}
                 ${
-                  revealedHints.length > 0
-                    ? `<ol class="hints-list">
-                        ${revealedHints.map((h) => `<li>${escapeHtml(h)}</li>`).join('')}
-                      </ol>`
+                  isCompleted
+                    ? `<div class="note">
+                        <strong>${
+                          stepState.correct
+                            ? `Úloha vyřešena (${stepState.pointsEarned} b.).`
+                            : 'Pokusy vyčerpány (0 b.).'
+                        }</strong>
+                        <div class="small" style="margin-top: 0.25rem;">
+                          <strong>Právní opora:</strong> ${escapeHtml(stepDef.lawRef || '')}
+                        </div>
+                      </div>`
                     : ''
                 }
               </div>`
             : ''
         }
 
-        ${
-          isCompleted
-            ? `<div class="resolution-panel">
-                <div>
-                  <strong>${
-                    stepState.correct
-                      ? `Úloha vyřešena (${stepState.pointsEarned} b.)`
-                      : 'Vyčerpány všechny pokusy (0 b.) – výše je vyznačena správná odpověď.'
-                  }</strong>
-                </div>
-                <p style="margin: 0.45rem 0 0; font-size: 0.9rem;">
-                  <strong>Právní opora:</strong> ${escapeHtml(stepDef.lawRef || '')}
-                </p>
-                ${this._renderRelatedDocsBar(stepDef.relatedDocs)}
-                ${this._renderAdvanceButton(isReadOnly)}
-              </div>`
-            : ''
-        }
+        ${isCompleted ? this._renderAdvanceButton(isReadOnly) : ''}
       </section>
     `;
   }
@@ -494,9 +588,8 @@ export class AppController {
     const optionsHtml = stepDef.options
       .map((opt) => {
         const isSelected = selectedId === opt.id;
-        const classes = ['option-card'];
-        if (isSelected) classes.push('is-selected');
-        if (isConfirmed || isReadOnly) classes.push('is-locked');
+        const classes = ['opt'];
+        if (isSelected) classes.push('sel');
 
         return `
           <button
@@ -507,57 +600,64 @@ export class AppController {
             data-option-id="${escapeHtml(opt.id)}"
             ${isConfirmed || isReadOnly ? 'disabled' : ''}
           >
-            <div class="option-header">
-              <span class="option-letter">${escapeHtml(opt.id)}</span>
-              <span class="option-text">${escapeHtml(opt.text)}</span>
-            </div>
-            <div class="option-meta">
-              <strong>Politický dopad:</strong> ${escapeHtml(opt.politicalImpact)}
-            </div>
-            ${
-              isConfirmed && isSelected
-                ? `<div class="option-feedback is-correct">
-                    <strong>Právní vyhodnocení:</strong> ${escapeHtml(opt.legalEvaluation)}
-                  </div>`
-                : ''
-            }
+            <span class="opt-key">${escapeHtml(opt.id)}</span>
+            <span>
+              <strong>${escapeHtml(opt.text)}</strong><br />
+              <span class="small"><strong>Politický dopad:</strong> ${escapeHtml(
+                opt.politicalImpact
+              )}</span>
+            </span>
           </button>
         `;
       })
       .join('');
 
     const advisorVisible = Boolean(this.advisorNoteRevealed[stepDef.id]);
+    const confirmedOption = isConfirmed
+      ? stepDef.options.find((o) => o.id === stepState.selectedOptionId)
+      : null;
 
     return `
-      <section class="task-card">
-        <span class="task-type-badge is-strategic">Strategické rozhodnutí kabinetu</span>
+      <section>
+        <div class="eyebrow">Strategické rozhodnutí kabinetu</div>
         <h3>${escapeHtml(stepDef.title)}</h3>
-        <div class="situation-box">${escapeHtml(stepDef.situation)}</div>
-        <div class="task-question">${escapeHtml(stepDef.question)}</div>
+        <div class="situation-box">
+          <p style="margin-bottom: 0;">${escapeHtml(stepDef.situation)}</p>
+        </div>
+
+        ${this._renderDocChips(stepDef.relatedDocs)}
+
+        <p><strong>${escapeHtml(stepDef.question)}</strong></p>
 
         <div class="options-list">${optionsHtml}</div>
 
         ${
           stepDef.advisorNote
-            ? `<div class="advisor-box">
-                <div class="advisor-header">
-                  <span class="advisor-title">Konzultace s právním poradcem dr. Adrianem Kellerem</span>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-secondary"
-                    data-action="toggle-advisor-note"
-                    data-step-id="${escapeHtml(stepDef.id)}"
-                  >
-                    ${advisorVisible ? 'Skrýt odborné vodítko' : 'Vyžádat odborné vodítko'}
-                  </button>
+            ? `<div class="action-bar">
+                <button
+                  type="button"
+                  class="btn btn-alt btn-sm"
+                  data-action="toggle-advisor-note"
+                  data-step-id="${escapeHtml(stepDef.id)}"
+                >
+                  ${
+                    advisorVisible
+                      ? 'Skrýt stanovisko právního poradce'
+                      : 'Konzultovat s právním poradcem dr. Kellerem'
+                  }
+                </button>
+              </div>`
+            : ''
+        }
+
+        ${
+          advisorVisible
+            ? `<div class="feedback-stack">
+                <div class="note note-hint">
+                  <strong>Právní poradce dr. Adrian Keller:</strong> ${escapeHtml(
+                    stepDef.advisorNote
+                  )}
                 </div>
-                ${
-                  advisorVisible
-                    ? `<p style="margin: 0.65rem 0 0; font-size: 0.9rem;">${escapeHtml(
-                        stepDef.advisorNote
-                      )}</p>`
-                    : ''
-                }
               </div>`
             : ''
         }
@@ -579,18 +679,19 @@ export class AppController {
         }
 
         ${
-          isConfirmed
-            ? `<div class="resolution-panel">
-                <strong>Rozhodnutí vlády bylo přijato (zisk: ${stepState.pointsEarned} b.).</strong>
-                <p style="margin: 0.45rem 0 0; font-size: 0.92rem;">
-                  ${escapeHtml(
-                    stepDef.options.find((o) => o.id === stepState.selectedOptionId)
-                      ?.consequenceSummary || ''
-                  )}
-                </p>
-                ${this._renderRelatedDocsBar(stepDef.relatedDocs)}
-                ${this._renderAdvanceButton(isReadOnly)}
-              </div>`
+          isConfirmed && confirmedOption
+            ? `<div class="feedback-stack">
+                <div class="note note-good">
+                  <strong>Rozhodnutí kabinetu přijato (zisk: ${stepState.pointsEarned} b.):</strong>
+                  <p style="margin: 0.35rem 0;">${escapeHtml(
+                    confirmedOption.legalEvaluation
+                  )}</p>
+                  <p class="small" style="margin-bottom: 0;">${escapeHtml(
+                    confirmedOption.consequenceSummary
+                  )}</p>
+                </div>
+              </div>
+              ${this._renderAdvanceButton(isReadOnly)}`
             : ''
         }
       </section>
@@ -607,9 +708,8 @@ export class AppController {
     const optionsHtml = stepDef.options
       .map((opt) => {
         const isSelected = selectedId === opt.id;
-        const classes = ['option-card'];
-        if (isSelected) classes.push('is-selected');
-        if (isConfirmed || isReadOnly) classes.push('is-locked');
+        const classes = ['opt'];
+        if (isSelected) classes.push('sel');
 
         return `
           <button
@@ -620,28 +720,28 @@ export class AppController {
             data-option-id="${escapeHtml(opt.id)}"
             ${isConfirmed || isReadOnly ? 'disabled' : ''}
           >
-            <div class="option-header">
-              <span class="option-letter">${escapeHtml(opt.id)}</span>
-              <span class="option-text">${escapeHtml(opt.text)}</span>
-            </div>
-            ${
-              isConfirmed && isSelected
-                ? `<div class="option-feedback ${opt.points > 0 ? 'is-correct' : 'is-wrong'}">
-                    ${escapeHtml(opt.feedback)}
-                  </div>`
-                : ''
-            }
+            <span class="opt-key">${escapeHtml(opt.id)}</span>
+            <span>${escapeHtml(opt.text)}</span>
           </button>
         `;
       })
       .join('');
 
+    const confirmedOption = isConfirmed
+      ? stepDef.options.find((o) => o.id === stepState.selectedOptionId)
+      : null;
+
     return `
-      <section class="task-card">
-        <span class="task-type-badge is-remedial">Následný vývoj a možnost nápravy</span>
+      <section>
+        <div class="eyebrow">Následný vývoj a možnost nápravy</div>
         <h3>${escapeHtml(stepDef.title)}</h3>
-        <div class="situation-box">${escapeHtml(stepDef.situation)}</div>
-        <div class="task-question">${escapeHtml(stepDef.question)}</div>
+        <div class="situation-box">
+          <p style="margin-bottom: 0;">${escapeHtml(stepDef.situation)}</p>
+        </div>
+
+        ${this._renderDocChips(stepDef.relatedDocs)}
+
+        <p><strong>${escapeHtml(stepDef.question)}</strong></p>
 
         <div class="options-list">${optionsHtml}</div>
 
@@ -650,7 +750,7 @@ export class AppController {
             ? `<div class="action-bar">
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  class="btn"
                   data-action="confirm-remedial"
                   data-step-id="${escapeHtml(stepDef.id)}"
                   ${selectedId ? '' : 'disabled'}
@@ -662,22 +762,24 @@ export class AppController {
         }
 
         ${
-          isConfirmed
-            ? `<div class="resolution-panel">
-                <strong>Postup zaznamenán (nápravný zápočet: +${stepState.pointsEarned} b.).</strong>
-                <p style="margin: 0.45rem 0 0; font-size: 0.9rem;">
-                  <strong>Právní opora:</strong> ${escapeHtml(stepDef.lawRef || '')}
-                </p>
-                ${this._renderRelatedDocsBar(stepDef.relatedDocs)}
-                ${this._renderAdvanceButton(isReadOnly)}
-              </div>`
+          isConfirmed && confirmedOption
+            ? `<div class="feedback-stack">
+                <div class="note ${confirmedOption.points > 0 ? 'note-good' : 'note-bad'}">
+                  <strong>Postup zaznamenán (nápravný zápočet: +${stepState.pointsEarned} b.):</strong>
+                  <p style="margin: 0.35rem 0;">${escapeHtml(confirmedOption.feedback)}</p>
+                  <div class="small"><strong>Právní opora:</strong> ${escapeHtml(
+                    stepDef.lawRef || ''
+                  )}</div>
+                </div>
+              </div>
+              ${this._renderAdvanceButton(isReadOnly)}`
             : ''
         }
       </section>
     `;
   }
 
-  _renderRelatedDocsBar(docIds = []) {
+  _renderDocChips(docIds = []) {
     const unlocked = (docIds || []).filter((id) =>
       this.engine.state.unlockedDocs.includes(id)
     );
@@ -690,22 +792,17 @@ export class AppController {
         return `
           <button
             type="button"
-            class="doc-link-chip"
+            class="doc-chip"
             data-action="open-doc"
             data-doc-id="${escapeHtml(id)}"
           >
-            📄 ${escapeHtml(doc.title)}
+            Otevřít v archivu: ${escapeHtml(doc.title)}
           </button>
         `;
       })
       .join('');
 
-    return `
-      <div class="related-docs-bar">
-        <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-secondary);">Otevřít v archivu:</span>
-        ${chips}
-      </div>
-    `;
+    return `<div class="doc-ref-strip">${chips}</div>`;
   }
 
   _renderAdvanceButton(isReadOnly) {
@@ -726,7 +823,7 @@ export class AppController {
 
     return `
       <div class="action-bar">
-        <button type="button" class="btn btn-primary" data-action="advance-step">
+        <button type="button" class="btn" data-action="advance-step">
           ${label}
         </button>
       </div>
@@ -734,30 +831,232 @@ export class AppController {
   }
 
   /* ========================================================================
-     4. Delegované zpracování uživatelských událostí
+     3. Modální dialog (#modal-backdrop) z index.html
      ======================================================================== */
 
-  _bindDelegatedEvents() {
-    this.rootEl.addEventListener('click', (e) => {
+  openModal({ title, bodyHtml, actionsHtml }) {
+    const backdrop = document.getElementById('modal-backdrop');
+    const titleEl = document.getElementById('modal-title');
+    const bodyEl = document.getElementById('modal-body');
+    const actionsEl = document.getElementById('modal-actions');
+
+    if (!backdrop || !titleEl || !bodyEl || !actionsEl) return;
+
+    titleEl.textContent = title;
+    bodyEl.innerHTML = bodyHtml;
+    actionsEl.innerHTML = actionsHtml;
+    backdrop.hidden = false;
+    backdrop.style.display = 'flex';
+  }
+
+  closeModal() {
+    const backdrop = document.getElementById('modal-backdrop');
+    if (!backdrop) return;
+    backdrop.hidden = true;
+    backdrop.style.display = 'none';
+  }
+
+  openTutorialModal() {
+    const tut = this.engine.data.chapters.tutorial;
+    const bodyHtml = `
+      <p>${escapeHtml(tut.intro)}</p>
+      ${tut.sections
+        .map(
+          (sec) => `
+          <div style="margin-bottom: 0.85rem;">
+            <h4 style="margin: 0 0 0.25rem;">${escapeHtml(sec.heading)}</h4>
+            <p style="margin: 0; font-size: 0.92rem;">${escapeHtml(sec.text)}</p>
+          </div>
+        `
+        )
+        .join('')}
+    `;
+
+    this.openModal({
+      title: tut.title,
+      bodyHtml,
+      actionsHtml: `<button type="button" class="btn" data-action="close-modal">Rozumím</button>`
+    });
+  }
+
+  openExitConfirmModal() {
+    this.openModal({
+      title: 'Ukončit rozehranou kampaň?',
+      bodyHtml: `
+        <p>Opravdu chcete ukončit současnou kampaň a vrátit se na úvodní obrazovku?</p>
+        <p class="small">Veškerý dosavadní postup uložený v paměti prohlížeče bude nenávratně vymazán.</p>
+      `,
+      actionsHtml: `
+        <button type="button" class="btn btn-alt" data-action="close-modal">Zrušit</button>
+        <button type="button" class="btn btn-danger" data-action="confirm-reset-game">Ano, ukončit a smazat postup</button>
+      `
+    });
+  }
+
+  /* ========================================================================
+     4. Propojení všech ovládacích prvků v index.html a delegovaných událostí
+     ======================================================================== */
+
+  _bindEvents() {
+    // Tlačítka v pevné hlavičce (#btn-archive, #btn-tutorial, #btn-fz-dec, #btn-fz-inc, #btn-mute, #btn-exit)
+    document.getElementById('btn-archive')?.addEventListener('click', () => {
+      this.audio.playClick();
+      this.engine.toggleArchive();
+    });
+
+    document.getElementById('btn-close-archive')?.addEventListener('click', () => {
+      this.audio.playClick();
+      this.engine.toggleArchive(false);
+    });
+
+    document.getElementById('btn-tutorial')?.addEventListener('click', () => {
+      this.audio.playClick();
+      this.openTutorialModal();
+    });
+
+    document.getElementById('btn-fz-dec')?.addEventListener('click', () => {
+      this.audio.playClick();
+      this._changeFontSize(-1);
+    });
+
+    document.getElementById('btn-fz-inc')?.addEventListener('click', () => {
+      this.audio.playClick();
+      this._changeFontSize(1);
+    });
+
+    document.getElementById('btn-mute')?.addEventListener('click', () => {
+      this.audio.toggleMute();
+      this.render();
+    });
+
+    document.getElementById('btn-exit')?.addEventListener('click', () => {
+      this.audio.playClick();
+      this.openExitConfirmModal();
+    });
+
+    document.getElementById('btn-return-active')?.addEventListener('click', () => {
+      this.audio.playClick();
+      this.engine.selectChapter(this.engine.state.currentChapterId);
+    });
+
+    // Přepínání tří režimů archivu (.mode-tab[data-mode])
+    document.querySelectorAll('#archive-pane .mode-tab').forEach((tabBtn) => {
+      tabBtn.addEventListener('click', () => {
+        this.audio.playClick();
+        this.archivePanel.setMode(tabBtn.dataset.mode);
+        this.render();
+      });
+    });
+
+    // Nástrojová lišta čtečky (#btn-toggle-highlight, #btn-toggle-compare)
+    document.getElementById('btn-toggle-highlight')?.addEventListener('click', () => {
+      const activeId = this.engine.state.activeDocTab;
+      if (!activeId) return;
+      this.audio.playClick();
+      this.engine.toggleDocumentHighlight(activeId);
+    });
+
+    document.getElementById('btn-toggle-compare')?.addEventListener('click', () => {
+      const activeId = this.engine.state.activeDocTab;
+      if (!activeId) return;
+      this.audio.playClick();
+      this.documentViewer.toggleComparison(activeId);
+      this.render();
+    });
+
+    // Filtr kategorií v katalogu archivu (#archive-cat-select)
+    document.getElementById('archive-cat-select')?.addEventListener('change', (e) => {
+      this.archivePanel.setCategoryFilter(e.target.value);
+      this.render();
+    });
+
+    // Zavření modálního dialogu kliknutím mimo okno nebo klávesou Escape
+    document.getElementById('modal-backdrop')?.addEventListener('click', (e) => {
+      if (e.target.id === 'modal-backdrop') {
+        this.closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        this.closeModal();
+      }
+    });
+
+    // Tažení i klávesové ovládání svislého oddělovače (#split-resizer)
+    const resizer = document.getElementById('split-resizer');
+    if (resizer) {
+      resizer.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        resizer.classList.add('dragging');
+        let latestPct = this.engine.state.archiveWidthPct || 44;
+
+        const onPointerMove = (moveEvent) => {
+          const viewportWidth = window.innerWidth;
+          if (viewportWidth <= 820) return;
+          const rightWidth = viewportWidth - moveEvent.clientX;
+          latestPct = Math.max(26, Math.min(68, Math.round((rightWidth / viewportWidth) * 100)));
+          document.documentElement.style.setProperty('--archive-w', `${latestPct}%`);
+        };
+
+        const onPointerUp = () => {
+          resizer.classList.remove('dragging');
+          window.removeEventListener('pointermove', onPointerMove);
+          window.removeEventListener('pointerup', onPointerUp);
+          this.engine.setArchiveWidth(latestPct);
+        };
+
+        window.addEventListener('pointermove', onPointerMove);
+        window.addEventListener('pointerup', onPointerUp);
+      });
+
+      resizer.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+          e.preventDefault();
+          const delta = e.key === 'ArrowLeft' ? 3 : -3;
+          const next = Math.max(26, Math.min(68, (this.engine.state.archiveWidthPct || 44) + delta));
+          this.engine.setArchiveWidth(next);
+          document.documentElement.style.setProperty('--archive-w', `${next}%`);
+        }
+      });
+    }
+
+    // Delegované kliknutí na dynamicky vykreslené prvky ([data-action])
+    document.body.addEventListener('click', (e) => {
       const target = e.target.closest('[data-action]');
       if (!target) return;
 
       const action = target.dataset.action;
 
       switch (action) {
-        case 'toggle-audio':
-          this.audio.toggleMute();
-          this.render();
+        case 'close-modal':
+          this.audio.playClick();
+          this.closeModal();
+          break;
+
+        case 'confirm-reset-game':
+          this.audio.playClick();
+          this.closeModal();
+          this.draftSelections = {};
+          this.advisorNoteRevealed = {};
+          this.archivePanel.reset();
+          this.defenseEditor.resetDrafts();
+          this.engine.startNewGame();
+          break;
+
+        case 'new-game':
+          this.audio.playClick();
+          this.openExitConfirmModal();
+          break;
+
+        case 'open-tutorial-modal':
+          this.audio.playClick();
+          this.openTutorialModal();
           break;
 
         case 'start-campaign':
           this.audio.playClick();
           this.engine.setScreen('game');
-          break;
-
-        case 'open-tutorial':
-          this.audio.playClick();
-          this.engine.setScreen('tutorial');
           break;
 
         case 'open-assessment':
@@ -773,11 +1072,6 @@ export class AppController {
           }
           break;
         }
-
-        case 'return-active-chapter':
-          this.audio.playClick();
-          this.engine.selectChapter(this.engine.state.currentChapterId);
-          break;
 
         case 'jump-step': {
           const idx = Number(target.dataset.stepIndex);
@@ -841,6 +1135,7 @@ export class AppController {
           const chosen = this.draftSelections[stepId];
           if (stepId && chosen) {
             this.audio.playSeal();
+            this.archivePanel.setMode('workspace');
             this.engine.confirmStrategicDecision(stepId, chosen);
           }
           break;
@@ -851,6 +1146,7 @@ export class AppController {
           const chosen = this.draftSelections[stepId];
           if (stepId && chosen) {
             this.audio.playSeal();
+            this.archivePanel.setMode('workspace');
             this.engine.confirmRemedialDecision(stepId, chosen);
           }
           break;
@@ -865,16 +1161,6 @@ export class AppController {
           break;
         }
 
-        case 'select-pleading-option': {
-          const { secId, optionId } = target.dataset;
-          if (secId && optionId) {
-            this.audio.playClick();
-            this.defenseEditor.selectPleadingOption(secId, optionId);
-            this.render();
-          }
-          break;
-        }
-
         case 'move-sec5-arg': {
           const index = Number(target.dataset.index);
           const dir = Number(target.dataset.dir);
@@ -884,26 +1170,21 @@ export class AppController {
           break;
         }
 
-        case 'confirm-pleading': {
+        case 'confirm-pleading':
           this.audio.playSeal();
           this.engine.confirmPleadingSubmission(this.defenseEditor.getPleadingPayload());
           break;
-        }
 
         case 'advance-step':
           this.audio.playClick();
           this.engine.advanceStep();
           break;
 
-        case 'toggle-archive':
-          this.audio.playClick();
-          this.engine.toggleArchive();
-          break;
-
         case 'open-doc': {
           const { docId } = target.dataset;
           if (docId) {
             this.audio.playDocumentOpen();
+            this.archivePanel.setMode('workspace');
             this.engine.openDocument(docId);
           }
           break;
@@ -919,44 +1200,6 @@ export class AppController {
           break;
         }
 
-        case 'toggle-doc-highlight': {
-          const { docId } = target.dataset;
-          if (docId) {
-            this.audio.playClick();
-            this.engine.toggleDocumentHighlight(docId);
-          }
-          break;
-        }
-
-        case 'toggle-doc-comparison': {
-          const { docId } = target.dataset;
-          if (docId) {
-            this.audio.playClick();
-            this.documentViewer.toggleComparison(docId);
-            this.render();
-          }
-          break;
-        }
-
-        case 'open-institutions':
-          this.audio.playClick();
-          this.institutionsModalOpen = true;
-          this.render();
-          break;
-
-        case 'close-institutions':
-          this.audio.playClick();
-          this.institutionsModalOpen = false;
-          this.render();
-          break;
-
-        case 'close-institutions-backdrop':
-          if (e.target === target) {
-            this.institutionsModalOpen = false;
-            this.render();
-          }
-          break;
-
         case 'print-assessment':
           this.audio.playClick();
           window.print();
@@ -964,81 +1207,37 @@ export class AppController {
 
         case 'export-assessment-md':
           this.audio.playClick();
-          this.reporter.downloadMarkdownReport();
+          this.reporter.downloadMarkdownReport(this.playerName);
           break;
-
-        case 'new-game': {
-          const confirmed = window.confirm(
-            'Opravdu chcete zahájit novou kampaň? Veškerý dosavadní postup uložený v prohlížeči bude vymazán.'
-          );
-          if (confirmed) {
-            this.audio.playClick();
-            this.draftSelections = {};
-            this.advisorNoteRevealed = {};
-            this.archivePanel.resetFilters();
-            this.defenseEditor.resetDrafts();
-            this.engine.startNewGame();
-          }
-          break;
-        }
 
         default:
           break;
       }
     });
 
-    this.rootEl.addEventListener('change', (e) => {
+    // Změna zaškrtávacích polí a přepínačů v Kapitole 6 (ARG a POD)
+    document.body.addEventListener('change', (e) => {
       const target = e.target;
-      if (target.dataset && target.dataset.action === 'toggle-arg-checkbox') {
+      if (!target.dataset) return;
+
+      if (target.dataset.action === 'toggle-arg-checkbox') {
         this.audio.playClick();
         this.defenseEditor.toggleArgument(target.dataset.argId, target.checked);
         this.render();
-        return;
-      }
-
-      if (target.id === 'archive-category-select') {
-        this.archivePanel.setCategoryFilter(target.value);
+      } else if (target.dataset.action === 'select-pleading-option') {
+        this.audio.playClick();
+        this.defenseEditor.selectPleadingOption(
+          target.dataset.secId,
+          target.dataset.optionId
+        );
         this.render();
       }
     });
 
-    this.rootEl.addEventListener('input', (e) => {
-      if (e.target && e.target.id === 'archive-search-input') {
-        this.archivePanel.setSearchQuery(e.target.value);
-        this.render();
-        const restoredInput = document.getElementById('archive-search-input');
-        if (restoredInput) {
-          restoredInput.focus();
-          const len = restoredInput.value.length;
-          restoredInput.setSelectionRange(len, len);
-        }
-      }
-    });
-
-    this.rootEl.addEventListener('pointerdown', (e) => {
-      if (e.target && e.target.id === 'pane-resizer') {
-        e.preventDefault();
-        const resizer = e.target;
-        resizer.classList.add('is-dragging');
-        let latestPct = this.engine.state.archiveWidthPct || 42;
-
-        const onPointerMove = (moveEvent) => {
-          const viewportWidth = window.innerWidth;
-          if (viewportWidth <= 960) return;
-          const rightWidth = viewportWidth - moveEvent.clientX;
-          latestPct = Math.max(26, Math.min(62, Math.round((rightWidth / viewportWidth) * 100)));
-          document.documentElement.style.setProperty('--archive-width', `${latestPct}%`);
-        };
-
-        const onPointerUp = () => {
-          resizer.classList.remove('is-dragging');
-          window.removeEventListener('pointermove', onPointerMove);
-          window.removeEventListener('pointerup', onPointerUp);
-          this.engine.setArchiveWidth(latestPct);
-        };
-
-        window.addEventListener('pointermove', onPointerMove);
-        window.addEventListener('pointerup', onPointerUp);
+    // Ukládání jména hráče na úvodní obrazovce (#player-name-input)
+    document.body.addEventListener('input', (e) => {
+      if (e.target && e.target.id === 'player-name-input') {
+        this._savePlayerName(e.target.value);
       }
     });
   }
@@ -1061,22 +1260,21 @@ async function loadAllData() {
 }
 
 async function bootstrap() {
-  const rootEl = document.getElementById('app');
-  if (!rootEl) return;
+  const mainEl = document.getElementById('main');
+  if (!mainEl) return;
 
   try {
     const data = await loadAllData();
     const engine = new GameEngine(data);
-    const app = new AppController(rootEl, engine);
+    const app = new AppController(engine);
     app.render();
   } catch (error) {
     console.error('Chyba při spuštění simulace:', error);
-    rootEl.innerHTML = `
-      <div class="loading-screen" role="alert">
-        <div class="loading-crest">!</div>
+    mainEl.innerHTML = `
+      <div class="note note-bad" role="alert">
         <h2>Chyba při inicializaci aplikace</h2>
         <p>${escapeHtml(error.message || String(error))}</p>
-        <p style="font-size: 0.88rem; color: #60718d;">
+        <p class="small" style="margin-bottom: 0;">
           Ujistěte se, že aplikaci spouštíte přes lokální nebo webový HTTP server (nikoli přímo přes protokol <code>file://</code>, který blokuje načítání modulů a souborů JSON).
         </p>
       </div>
