@@ -16,7 +16,8 @@ $('#nw').onclick=()=>{const n=$('#nm').value.trim();if(!n)return alert('Zadejte 
 if($('#go'))$('#go').onclick=()=>{S=a;show()};
 M.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{if(confirm('Smazat pokus?')){h.splice(+b.dataset.d,1);sv(K2,h);home()}});
 if($('#da'))$('#da').onclick=()=>{if(confirm('Smazat celou historii?')){sv(K2,[]);home()}}}
-function show(){save();while(S.i<G.items.length&&!vis(it()))S.i++;if(S.i>=G.items.length)return end();const x=it(),r=S.a[x.id]||(S.a[x.id]={at:[],pts:0,tags:[],hint:0,closed:false});
+function scr(t,b,k){M.innerHTML=`<h2>${esc(t)}</h2>${b.split('\n\n').map(p=>`<p>${esc(p)}</p>`).join('')}<button class="btn" id="st">Pokračovat</button>`;$('#st').onclick=()=>{S.seen[k]=1;save();show()}}
+function show(){S.seen=S.seen||{};if(S.i<G.items.length){const ik=!S.seen.b?'b':G.intro.ch[G.items[S.i].id]&&!S.seen[G.items[S.i].id]&&vis(G.items[S.i])?G.items[S.i].id:null;if(ik){const v=ik=='b'?G.intro.b:G.intro.ch[ik];return scr(v[0],v[1],ik)}}save();while(S.i<G.items.length&&!vis(it()))S.i++;if(S.i>=G.items.length)return end();const x=it(),r=S.a[x.id]||(S.a[x.id]={at:[],pts:0,tags:[],hint:0,closed:false});
 M.innerHTML=`<p class="small">Úloha ${S.i+1} z ${G.items.length}</p><h2>${x.t=='S'?'Strategické rozhodnutí':x.t=='N'?'Náprava':'Vzdělávací úloha'}</h2><p>${esc(x.q)}</p><div id="os"></div><div id="fb"></div><div id="ac"></div>`;
 if(x.t=='A'||x.t=='P')return ap(x,r);const os=$('#os');let sel=null;
 x.o.forEach((o,k)=>{const b=document.createElement('button');b.className='opt';b.textContent=o[0];b.onclick=()=>{if(r.closed)return;sel=k;os.querySelectorAll('.opt').forEach(e=>e.classList.remove('sel'));b.classList.add('sel')};os.append(b)});
@@ -61,12 +62,12 @@ let tab=null,cat='Vše';
 function arch(){const d=$('#drawer');if(!S){d.hidden=true;return}
 const hl=window.hlOn&&G.items[S.i]?.hl||[],mk=t=>{let h=esc(t);hl.forEach(s=>h=h.replace(esc(s),'<mark>$&</mark>'));return h};
 const cats=['Vše',...new Set(S.docs.map(k=>G.docs[k].cat))],list=S.docs.filter(k=>cat=='Vše'||G.docs[k].cat==cat);if(!list.includes(tab))tab=list[0]||null;
-d.innerHTML=`<div class="dv" id="dv"></div><h3>Archiv</h3><select id="cf">${cats.map(c=>`<option${c==cat?' selected':''}>${esc(c)}</option>`).join('')}</select> <button class="btn alt" id="hlb">Zvýraznit relevantní pasáž</button>
+d.innerHTML=`<div class="dv" id="dv"></div><h3>Archiv</h3><select id="cf">${cats.map(c=>`<option${c==cat?' selected':''}>${esc(c)}</option>`).join('')}</select> <button class="btn" id="cl">Zavřít</button> <button class="btn alt" id="hlb">Zvýraznit relevantní pasáž</button>
 <div class="tabs">${list.map(k=>`<button class="tb${k==tab?' on':''}" data-t="${k}">${esc(G.docs[k].t.split(',')[0])}</button>`).join('')}</div>
 ${tab?`<h4>${esc(G.docs[tab].t)}</h4><p class="small">${esc(G.docs[tab].cat)}</p><p>${mk(G.docs[tab].b)}</p>`:'<p>Zatím nic neodemčeno.</p>'}
 <h3>Instituce</h3>${G.inst.filter(i=>S.a[i[2]]?.closed).map(i=>`<p><b>${esc(i[0])}</b><br>${esc(i[1])}</p>`).join('')||'<p class="small">Zatím žádné.</p>'}
 <h3>Schéma řízení o nesplnění povinnosti</h3><svg viewBox="0 0 300 40" width="100%"><g fill="#2457a6" font-size="9" fill-opacity=".9"><rect x="0" y="8" width="90" height="24"/><rect x="105" y="8" width="90" height="24"/><rect x="210" y="8" width="90" height="24"/></g><g fill="#fff" font-size="9" text-anchor="middle"><text x="45" y="24">Komise zjistí</text><text x="150" y="24">Řízení Komise</text><text x="255" y="24">Žaloba k SDEU</text></g></svg><p class="small">Čl. 258 SFEU (ověřeno).</p>`;
-d.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{tab=b.dataset.t;arch()});$('#cf').onchange=e=>{cat=e.target.value;arch()};$('#hlb').onclick=()=>{window.hlOn=!window.hlOn;arch()};
+d.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{tab=b.dataset.t;arch()});$('#cf').onchange=e=>{cat=e.target.value;arch()};$('#cl').onclick=()=>{d.hidden=true;M.style.marginRight=''};$('#hlb').onclick=()=>{window.hlOn=!window.hlOn;arch()};
 $('#dv').onpointerdown=e=>{const mv=ev=>{const w=Math.min(innerWidth*.7,Math.max(260,innerWidth-ev.clientX));d.style.width=w+'px';M.style.marginRight=w+20+'px'};addEventListener('pointermove',mv);addEventListener('pointerup',()=>removeEventListener('pointermove',mv),{once:true})}}
 $('#arch').onclick=()=>{const d=$('#drawer');d.hidden=!d.hidden;if(d.hidden){M.style.marginRight='';return}arch();M.style.marginRight=(d.offsetWidth+20)+'px'};
 $('#mute').onclick=e=>{muted=!muted;e.target.textContent=muted?'Zvuk vypnut':'Zvuk'};
