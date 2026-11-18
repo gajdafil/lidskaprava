@@ -46,14 +46,20 @@ export class ArchivePanel {
         if (!this.currentStepDef || !this.currentStepDef.highlightDocId) return;
         const targetDocId = this.currentStepDef.highlightDocId;
 
-        if (this.activeHighlightForStepId === this.currentStepDef.id) {
-          // Vypnutí zvýraznění
-          this.activeHighlightForStepId = null;
-        } else {
-          // Zapnutí zvýraznění a otevření příslušného dokumentu
-          this.activeHighlightForStepId = this.currentStepDef.id;
-          this.engine.openDocument(targetDocId);
-          this.setMode('reader');
+       if (this.activeHighlightForStepId === this.currentStepDef.id) {
+  this.activeHighlightForStepId = null;
+} else {
+  const isUnlocked = this.engine.state.unlockedDocs.includes(targetDocId);
+
+  if (!isUnlocked) {
+    console.warn(`Dokument ${targetDocId} není odemčen.`);
+    return;
+  }
+
+  this.activeHighlightForStepId = this.currentStepDef.id;
+  this.engine.openDocument(targetDocId);
+  this.setMode('reader');
+}
         }
         this.sync(this.currentStepDef);
         if (this.onStateChange) this.onStateChange();
